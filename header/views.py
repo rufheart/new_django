@@ -8,4 +8,7 @@ def index(request):
 def blog(request):
     return render(request=request, template_name='blog.html')    
 
+def contact(request):
+    return render(request, 'contact_us.html')    
+
 

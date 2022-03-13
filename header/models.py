@@ -1,5 +1,7 @@
 from calendar import c
+from distutils.command.upload import upload
 import email
+from pyexpat import model
 from django.db import models
 
 # Create your models here.
@@ -21,4 +23,16 @@ class Contact(ABS):
 
     def __str__(self) -> str:
         return self.name
+
+class Product(ABS):
+    name=models.CharField(max_length=35)
+    image = models.ImageField(upload_to = 'img/product/')
+    desc = models.TextField()
+    new_pr=models.CharField(max_length=10)
+    old_pr=models.CharField(max_length=10)
+
+    def __str__(self) -> str:
+        return self.name
+        
+                
 

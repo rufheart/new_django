@@ -8,7 +8,7 @@ def index(request):
     return render(request, 'index.html')
 
 def blog(request):    
-    return render(request=request, template_name='blog.html',context=context)    
+    return render(request=request, template_name='blog.html')    
 
 def contact(request):
     if request.method == 'POST':

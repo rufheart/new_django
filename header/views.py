@@ -24,10 +24,13 @@ def contact(request):
     return render(request, 'contact_us.html',context)    
 
 def product(request):
-    context= {
+    context = {
         'models':Product.objects.all()
     }
-    return render(request, 'product-list.html', context=context)
+    return render(request, 'product-list.html', context)
 
 def about(request, pk):
-    return render(f'{request, Product.objects.get(id == {pk})}')
+    context = {
+        'about':Product.objects.get(id = pk)
+    }
+    return render(request, 'product-details.html', context=context)

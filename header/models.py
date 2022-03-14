@@ -1,6 +1,7 @@
 from calendar import c
 from distutils.command.upload import upload
 import email
+from email.mime import image
 from pyexpat import model
 from django.db import models
 
@@ -34,8 +35,59 @@ class Product(ABS):
     def __str__(self) -> str:
         return self.name
 
-class About(ABS,pk):
+class About(ABS):
+    name = models.CharField(max_length=40)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
-        
                 
 

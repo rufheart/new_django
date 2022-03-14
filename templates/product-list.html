@@ -1,5 +1,4 @@
 ﻿{% extends 'base.html' %}
-
 {% load static %}
 
 {% block content %}
@@ -28,7 +27,7 @@
     
     <div class="row">
       <div class="col-main col-sm-9 col-sm-push-3">
-	  <div class="category-image"><img title="Sofas " alt="Sofas " src="{% static 'images/category-banner.jpg' %}"> </div>
+	  <div class="category-image"><img title="Sofas " alt="Sofas " src="{% static  'images/category-banner.jpg' %}"> </div>
         <article class="col-main">
           <div class="page-title">
             <h1>Tops & Tees</h1>
@@ -77,15 +76,14 @@
               </div>
             </div>
           </div>
-          {% csrf_token %}
           <div class="category-products">
             <ol class="products-list" id="products-list">
+          
+          {% for model in models %}
           <li class="item first">
-            {% for model in models %}
-            
-            <div class="product-image"> <a href="{{ model.id }}" title="HTC Rhyme Sense"> <img class="small-image" src="" alt="HTC Rhyme Sense"> </a> </div>
+            <div class="product-image"> <a href="" title="HTC Rhyme Sense"> <img class="small-image" src="/home/rufheart/Desktop/new_django/img/library.jpg" alt="HTC Rhyme Sense"> </a> </div>
             <div class="product-shop">
-              <h2 class="product-name"><a href="#/htc-rhyme-sense.html" >{{ model.name }}</a></h2>
+              <h2 class="product-name"><a href="{% url 'about' pk=model.id %}" title="HTC Rhyme Sense">{{ model.name }} asasa</a></h2>
               <div class="ratings">
                 <div class="rating-box">
                   <div style="width:50%" class="rating"></div>
@@ -93,17 +91,19 @@
                 <p class="rating-links"> <a href="#/review/product/list/id/167/category/35/">1 Review(s)</a> <span class="separator">|</span> <a href="#review-form">Add Your Review</a> </p>
               </div>
               <div class="desc std">
-                <p>{{ model.desc }} </p>
+                <p> {{ model.desc }}<a class="link-learn" title="" href="#">Learn More</a> </p>
+              </div>
               <div class="price-box">
                
-                <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ model.new_pr}} </span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ model.old}} </span> </p>
+                <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ model.new_pr }} </span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ model.old_pr }} </span> </p>
               </div>
               <div class="actions">
-                {% endfor %}
                 <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
                 <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#"><span>Add to Wishlist</span></a> <a title="Add to Compare" class="button link-compare" href="#"><span>Add to Compare</span></a> </span> </div>
             </div>
           </li>
+          {% endfor %}
+
           <li class="item even">
             <div class="product-image"> <a href="#/microsoft-natural-ergonomic-keyboard-4000.html" title="Microsoft Natural Keyboard"> <img class="small-image" src="{% static 'products-images/product.jpg' %}" alt="Microsoft Natural Keyboard"> </a> </div>
             <div class="product-shop">
@@ -122,37 +122,7 @@
             <div class="product-shop">
               <h2 class="product-name"><a href="#/30-flat-panel-tft-lcd-cinema-hd-monitor.html" title="30&quot; Flat-Panel HD Monitor">30" Flat-Panel HD Monitor</a></h2>
               <div class="desc std"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla... <a class="link-learn" title="" href="#">Learn More</a></p>
-              </div>          <!-- Item -->
-            <div class="item"><a href="#"><img src="{% static 'images/b-logo3.png' %}" alt="Image"></a> </div>
-            <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item"><a href="#"><img src="{% static 'images/b-logo2.png' %}" alt="Image"></a> </div>
-            <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item"><a href="#"><img src="{% static 'images/b-logo1.png' %}" alt="Image"></a> </div>
-            <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item"><a href="#"><img src="{% static 'images/b-logo4.png' %}" alt="Image"></a> </div>
-            <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item"><a href="#"><img src="{% static 'images/b-logo5.png' %}" alt="Image"></a> </div>
-            <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item"><a href="#"><img src="{% static 'images/b-logo6.png' %}" alt="Image"></a> </div>
-            <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item"><a href="#"><img src="{% static 'images/b-logo1.png' %}" alt="Image"></a> </div>
-            <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item"><a href="#"><img src="{% static 'images/b-logo4.png' %}" alt="Image"></a> </div>
-            <!-- End Item --> 
+              </div>
               <div class="price-box"> <span class="regular-price"> <span class="price">$699.99</span> </span> </div>
               <div class="actions">
                 <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
@@ -160,7 +130,7 @@
             </div>
           </li>
           <li class="item even">
-            <div class="product-image"> <a href="#/19-widescreen-flat-panel-lcd-monitor.html" title="19&quot; Widescreen LCD Monitor"> <img class="small-image" src="products-images/product.jpg" alt="19&quot; Widescreen LCD Monitor"> </a> </div>
+            <div class="product-image"> <a href="#/19-widescreen-flat-panel-lcd-monitor.html" title="19&quot; Widescreen LCD Monitor"> <img class="small-image" src="{% static 'products-images/product.jpg' %}" alt="19&quot; Widescreen LCD Monitor"> </a> </div>
             <div class="product-shop">
               <h2 class="product-name"><a href="#/19-widescreen-flat-panel-lcd-monitor.html" title="19&quot; Widescreen LCD Monitor">19" Widescreen LCD Monitor</a></h2>
               <div class="desc std"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla... <a class="link-learn" title="" href="#">Learn More</a> </p>
@@ -496,14 +466,14 @@
                 </div>
                 <p class="block-subtitle">Recently added item(s) </p>
                 <ul>
-                  <li class="item"> <a href="#" title="Retis lapen casen" class="product-image"><img src="{% static 'products-images/product.jpg' %}" alt="Fisher-Price Bubble Mower"></a>
+                  <li class="item"> <a href="#" title="Retis lapen casen" class="product-image"><img src="products-images/product.jpg" alt="Fisher-Price Bubble Mower"></a>
                     <div class="product-details">
                       <div class="access"> <a href="#" title="Remove This Item" class="btn-remove1"> <span class="icon"></span> Remove </a> </div>
                       <strong>1</strong> x <span class="price">$19.99</span>
                       <p class="product-name"> <a href="#">Office Colored Ladies Shirt</a> </p>
                     </div>
                   </li>
-                  <li class="item last"> <a href="#" title="Retis lapen casen" class="product-image"><img src="{% static 'products-images/product.jpg' %}" alt="Prince Lionheart Jumbo Toy Hammock"></a>
+                  <li class="item last"> <a href="#" title="Retis lapen casen" class="product-image"><img src="products-images/product.jpg" alt="Prince Lionheart Jumbo Toy Hammock"></a>
                     <div class="product-details">
                       <div class="access"> <a href="#" title="Remove This Item" class="btn-remove1"> <span class="icon"></span> Remove </a> </div>
                       <strong>1</strong> x <span class="price">$8.00</span>
@@ -623,42 +593,41 @@
         <div id="brand-logo-slider" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col6"> 
             
-          <!-- Item -->
-          <div class="item"><a href="#"><img src="{% static 'images/b-logo3.png' %}" alt="Image"></a> </div>
-          <!-- End Item --> 
-          
-          <!-- Item -->
-          <div class="item"><a href="#"><img src="{% static 'images/b-logo2.png' %}" alt="Image"></a> </div>
-          <!-- End Item --> 
-          
-          <!-- Item -->
-          <div class="item"><a href="#"><img src="{% static 'images/b-logo1.png' %}" alt="Image"></a> </div>
-          <!-- End Item --> 
-          
-          <!-- Item -->
-          <div class="item"><a href="#"><img src="{% static 'images/b-logo4.png' %}" alt="Image"></a> </div>
-          <!-- End Item --> 
-          
-          <!-- Item -->
-          <div class="item"><a href="#"><img src="{% static 'images/b-logo5.png' %}" alt="Image"></a> </div>
-          <!-- End Item --> 
-          
-          <!-- Item -->
-          <div class="item"><a href="#"><img src="{% static 'images/b-logo6.png' %}" alt="Image"></a> </div>
-          <!-- End Item --> 
-          
-          <!-- Item -->
-          <div class="item"><a href="#"><img src="{% static 'images/b-logo1.png' %}" alt="Image"></a> </div>
-          <!-- End Item --> 
-          
-          <!-- Item -->
-          <div class="item"><a href="#"><img src="{% static 'images/b-logo4.png' %}" alt="Image"></a> </div>
-          <!-- End Item --> 
-          
+            <!-- Item -->
+            <div class="item"><a href="#"><img src="{% static 'images/b-logo3.png' %}" alt="Image"></a> </div>
+            <!-- End Item --> 
+            
+            <!-- Item -->
+            <div class="item"><a href="#"><img src="{% static 'images/b-logo2.png' %} alt="Image"></a> </div>
+            <!-- End Item --> 
+            
+            <!-- Item -->
+            <div class="item"><a href="#"><img src="{% static 'images/b-logo1.png' %}" alt="Image"></a> </div>
+            <!-- End Item --> 
+            
+            <!-- Item -->
+            <div class="item"><a href="#"><img src="{% static 'images/b-logo4.png' %}" alt="Image"></a> </div>
+            <!-- End Item --> 
+            
+            <!-- Item -->
+            <div class="item"><a href="#"><img src="{% static 'images/b-logo5.png' %}" alt="Image"></a> </div>
+            <!-- End Item --> 
+            
+            <!-- Item -->
+            <div class="item"><a href="#"><img src="{% static 'images/b-logo6.png' %}" alt="Image"></a> </div>
+            <!-- End Item --> 
+            
+            <!-- Item -->
+            <div class="item"><a href="#"><img src="{% static 'images/b-logo1.png' %}" alt="Image"></a> </div>
+            <!-- End Item --> 
+            
+            <!-- Item -->
+            <div class="item"><a href="#"><img src="{% static 'images/b-logo4.png' %}" alt="Image"></a> </div>
+            <!-- End Item --> 
             
           </div>
         </div>
       </div>
     </div>
   </div>
-{% endblock %}
+{% endblock %} 

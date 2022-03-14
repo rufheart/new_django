@@ -77,12 +77,15 @@
               </div>
             </div>
           </div>
+          {% csrf_token %}
           <div class="category-products">
             <ol class="products-list" id="products-list">
           <li class="item first">
-            <div class="product-image"> <a href="#" title="HTC Rhyme Sense"> <img class="small-image" src="{% static 'products-images/product.jpg' %}" alt="HTC Rhyme Sense"> </a> </div>
+            {% for model in models %}
+            
+            <div class="product-image"> <a href="{{ model.id }}" title="HTC Rhyme Sense"> <img class="small-image" src="" alt="HTC Rhyme Sense"> </a> </div>
             <div class="product-shop">
-              <h2 class="product-name"><a href="#/htc-rhyme-sense.html" title="HTC Rhyme Sense">HTC Rhyme Sense</a></h2>
+              <h2 class="product-name"><a href="#/htc-rhyme-sense.html" >{{ model.name }}</a></h2>
               <div class="ratings">
                 <div class="rating-box">
                   <div style="width:50%" class="rating"></div>
@@ -90,13 +93,13 @@
                 <p class="rating-links"> <a href="#/review/product/list/id/167/category/35/">1 Review(s)</a> <span class="separator">|</span> <a href="#review-form">Add Your Review</a> </p>
               </div>
               <div class="desc std">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla... <a class="link-learn" title="" href="#">Learn More</a> </p>
-              </div>
+                <p>{{ model.desc }} </p>
               <div class="price-box">
                
-                <p class="special-price"> <span class="price-label"></span> <span class="price"> $222.99 </span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> $442.99 </span> </p>
+                <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ model.new_pr}} </span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ model.old}} </span> </p>
               </div>
               <div class="actions">
+                {% endfor %}
                 <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
                 <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#"><span>Add to Wishlist</span></a> <a title="Add to Compare" class="button link-compare" href="#"><span>Add to Compare</span></a> </span> </div>
             </div>

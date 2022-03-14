@@ -1,7 +1,8 @@
+
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import Http404, HttpRequest, HttpResponse
 from header.forms import FormContact
-from header.models import Contact
+from header.models import Contact, Product
 
 # Create your views here.
 def index(request):
@@ -22,4 +23,11 @@ def contact(request):
     }        
     return render(request, 'contact_us.html',context)    
 
+def product(request):
+    context= {
+        'models':Product.objects.all()
+    }
+    return render(request, 'product-list.html', context=context)
 
+def about(request, pk):
+    return render(f'{request, Product.objects.get(id == {pk})}')

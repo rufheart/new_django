@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    {% csrf_token %} 
+
+    {% for model in models %}
+
+        <h2>{{ model.name }}</h2>
+
+    {% endfor %}
+
+{% endblock %}    

@@ -206,12 +206,12 @@
                 <li class="level1"> <a href="login.html"> <span>Login</span> </a> </li>
                 <li class="level1"> <a href="forgot_password.html"> <span>Forgot Password</span> </a> </li>
                 <li class="level1"> <a href="quick_view.html"> <span>Quick view </span> </a> </li>
-                <li class="level1 first parent"><a href="blog.html"><span>Blog</span></a>
+                <li class="level1 first parent"><a href="{% url 'blog'  %}"><span>Blog</span></a>
                   <ul class="level2 right-sub" style="top: 0px; left: 165px; display: none;">
                     <li class="level2 nav-2-1-1 first"><a href="blog_detail.html"><span>Blog Detail</span></a></li>
                   </ul>
                 </li>
-                <li class="level1"><a href="contact/"><span>Contact us</span></a> </li>
+                <li class="level1"><a href=""><span>Contact us</span></a> </li>
                 <li class="level1"><a href="404error.html"><span>404 Error Page</span></a> </li>
               </ul>
             </li>
@@ -275,7 +275,7 @@
                     </div>
                     <!--nav-block nav-block-center-->
                     <div class="col-2">
-                      <div class="menu_image"><a href="#" title=""><img src="images/menu_image.png" alt="menu_image"></a></div>
+                      <div class="menu_image"><a href="#" title=""><img src="{% static 'images/menu_image.png' %}" alt="menu_image"></a></div>
                     </div>
                   </div>
                   <!--level0-wrapper2--> </div>

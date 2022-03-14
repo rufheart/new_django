@@ -33,6 +33,9 @@ class Product(ABS):
 
     def __str__(self) -> str:
         return self.name
+
+class About(ABS,pk):
+    
         
                 
 

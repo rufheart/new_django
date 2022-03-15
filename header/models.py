@@ -1,9 +1,5 @@
-from calendar import c
-from distutils.command.upload import upload
-import email
-from email.mime import image
-from pyexpat import model
 from django.db import models
+from django.shortcuts import render
 
 # Create your models here.
 
@@ -27,7 +23,7 @@ class Contact(ABS):
 
 class Product(ABS):
     name=models.CharField(max_length=35)
-    image = models.ImageField(upload_to = 'img/product/')
+    image = models.ImageField(upload_to = 'media/img/product/')
     desc = models.TextField()
     new_pr=models.CharField(max_length=10)
     old_pr=models.CharField(max_length=10)
@@ -35,8 +31,25 @@ class Product(ABS):
     def __str__(self) -> str:
         return self.name
 
+class Tag(ABS):
+    name = models.CharField(max_length=50)
+
+    def __str__(self) -> str:
+        return self.name
+
 class About(ABS):
-    name = models.CharField(max_length=40)
+    tag = models.ManyToManyField(Tag, blank=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    c_tab = models.TextField()
+
+    def __str__(self) -> str:
+        return self.tag
+
+class Images(ABS):
+    image = models.ImageField(upload_to = 'media/img/images') 
+    about = models.ForeignKey(About, on_delete=models.CASCADE)
+
+    
 
 
 

@@ -31,6 +31,6 @@ def product(request):
 
 def about(request, pk):
     context = {
-        'about':Product.objects.get(id = pk)
+        'abouts':Product.objects.get(id = pk)
     }
     return render(request, 'product-details.html', context=context)

@@ -72,7 +72,7 @@
                   <li><a href="#">4</a></li>
                   <li><a href="#">5</a></li>
                   <li><a href="#">&raquo;</a></li>
-                </ul>
+                </ul> 
               </div>
             </div>
           </div>
@@ -81,7 +81,7 @@
           
           {% for model in models %}
           <li class="item first">
-            <div class="product-image"> <a href="" title="HTC Rhyme Sense"> <img class="small-image" src="/home/rufheart/Desktop/new_django/img/library.jpg" alt="HTC Rhyme Sense"> </a> </div>
+            <div class="product-image"> <a href="" title="{{ model.name }}"> <img class="small-image" src="media/media/img/product/Screenshot_from_2022-01-25_21-48-04.png" alt="{{ model.name }}"> </a> </div>
             <div class="product-shop">
               <h2 class="product-name"><a href="{% url 'about' pk=model.id %}" title="HTC Rhyme Sense">{{ model.name }}</a></h2>
               <div class="ratings">

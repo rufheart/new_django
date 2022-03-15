@@ -21,15 +21,6 @@ class Contact(ABS):
     def __str__(self) -> str:
         return self.name
 
-class Product(ABS):
-    name=models.CharField(max_length=35)
-    image = models.ImageField(upload_to = 'media/img/product/')
-    desc = models.TextField()
-    new_pr=models.CharField(max_length=10)
-    old_pr=models.CharField(max_length=10)
-
-    def __str__(self) -> str:
-        return self.name
 
 class Tag(ABS):
     name = models.CharField(max_length=50)
@@ -37,17 +28,23 @@ class Tag(ABS):
     def __str__(self) -> str:
         return self.name
 
-class About(ABS):
+
+class Product(ABS):
+    name=models.CharField(max_length=35)
     tag = models.ManyToManyField(Tag, blank=True)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    c_tab = models.TextField()
+    image = models.ImageField(upload_to = 'img/product/')
+    desc = models.TextField()
+    new_pr=models.CharField(max_length=10)
+    old_pr=models.CharField(max_length=10)
 
     def __str__(self) -> str:
-        return self.tag
+        return self.name
+
 
 class Images(ABS):
-    image = models.ImageField(upload_to = 'media/img/images') 
-    about = models.ForeignKey(About, on_delete=models.CASCADE)
+    haqq = models.ForeignKey(Product, on_delete=models.CASCADE)
+    picture = models.ImageField(upload_to = 'img/images') 
+    
 
     
 

@@ -42,8 +42,8 @@ class Product(ABS):
 
 
 class Images(ABS):
-    haqq = models.ForeignKey(Product, on_delete=models.CASCADE)
-    picture = models.ImageField(upload_to = 'img/images') 
+    haqq = models.ForeignKey(Product,related_name='images', on_delete=models.CASCADE)
+    picture = models.ImageField(upload_to = 'img/images/') 
     
 
     

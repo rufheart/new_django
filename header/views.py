@@ -27,10 +27,12 @@ def product(request):
     context = {
         'models':Product.objects.all()
     }
+    print(context.get('models'))
     return render(request, 'product-list.html', context)
 
 def about(request, pk):
     context = {
-        'abouts':Product.objects.get(id = pk)
+        'abouts':Product.objects.get(abs_ptr_id = pk)[0]
     }
-    return render(request, 'product-details.html', context=context)
+    print(context.get('abouts'))
+    return render(request, 'product-detail.html', context)

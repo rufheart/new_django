@@ -34,25 +34,25 @@
                 <div class="product-img-box col-sm-4 col-xs-12">
                   <div class="new-label new-top-left"> New </div>
                   <div class="product-image">
-                    <div class="large-image"> <a href="{% url 'products-images/product.jpg' %}" class="cloud-zoom" id="zoom1"> <img src="{% url 'products-images/product.jpg' %}" alt="product image"> </a> </div>
+                    <div class="large-image"> <a href="" class="cloud-zoom" id="zoom1"> <img src="" alt="product image"> </a> </div>
                     <div class="flexslider flexslider-thumb">
                       <ul class="previews-list slides">
-                        <li><a href='products-images/product.jpg' class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: 'products-images/product.jpg' "><img src="{% url 'products-images/product.jpg' %}" alt = "Thumbnail 1"/></a></li>
-                        <li><a href='products-images/product.jpg' class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: 'products-images/product.jpg' "><img src="{% url 'products-images/product.jpg' %}" alt = "Thumbnail 2"/></a></li>
-                        <li><a href='products-images/product.jpg' class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: 'products-images/product.jpg' "><img src="{% url 'products-images/product.jpg' %}" alt = "Thumbnail 1"/></a></li>
-                        <li><a href='products-images/product.jpg' class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: 'products-images/product.jpg' "><img src="{% url 'products-images/product.jpg' %}" alt = "Thumbnail 2"/></a></li>
-                        <li><a href='products-images/product.jpg' class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: 'products-images/product.jpg' "><img src="{% url 'products-images/product.jpg' %}" alt = "Thumbnail 2"/></a></li>
-                        <li><a href='products-images/product.jpg' class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: 'products-images/product.jpg' "><img src="{% url 'products-images/product.jpg' %}" alt = "Thumbnail 2"/></a></li>
-                        <li><a href='products-images/product.jpg' class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: 'products-images/product.jpg' "><img src="{% url 'products-images/product.jpg' %}" alt = "Thumbnail 2"/></a></li>
+                        <li><a href='products-images/product.jpg' class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: 'products-images/product.jpg' "><img src="" alt = "Thumbnail 1"/></a></li>
+                        <li><a href='products-images/product.jpg' class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: 'products-images/product.jpg' "><img src="" alt = "Thumbnail 2"/></a></li>
+                        <li><a href='products-images/product.jpg' class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: 'products-images/product.jpg' "><img src="" alt = "Thumbnail 1"/></a></li>
+                        <li><a href='products-images/product.jpg' class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: 'products-images/product.jpg' "><img src="" alt = "Thumbnail 2"/></a></li>
+                        <li><a href='products-images/product.jpg' class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: 'products-images/product.jpg' "><img src="" alt = "Thumbnail 2"/></a></li>
+                        <li><a href='products-images/product.jpg' class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: 'products-images/product.jpg' "><img src="" alt = "Thumbnail 2"/></a></li>
+                        <li><a href='products-images/product.jpg' class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: 'products-images/product.jpg' "><img src="" alt = "Thumbnail 2"/></a></li>
                       </ul>
                     </div>
                   </div>
                   <!-- end: more-images --> 
                 </div>
                 <div class="product-shop col-sm-8 col-xs-12">
-                  {%  for about in abouts %}
+                  {% for about in abouts %}
                   <div class="product-name">
-                    <h1>{% about.name %}</h1>
+                    <h1>{{ about.name }}</h1>
                   </div>
                   <div class="ratings">
                     <div class="rating-box">
@@ -62,14 +62,14 @@
                   </div>
                   <div class="price-block">
                     <div class="price-box">
-                      <p class="special-price"> <span class="price-label">Special Price</span> <span id="product-price-48" class="price"> $309.99 </span> </p>
-                      <p class="old-price"> <span class="price-label">Regular Price:</span> <span class="price"> $315.99 </span> </p>
+                      <p class="special-price"> <span class="price-label">Special Price</span> <span id="product-price-48" class="price"> ${{ about.new_pr }} </span> </p>
+                      <p class="old-price"> <span class="price-label">Regular Price:</span> <span class="price"> ${{ about.old_pr}} </span> </p>
                     </div>
                     <p class="availability in-stock pull-right"><span>In Stock</span></p>
                   </div>
                   <div class="short-description">
                     <h2>Quick Overview</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla. Donec a neque libero. Pellentesque aliquet, sem eget laoreet ultrices, ipsum metus feugiat sem. </p>
+                    <p>{{ about.desc }}</p>
                   </div>
                   <div class="add-to-box">
                     <div class="add-to-cart">
@@ -89,10 +89,12 @@
                         <li><span class="separator">|</span> <a class="link-compare" href="#"><span>Add to Compare</span></a></li>
                       </ul>
                     </div>
+                    {% endfor %}
                   </div>
                                   </div>
               </form>
             </div>
+
             <div class="product-collateral col-lg-12 col-sm-12 col-xs-12 bounceInUp animated">
               <div class="add_info">
                 <ul id="product-detail-tab" class="nav nav-tabs product-tabs">

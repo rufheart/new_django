@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+﻿{% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
@@ -81,7 +81,7 @@
           
           {% for model in models %}
           <li class="item first">
-            <div class="product-image"> <a href="" title="{{ model.name }}"> <img class="small-image" src="{{ model.image.url }}" alt=" "> </a> </div>
+            <div class="product-image"> <a href="" title="{{ model.name }}"> <img class="small-image" src="" alt="{{ model.name }}"> </a> </div>
             <div class="product-shop">
               <h2 class="product-name"><a href="{% url 'about' pk=model.id %}" title="HTC Rhyme Sense">{{ model.name }}</a></h2>
               <div class="ratings">

@@ -1,4 +1,3 @@
-
 from django.urls import path
 from .views import *
 from django.conf.urls.static import static
@@ -9,5 +8,5 @@ urlpatterns = [
     path('blog/', blog, name='blog'),
     path('contact/', contact, name='contact'),
     path('product/', product, name = 'product'),
-    path('about/<int:pk>', about, name='about')
-] + static(settings.MEDIA_URL, doument_root = settings.MEDIA_ROOT)
+    path('about/<int:pk>', about, name='about'),
+]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

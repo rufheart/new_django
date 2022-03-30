@@ -31,8 +31,8 @@ class Tag(ABS):
 
 class Product(ABS):
     name=models.CharField(max_length=35)
-    tag = models.ManyToManyField(Tag, blank=True)
-    image = models.ImageField(upload_to = 'img/product/')
+    tag = models.ManyToManyField(Tag, related_name='Product', blank=True)
+    image = models.ImageField(upload_to = 'img/product')
     desc = models.TextField()
     new_pr=models.CharField(max_length=10)
     old_pr=models.CharField(max_length=10)
@@ -43,7 +43,7 @@ class Product(ABS):
 
 class Images(ABS):
     haqq = models.ForeignKey(Product,related_name='images', on_delete=models.CASCADE)
-    picture = models.ImageField(upload_to = 'img/images/') 
+    picture = models.ImageField(upload_to = 'img/images ') 
     
 
     

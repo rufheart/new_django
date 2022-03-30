@@ -32,7 +32,7 @@ def product(request):
 
 def about(request, pk):
     context = {
-        'abouts':Product.objects.get(abs_ptr_id = pk)[0]
+        'abouts':Product.objects.filter(abs_ptr_id = pk)[0]
     }
     print(context.get('abouts'))
     return render(request, 'product-detail.html', context)

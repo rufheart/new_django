@@ -110,8 +110,12 @@
                     <!-- Header Company -->
                     
                     <!-- End Header Company -->
-                    <div class="login"><a href=""><span class="hidden-xs">Log In</span></a></div>
-                    
+                    {% if user.is_authenticated %}
+                      <div class="login"><a href="{% url 'logout' %}"><span class="hidden-xs">Logout</span></a></div>
+                    {% else %}
+                      <div class="login"><a href="{% url 'login' %}"><span class="hidden-xs">Login</span></a></div>
+                      <div class="login"><a href="{% url 'register' %}"><span class="hidden-xs">Register</span></a></div>  
+                    {% endif %}
                   </div>
                   
                 </div>

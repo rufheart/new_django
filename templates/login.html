@@ -11,7 +11,9 @@
         <div class="page-title">
           <h1>Login or Create an Account</h1>
         </div>
-        <fieldset class="col2-set">
+        <!-- <fieldset class="col2-set"> -->
+        <form class="col2-set" action="{% url 'login' %}" method="post">  
+          {% csrf_token %}
           <legend>Login or Create an Account</legend>
           <div class="col-1 new-users"><strong>New Customers</strong>
             <div class="content">
@@ -21,32 +23,31 @@
               </div>
             </div>
           </div>
-          <form action="{% url 'login_user' %}">
-
             <div class="col-2 registered-users"><strong>Registered Customers</strong>
               <div class="content">
                 <p>If you have an account with us, please log in.</p>
                 <ul class="form-list">
                   <li>
-                    <label for="email">Email Address <span class="required">*</span></label>
+                    <label for="uname">Username <span class="required">*</span></label>
                     <br>
-                    <input type="text" title="" class="input-text" id="email" value="" name="">
+                    <input type="text" title="" class="input-text" id="uname" value="" name="uname">
                   </li>
                   <li>
                     <label for="pass">Password <span class="required">*</span></label>
                     <br>
-                    <input type="password" title="" id="pass" class="input-text" name="">
+                    <input type="password" title="" id="pass" class="input-text" name="password">
                   </li>
                 </ul>
                 <p class="required">* Required Fields</p>
                 <div class="buttons-set">
 
-            </form>      
+                 
                 <button id="send2" name="" type="submit" class="button login"><span>Login</span></button>
                 <a class="forgot-word" href="#">Forgot Your Password?</a> </div>
             </div>
           </div>
-        </fieldset>
+        <!-- </fieldset> -->
+      </form> 
       </div>
       <br>
       <br>

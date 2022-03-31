@@ -10,7 +10,8 @@
         <div class="page-title">
           <h1>Login or Create an Account</h1>
         </div>
-        <fieldset class="col2-set">
+        <form class="col2-set" action="{% url 'register' %}" method="post">
+          {% csrf_token %}
           <legend>Login or Create an Account</legend>
           <div class="col-1 new-users"><strong>Registered Customers</strong>
             <div class="content">
@@ -27,35 +28,40 @@
                 <li>
                   <label for="name">First Name<span class="required">*</span></label>
                   <br>
-                  <input type="text" title="" id="name" class="input-text" name="">
+                  <input type="text" title="" id="name" class="input-text" name="name">
                 </li>
                 <li>
                   <label for="surname">Last Name<span class="required">*</span></label>
                   <br>
-                  <input type="text" title="" id="surname" class="input-text" name="">
+                  <input type="text" title="" id="surname" class="input-text" name="lname">
+                </li>
+                <li>
+                  <label for="username">Username<span class="required">*</span></label>
+                  <br>
+                  <input type="text" title="" id="username" class="input-text" name="uname">
                 </li>
                 <li>
                   <label for="email">Email Address <span class="required">*</span></label>
                   <br>
-                  <input type="text" title="" class="input-text" id="email" value="" name="">
+                  <input type="text" title="" class="input-text" id="email" value="" name="email">
                 </li>
                 <li>
                   <label for="pass">Password <span class="required">*</span></label>
                   <br>
-                  <input type="password" title="" id="pass" class="input-text" name="">
+                  <input type="password" title="" id="pass" class="input-text" name="password">
                 </li>
-                <li>
+                <!-- <li>
                   <label for="pass2">Confirm password <span class="required">*</span></label>
                   <br>
                   <input type="password" title="" id="pass2" class="input-text" name="">
-                </li>
+                </li> -->
               </ul>
               <p class="required">* Required Fields</p>
               <div class="buttons-set">
                 <button id="send2" name="" type="submit" class="button login"><span>Register</span></button>
             </div>
           </div>
-        </fieldset>
+        </form>
       </div>
       <br>
       <br>

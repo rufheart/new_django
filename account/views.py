@@ -1,3 +1,4 @@
+import email
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -5,11 +6,11 @@ from django.contrib.auth.models import User
 def login_user(request):
     if request.user.is_authenticated:
         return redirect('index')
+        
     if request.method == 'POST':
-        print('if isledi')
         uname = request.POST.get('uname')
         password = request.POST.get('password')
-        user = authenticate(request,username=uname,password=password)
+        user = authenticate(request, username = uname, password = password)
         if user:
             login(request, user)
             return redirect('index')

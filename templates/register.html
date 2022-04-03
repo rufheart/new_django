@@ -1,8 +1,13 @@
 ﻿{% extends 'base.html' %}
-{% load static %}  
 
-{% block content %}
+{% load static %}
 
+{% block style %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/internal.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/flexslider.css' %}">\
+{% endblock %}
+
+{%  block content %}
   <!-- Main Container -->
   <section class="main-container col1-layout bounceInUp animated">
     <div class="main container">
@@ -10,8 +15,7 @@
         <div class="page-title">
           <h1>Login or Create an Account</h1>
         </div>
-        <form class="col2-set" action="{% url 'register' %}" method="post">
-          {% csrf_token %}
+        <form class="col2-set" action="" method="post">
           <legend>Login or Create an Account</legend>
           <div class="col-1 new-users"><strong>Registered Customers</strong>
             <div class="content">
@@ -28,33 +32,28 @@
                 <li>
                   <label for="name">First Name<span class="required">*</span></label>
                   <br>
-                  <input type="text" title="" id="name" class="input-text" name="name">
+                  <input type="text" title="" id="name" class="input-text" name="" placeholder="name">
                 </li>
                 <li>
                   <label for="surname">Last Name<span class="required">*</span></label>
                   <br>
-                  <input type="text" title="" id="surname" class="input-text" name="lname">
-                </li>
-                <li>
-                  <label for="username">Username<span class="required">*</span></label>
-                  <br>
-                  <input type="text" title="" id="username" class="input-text" name="uname">
+                  <input type="text" title="" id="surname" class="input-text" name="">
                 </li>
                 <li>
                   <label for="email">Email Address <span class="required">*</span></label>
                   <br>
-                  <input type="text" title="" class="input-text" id="email" value="" name="email">
+                  <input type="text" title="" class="input-text" id="email" value="" name="">
                 </li>
                 <li>
                   <label for="pass">Password <span class="required">*</span></label>
                   <br>
-                  <input type="password" title="" id="pass" class="input-text" name="password">
+                  <input type="password" title="" id="pass" class="input-text" name="">
                 </li>
-                <!-- <li>
+                <li>
                   <label for="pass2">Confirm password <span class="required">*</span></label>
                   <br>
                   <input type="password" title="" id="pass2" class="input-text" name="">
-                </li> -->
+                </li>
               </ul>
               <p class="required">* Required Fields</p>
               <div class="buttons-set">
@@ -80,42 +79,41 @@
           <div class="slider-items slider-width-col6"> 
             
             <!-- Item -->
-            <div class="item"><a href="#"><img src="{% static 'images/b-logo3.png' %}" alt="Image"></a> </div>
+            <div class="item"><a href="#"><img src="images/b-logo3.png" alt="Image"></a> </div>
             <!-- End Item --> 
             
             <!-- Item -->
-            <div class="item"><a href="#"><img src="{% static 'images/b-logo2.png' %}" alt="Image"></a> </div>
+            <div class="item"><a href="#"><img src="images/b-logo2.png" alt="Image"></a> </div>
             <!-- End Item --> 
             
             <!-- Item -->
-            <div class="item"><a href="#"><img src="{% static 'images/b-logo1.png' %}" alt="Image"></a> </div>
+            <div class="item"><a href="#"><img src="images/b-logo1.png" alt="Image"></a> </div>
             <!-- End Item --> 
             
             <!-- Item -->
-            <div class="item"><a href="#"><img src="{% static 'images/b-logo4.png' %}" alt="Image"></a> </div>
+            <div class="item"><a href="#"><img src="images/b-logo4.png" alt="Image"></a> </div>
             <!-- End Item --> 
             
             <!-- Item -->
-            <div class="item"><a href="#"><img src="{% static 'images/b-logo5.png' %}" alt="Image"></a> </div>
+            <div class="item"><a href="#"><img src="images/b-logo5.png" alt="Image"></a> </div>
             <!-- End Item --> 
             
             <!-- Item -->
-            <div class="item"><a href="#"><img src="{% static 'images/b-logo6.png' %}" alt="Image"></a> </div>
+            <div class="item"><a href="#"><img src="images/b-logo6.png" alt="Image"></a> </div>
             <!-- End Item --> 
             
             <!-- Item -->
-            <div class="item"><a href="#"><img src="{% static 'images/b-logo1.png' %}" alt="Image"></a> </div>
+            <div class="item"><a href="#"><img src="images/b-logo1.png" alt="Image"></a> </div>
             <!-- End Item --> 
             
             <!-- Item -->
-            <div class="item"><a href="#"><img src="{% static 'images/b-logo4.png' %}" alt="Image"></a> </div>
+            <div class="item"><a href="#"><img src="images/b-logo4.png" alt="Image"></a> </div>
             <!-- End Item --> 
-              
+            
           </div>
         </div>
       </div>
     </div>
   </div>
   <!-- Brand logo ends  --> 
-  
-{% endblock %}  
+  {% endblock %}

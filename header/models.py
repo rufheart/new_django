@@ -30,7 +30,7 @@ class Tag(ABS):
 
 
 class Product(ABS):
-    name=models.CharField(max_length=35)
+    name = models.CharField(max_length=35)
     tag = models.ManyToManyField(Tag, related_name='Product', blank=True)
     image = models.ImageField(upload_to = 'img/product')
     desc = models.TextField()
@@ -42,7 +42,7 @@ class Product(ABS):
 
 
 class Images(ABS):
-    haqq = models.ForeignKey(Product,related_name='images', on_delete=models.CASCADE)
+    products = models.ForeignKey(Product,related_name='images', on_delete=models.CASCADE)
     picture = models.ImageField(upload_to = 'img/images ') 
     
 

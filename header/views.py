@@ -16,7 +16,7 @@ def contact(request):
         short = request.POST
         formsData=FormContact(short)
         if formsData.is_valid():
-            contact = Contact()
+            contact.save()
 
     context = {
         'forms':FormContact()

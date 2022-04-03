@@ -2,6 +2,11 @@
 
 {% load static %}
 
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/internal.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/flexslider.css'%}">
+
+{% endblock %}
 
 {% block content %}  
   <!-- Main Container -->

@@ -1,4 +1,5 @@
 
+from crypt import methods
 from django.shortcuts import render
 from django.http import Http404, HttpRequest, HttpResponse
 from header.forms import FormContact,Form_Cont_Info
@@ -38,7 +39,19 @@ def about(request, pk):
     return render(request, 'product-detail.html', context)
 
 def cont_info(request):
+    if request.method == 'POST':
+        formData = Form_Cont_Info(request.POST)
+        print(formData)
+        if formData.is_valid():
+            print('if isledi =====>')
+            formData.save()
+        else:
+            context={
+                "contc":formData
+            }
+            return render(request,'contact_information.html', context) 
+
     context = {
-        "contc":Form_Cont_Info()
+        'contc':Form_Cont_Info()
     }
     return render(request,'contact_information.html',context)

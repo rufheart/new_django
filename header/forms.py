@@ -1,3 +1,4 @@
+from cProfile import label
 from dataclasses import field
 from unicodedata import name
 from django import forms
@@ -25,12 +26,13 @@ class FormContact(forms.ModelForm):
 
 class Form_Cont_Info(forms.ModelForm):
     submit = forms.TextInput(attrs={"type":"submit","class":"button"})
+    
     class Meta:
         model = Cont_Info
         fields = '__all__'
 
         widgets = {
-            'name':forms.TextInput(attrs={"class":"input-text required-entry","id":"firstname","placeholder":"First Name"}),
+            'fname':forms.TextInput(attrs={"class":"input-text required-entry","id":"firstname","placeholder":"First Name"}),
             'lname':forms.TextInput(attrs={"class":"input-text required-entry","id":"lastname","placeholder":"Last Name"}),
             'company':forms.TextInput(attrs={"class":"input-text","id":"company","placholder":"Company","placeholder":"Company"}),
             'tel':forms.TextInput(attrs={"class":"input-text   required-entry","id":"telephone","placeholder":"Telephone"}),
@@ -42,6 +44,20 @@ class Form_Cont_Info(forms.ModelForm):
             'country':forms.Select(attrs={"class":"validate-select","id":"country"}),
             'bil_addr':forms.CheckboxInput(attrs={"class":"checkbox","id":"primary_billing"}),
             'ship_addr':forms.CheckboxInput(attrs={"class":"checkbox","id":"primary_shipping"})
+        }
+        labels = {
+            "fname":"First Name",
+            "lname":"Last Name",
+            "company":"Company",
+            "tel":"Telephone",
+            "fax":"Fax",
+            "s_address":"Street Address",
+            "city":"City",
+            "state":"State",
+            "zip":"Zip",
+            "country":"Country",
+            "bil_addr":"Use as my default billing address",
+            "ship_addr":"Use as my default shipping address"
         }
 
 

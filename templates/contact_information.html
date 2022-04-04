@@ -28,12 +28,12 @@
                   <li class="">
                     <div class="customer-name">
                       <div class="input-box name-firstname">
-                          {{ contc.fname.label }}
+                        {{ contc.fname.label }}
                         <!-- <label for="firstname">First Name<span class="required">*</span></label> -->
-                        <div class="input-box1">
-                           {{ contc.fname }} 
+                      <div class="input-box1">
+                        {{ contc.fname }} 
                           <!-- <input type="text" id="firstname" name="" value="John" title="" maxlength="255" class="input-text required-entry"> -->
-                        </div>
+                      </div>
                       </div>
                       <div class="input-box name-lastname">
                             {{ contc.lname.label }}
@@ -76,14 +76,14 @@
                 <h2 class="legend">Address</h2>
                 <ul class="">
                   <li class="">
-                        {{ contc.address.label }}
+                        {{ contc.s_address.label }}
                     <!-- <label for="street_1">Street Address<em class="required">*</em></label> -->
                     <br>
-                        {{ contc.address }}
+                        {{ contc.s_address }}
                     <!-- <input type="text" name="" value="" title="" id="street_1" class="input-text  required-entry"> -->
                   </li>
                   <li class="">
-                    <input type="text" name="" value="" title="" id="street_2" class="input-text ">
+                    <!-- <input type="text" name="" value="" title="" id="street_2" class="input-text "> -->
                   </li>
                   <li class="">
                     <div class="field">
@@ -100,7 +100,7 @@
                             {{ contc.state.label }}
                         <!-- <label for="region_id">State/Province</label> -->
                         <br>
-                            {{ contc.sate }}
+                            {{ contc.state }}
                         <!-- <select id="region_id" name="" title="" class="validate-select required-entry" defaultvalue="0">
                           <option value="">Please select region, state or province</option>
                           <option value="1" title="Alabama">Alabama</option>
@@ -128,7 +128,7 @@
                             {{ contc.country.label }}
                         <!-- <label for="country">Country<em class="required">*</em></label> -->
                         <br>
-                            {{ contc.country.label }}
+                            {{ contc.country }}
                         <!-- <select name="country_id" id="country" class="validate-select" title="Country">
                           <option value=""> </option>
                           <option value="AF">Afghanistan</option>
@@ -154,6 +154,7 @@
               </div>
               <div class="buttons-set">
                 <p class="required">* Required Fields</p>
+                
                 <button type="submit" title="" class="button"><span>Save Address</span></button>
                 <a href="#"><small>« </small>Back</a> </div>
             </form>

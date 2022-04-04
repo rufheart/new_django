@@ -1,7 +1,7 @@
 
 from django.shortcuts import render
 from django.http import Http404, HttpRequest, HttpResponse
-from header.forms import FormContact
+from header.forms import FormContact,Form_Cont_Info
 from header.models import Contact, Product
 
 # Create your views here.
@@ -13,14 +13,14 @@ def blog(request):
 
 def contact(request):
     if request.method == 'POST':
-        short = request.POST
-        formsData=FormContact(short)
+        formsData=FormContact(request.POST)
+        print(formsData)
         if formsData.is_valid():
-            contact.save()
-
+            formsData.save()
+    
     context = {
         'forms':FormContact()
-    }        
+        }        
     return render(request, 'contact_us.html',context)    
 
 def product(request):
@@ -36,3 +36,9 @@ def about(request, pk):
     }
     print(context.get('abouts'))
     return render(request, 'product-detail.html', context)
+
+def cont_info(request):
+    context = {
+        "contc":Form_Cont_Info()
+    }
+    return render(request,'contact_information.html',context)

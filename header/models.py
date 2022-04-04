@@ -46,7 +46,23 @@ class Images(ABS):
     picture = models.ImageField(upload_to = 'img/images ') 
     
 
-    
+class Cont_Info(ABS):
+    fname = models.CharField(max_length=35)
+    lname=models.CharField(max_length=35)
+    company=models.CharField(max_length=50)
+    tel=models.CharField(max_length=13)
+    fax=models.CharField(max_length=30)
+    s_address=models.CharField(max_length=30)
+    city=models.CharField(max_length=35)
+    state=models.SmallIntegerField(choices=((1,'Alabama'),(2,'Alaska'),(3,'Arizona')))
+    zip=models.CharField(max_length=25)  
+    country=models.SmallIntegerField(choices=((1,'Azerbaijan'),(2,'Afganistan')))
+    bil_addr=models.BooleanField()
+    ship_addr=models.BooleanField()
+
+
+    def __str__(self) -> str:
+        return super().__str__()
 
 
 

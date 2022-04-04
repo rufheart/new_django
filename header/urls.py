@@ -1,3 +1,4 @@
+from unicodedata import name
 from django.urls import path
 from .views import *
 from django.conf.urls.static import static
@@ -9,4 +10,5 @@ urlpatterns = [
     path('contact/', contact, name='contact'),
     path('product/', product, name = 'product'),
     path('about/<int:pk>', about, name='about'),
+    path('cont_info/', cont_info, name = 'cont_info'),
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

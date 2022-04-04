@@ -1,5 +1,5 @@
 from django.contrib import admin
-from header.models import Contact, Product, Tag, Images
+from header.models import Contact, Product, Tag, Images,Cont_Info
 
 # Register your models here.
 
@@ -9,4 +9,4 @@ class product(admin.ModelAdmin):
     search_fields = ['name']
     list_filter = ['tag']
 
-admin.site.register([Contact,Tag, Images])
+admin.site.register([Contact,Tag, Images,Cont_Info])

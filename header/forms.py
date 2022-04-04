@@ -1,10 +1,12 @@
+from dataclasses import field
+from unicodedata import name
 from django import forms
-from header.models import Contact
+from header.models import Cont_Info, Contact
 
 class FormContact(forms.ModelForm):
     submit = forms.CharField(widget=forms.TextInput(attrs={
         'type':'submit',
-        'title':'ubmit',
+        'title':'Submit',
         'class':"button submit"
     }))
     class Meta:
@@ -18,6 +20,28 @@ class FormContact(forms.ModelForm):
             'tel':forms.TextInput(attrs={'class':'input-text','title':'Email Address','id':'billing:email', 'placeholder':'Telephone' }),
             'address':forms.TextInput(attrs={'class':'input-text','title':'Street Address','placeholder':'Address'}),
             'comment':forms.Textarea(attrs={'class':'input-text','title':'Comment','id':'comment','placeholder':'Comment' })
+        }
+
+
+class Form_Cont_Info(forms.ModelForm):
+    submit = forms.TextInput(attrs={"type":"submit","class":"button"})
+    class Meta:
+        model = Cont_Info
+        fields = '__all__'
+
+        widgets = {
+            'name':forms.TextInput(attrs={"class":"input-text required-entry","id":"firstname","placeholder":"First Name"}),
+            'lname':forms.TextInput(attrs={"class":"input-text required-entry","id":"lastname","placeholder":"Last Name"}),
+            'company':forms.TextInput(attrs={"class":"input-text","id":"company","placholder":"Company","placeholder":"Company"}),
+            'tel':forms.TextInput(attrs={"class":"input-text   required-entry","id":"telephone","placeholder":"Telephone"}),
+            'fax':forms.TextInput(attrs={"class":"input-text ","id":"fax","placeholder":"Fax"}),
+            'address':forms.TextInput(attrs={"class":"input-text  required-entry","id":"street_1","placeholder":"Street_1"}),
+            'city':forms.TextInput(attrs={"class":"input-text  required-entry","placeholder":"City"}),
+            'state':forms.Select(attrs={"class":"validate-select required-entry","id":"region_id","placholder":"Please select region, state or province"}),
+            'zip':forms.TextInput(attrs={"class":"input-text validate-zip-international  required-entry", "id":"zip","placeholder":"Zip"}),
+            'country':forms.Select(attrs={"class":"validate-select","id":"country"}),
+            'bil_addr':forms.CheckboxInput(attrs={"class":"checkbox","id":"primary_billing"}),
+            'ship_addr':forms.CheckboxInput(attrs={"class":"checkbox","id":"primary_shipping"})
         }
 
 

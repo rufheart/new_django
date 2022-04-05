@@ -16,6 +16,7 @@
           <h1>Login or Create an Account</h1>
         </div>
         <form class="col2-set" action="" method="post">
+          {% csrf_token %}
           <legend>Login or Create an Account</legend>
           <div class="col-1 new-users"><strong>Registered Customers</strong>
             <div class="content">
@@ -30,34 +31,45 @@
               <p>If you have an account with us, please log in.</p>
               <ul class="form-list">
                 <li>
-                  <label for="name">First Name<span class="required">*</span></label>
+                      {{ forms.first_name.label }}
+                  <!-- <label for="name">First Name<span class="required">*</span></label> -->
                   <br>
-                  <input type="text" title="" id="name" class="input-text" name="" placeholder="name">
+                      {{ forms.first_name }}
+                  <!-- <input type="text" title="" id="name" class="input-text" name="" placeholder="name"> -->
                 </li>
                 <li>
-                  <label for="surname">Last Name<span class="required">*</span></label>
+                      {{ forms.last_name.label }}
+                  <!-- <label for="surname">Last Name<span class="required">*</span></label> -->
                   <br>
-                  <input type="text" title="" id="surname" class="input-text" name="">
+                      {{ forms.last_name }}
+                  <!-- <input type="text" title="" id="surname" class="input-text" name=""> -->
                 </li>
                 <li>
-                  <label for="email">Email Address <span class="required">*</span></label>
+                      {{ forms.email.label }}
+                  <!-- <label for="email">Email Address <span class="required">*</span></label> -->
                   <br>
-                  <input type="text" title="" class="input-text" id="email" value="" name="">
+                      {{ forms.email}}
+                  <!-- <input type="text" title="" class="input-text" id="email" value="" name=""> -->
                 </li>
                 <li>
-                  <label for="pass">Password <span class="required">*</span></label>
+                      {{ forms.username.label }}
+                  <!-- <label for="pass">Password <span class="required">*</span></label> -->
                   <br>
-                  <input type="password" title="" id="pass" class="input-text" name="">
+                      {{ forms.username }}
+                  <!-- <input type="password" title="" id="pass" class="input-text" name=""> -->
                 </li>
                 <li>
-                  <label for="pass2">Confirm password <span class="required">*</span></label>
+                  {{ forms.password.label }}
+                  <!-- <label for="pass2">Confirm password <span class="required">*</span></label> -->
                   <br>
-                  <input type="password" title="" id="pass2" class="input-text" name="">
+                  {{ forms.password }}
+                  <!-- <input type="password" title="" id="pass2" class="input-text" name=""> -->
                 </li>
               </ul>
               <p class="required">* Required Fields</p>
               <div class="buttons-set">
-                <button id="send2" name="" type="submit" class="button login"><span>Register</span></button>
+                    {{ forms.submit }}
+                <!-- <button id="send2" name="" type="submit" class="button login"><span>Register</span></button> -->
             </div>
           </div>
         </form>

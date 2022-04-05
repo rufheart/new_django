@@ -33,14 +33,18 @@
                 <p>If you have an account with us, please log in.</p>
                 <ul class="form-list">
                   <li>
-                    <label for="uname">Username <span class="required">*</span></label>
+                        {{ forms.username.label }}
+                    <!-- <label for="uname">Username <span class="required">*</span></label> -->
                     <br>
-                    <input type="text" title="" class="input-text" id="uname" value="" name="uname">
+                        {{ forms.username }}
+                    <!-- <input type="text" title="" class="input-text" id="uname" value="" name="uname"> -->
                   </li>
                   <li>
-                    <label for="pass">Password <span class="required">*</span></label>
+                        {{ forms.password.label }}
+                    <!-- <label for="pass">Password <span class="required">*</span></label> -->
                     <br>
-                    <input type="password" title="" id="pass" class="input-text" name="password">
+                        {{ forms.password }}
+                    <!-- <input type="password" title="" id="pass" class="input-text" name="password"> -->
                   </li>
                 </ul>
                 <p class="required">* Required Fields</p>
@@ -52,7 +56,7 @@
             </div>
           </div>
         <!-- </fieldset> -->
-      </form> 
+        </form> 
       </div>
       <br>
       <br>

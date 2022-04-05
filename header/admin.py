@@ -1,16 +1,17 @@
 from django.contrib import admin
-from header.models import Contact, Product, Tag, Images,Cont_Info
+from header.models import Contact, Product, Tag,Cont_Info,Images
 
 
-# class ImagesAdmin(admin.TabularInline):
-#     model = Images
-#     fields = ('picture', )
+class ImagesAdmin(admin.TabularInline):
+    model = Images
+    fk_name = "products"
+    fields = ('images_tb', )
 
 @admin.register(Product)
 class product(admin.ModelAdmin):
     list_display = ['name','new_pr']
     search_fields = ['name']
     list_filter = ['tag']
-    # inlines = [ImagesAdmin]
+    inlines = [ImagesAdmin]
 
-admin.site.register([Contact,Tag, Images,Cont_Info])
+admin.site.register([Contact,Tag,Cont_Info])

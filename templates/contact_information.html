@@ -3,13 +3,23 @@
 {% load static %}
 
 {% block style %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/internal.css' %}">  
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/internal.css' %}">  
+    <link rel="stylesheet" type="text/css" href="{% static 'css/flexslider.css' %}"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/internal.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}" media="all">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/simple-line-icons.css' %}" media="all">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" media="all">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/revslider.css' %}" >
+    <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/owl.theme.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/flexslider.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.mobile-menu.css' %}">
 {% endblock %}
 
 {% block content %}
   <!-- Main Container -->
-  <section class="main-container col2-right-layout">
+  <section class="main-container col2-right-layout" >
     <div class="main container">
       <div class="row">
         <div class="col-main col-sm-9 animated" style="visibility: visible;">
@@ -78,11 +88,11 @@
                   <li class="">
                         {{ contc.s_address.label }}
                     <!-- <label for="street_1">Street Address<em class="required">*</em></label> -->
-                    <br>
                         {{ contc.s_address }}
                     <!-- <input type="text" name="" value="" title="" id="street_1" class="input-text  required-entry"> -->
                   </li>
                   <li class="">
+                        {{ contc.s_2address }}
                     <!-- <input type="text" name="" value="" title="" id="street_2" class="input-text "> -->
                   </li>
                   <li class="">

@@ -1,5 +1,7 @@
-from django.db import models
+from distutils.command.upload import upload
+from django.db import models 
 from django.shortcuts import render
+
 
 # Create your models here.
 
@@ -43,8 +45,9 @@ class Product(ABS):
 
 class Images(ABS):
     products = models.ForeignKey(Product,related_name='images', on_delete=models.CASCADE)
-    picture = models.ImageField(upload_to = 'img/images ') 
+    images_tb = models.ImageField(upload_to = 'img/images ') 
     
+
 
 class Cont_Info(ABS):
     fname = models.CharField(max_length=35)
@@ -52,7 +55,8 @@ class Cont_Info(ABS):
     company=models.CharField(max_length=50)
     tel=models.CharField(max_length=13)
     fax=models.CharField(max_length=30)
-    s_address=models.CharField(max_length=30)
+    s_address=models.CharField(max_length=50)
+    s_2address=models.CharField(max_length=50)
     city=models.CharField(max_length=35)
     state=models.SmallIntegerField(choices=((1,'Alabama'),(2,'Alaska'),(3,'Arizona')))
     zip=models.CharField(max_length=25)  

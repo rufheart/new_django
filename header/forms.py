@@ -1,6 +1,3 @@
-from cProfile import label
-from dataclasses import field
-from unicodedata import name
 from django import forms
 from header.models import Cont_Info, Contact
 
@@ -37,7 +34,8 @@ class Form_Cont_Info(forms.ModelForm):
             'company':forms.TextInput(attrs={"class":"input-text","id":"company","placholder":"Company","placeholder":"Company"}),
             'tel':forms.TextInput(attrs={"class":"input-text   required-entry","id":"telephone","placeholder":"Telephone"}),
             'fax':forms.TextInput(attrs={"class":"input-text ","id":"fax","placeholder":"Fax"}),
-            'address':forms.TextInput(attrs={"class":"input-text  required-entry","id":"street_1","placeholder":"Street_1"}),
+            's_address':forms.TextInput(attrs={"class":"input-text  required-entry","id":"street_1","placeholder":"Street_1"}),
+            's_2address':forms.TextInput(attrs={"class":"input-text ", "id":"street_2"}),
             'city':forms.TextInput(attrs={"class":"input-text  required-entry","placeholder":"City"}),
             'state':forms.Select(attrs={"class":"validate-select required-entry","id":"region_id","placholder":"Please select region, state or province"}),
             'zip':forms.TextInput(attrs={"class":"input-text validate-zip-international  required-entry", "id":"zip","placeholder":"Zip"}),
@@ -53,8 +51,8 @@ class Form_Cont_Info(forms.ModelForm):
             "fax":"Fax",
             "s_address":"Street Address",
             "city":"City",
-            "state":"State",
-            "zip":"Zip",
+            "state":"State/Province",
+            "zip":"Zip/Postal Code",
             "country":"Country",
             "bil_addr":"Use as my default billing address",
             "ship_addr":"Use as my default shipping address"

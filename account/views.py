@@ -46,18 +46,28 @@ def logout_user(request):
 
 def register_user(request):
     if request.method == "POST":
-        name=request.POST.get('first_name')
-        lname=request.POST.get('last_name')
-        uname=request.POST.get('username')
-        email=request.POST.get('email')
-        password=request.POST.get('password')
-
-        if User.objects.filter(username = uname):
-            return render(request, 'register.html', {"error":"This username using by other user please choose diffrent username"})
+        # name=request.POST.get('first_name')
+        # lname=request.POST.get('last_name')
+        # uname=request.POST.get('username')
+        # email=request.POST.get('email')
+        # password=request.POST.get('password')
+        formData = FormRegister(request.POST)
+        print(FormRegister())
+        print(request.POST)
+        if formData.is_valid():
+            print('validation isledi ====================>>>>>')
+            # if User.objects.filter(username = uname):
+            #     print('if isledi')
+            #     return render(request, 'register.html', {"error":"This username using by other user please choose diffrent username"})
+            # else:
+            #     User.objects.create_user(first_name=name, last_name=lname, username=uname, email=email, password=password)
+            #     print('user qeydiyyat oldu ============================>>>>>>')
+            #     return redirect('login')    
         else:
-            User.objects.create_user(first_name=name, last_name=lname, username=uname, email=email, password=password)
-            return redirect('login')    
-
+            context = {
+                "forms":FormRegister(request.POST)
+            }
+            return render(request,"register.html",context)
     context ={
         "forms":FormRegister()
     }

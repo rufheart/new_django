@@ -1,6 +1,7 @@
 from django import forms
 from header.models import Cont_Info, Contact
 
+
 class FormContact(forms.ModelForm):
     submit = forms.CharField(widget=forms.TextInput(attrs={
         'type':'submit',
@@ -19,6 +20,12 @@ class FormContact(forms.ModelForm):
             'address':forms.TextInput(attrs={'class':'input-text','title':'Street Address','placeholder':'Address'}),
             'comment':forms.Textarea(attrs={'class':'input-text','title':'Comment','id':'comment','placeholder':'Comment' })
         }
+
+        def clean(self):
+            gmail = self.cleaned_data.get('email')
+            if gmail.endswith('@gmail.com') == False:
+                raise forms.ValidationError('email sonu duz deyil')
+            return super().clean()        
 
 
 class Form_Cont_Info(forms.ModelForm):
@@ -57,6 +64,7 @@ class Form_Cont_Info(forms.ModelForm):
             "bil_addr":"Use as my default billing address",
             "ship_addr":"Use as my default shipping address"
         }
+
 
 
 # class FormContact(forms.Form):

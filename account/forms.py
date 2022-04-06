@@ -1,7 +1,11 @@
+
 from django import forms
 from django.contrib.auth.models import User
 
 class FormLogin(forms.ModelForm):
+
+    submit = forms.CharField(widget=forms.TextInput(attrs={"class":"button login","id":"send2","value":"Login","type":"submit"}))
+
     class Meta:
         model = User
         fields = "__all__"
@@ -18,25 +22,24 @@ class FormLogin(forms.ModelForm):
 
 class FormRegister(forms.ModelForm):
 
-    submit = forms.CharField(widget=forms.TextInput(attrs={"type":"submit", "class":"button login","id":"send2", "value":"Submit"}))
-
+    submit = forms.CharField(widget=forms.TextInput(attrs={"type":"submit", "class":"button login","id":"send2", "value":"Register"}))
 
     class Meta:
         model = User
         fields = "__all__"
 
         widgets = {
-            "first_name":forms.TextInput(attrs={"class":"input-text","id":"name", "placeholder":"First Name" }),
+            "first_name":forms.TextInput(attrs={"class":"input-text","id":"name", "placeholder":"First Name"}),
             "last_name":forms.TextInput(attrs={"class":"input-text", "id":"surname", "placeholder":"Last Name"}),
             "email":forms.TextInput(attrs={"class":"input-text","id":"email", "placeholder":"Email"}),
-            "password":forms.TextInput(attrs={"class":"input-text","id":"pass", "placeholder":"Password"}),
-            "username":forms.TextInput(attrs={"class":"input-text","id":"pass2", "placeholder":"Username"})
+            "username":forms.TextInput(attrs={"class":"input-text","id":"pass2", "placeholder":"Username"}),
+            "password":forms.TextInput(attrs={"class":"input-text","id":"pass", "placeholder":"Password","type":"password"})
         }
 
-        labels = {
-            "first_name":"First Name",
-            "last_name":"Last Name",
-            "email":"Email",
-            "password":"Password",
-            "username":"Username"
-        }
+
+        # def clean(self):
+        #     gmail = self.cleaned_data.get('email')
+        #     if gmail.endswith('@gmail.com') == False:
+        #         raise forms.ValidationError('Bu yalniz gmaillla qeydiyyat mumkundur')
+
+        #     return super().clean()

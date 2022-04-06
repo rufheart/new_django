@@ -41,7 +41,7 @@ def about(request, pk):
 def cont_info(request):
     if request.method == 'POST':
         formData = Form_Cont_Info(request.POST)
-        print(formData)
+        print(Form_Cont_Info())
         if formData.is_valid():
             print('if isledi =====>')
             formData.save()

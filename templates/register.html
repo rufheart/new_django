@@ -30,41 +30,34 @@
             <div class="content">
               <p>If you have an account with us, please log in.</p>
               <ul class="form-list">
+                
+                <li>
+                  {{ forms.username.label }}
+                   <br>
+                  {{ forms.username }}
+            
                 <li>
                       {{ forms.first_name.label }}
-                  <!-- <label for="name">First Name<span class="required">*</span></label> -->
                   <br>
                       {{ forms.first_name }}
-                  <!-- <input type="text" title="" id="name" class="input-text" name="" placeholder="name"> -->
-                </li>
+               </li>
                 <li>
                       {{ forms.last_name.label }}
-                  <!-- <label for="surname">Last Name<span class="required">*</span></label> -->
                   <br>
                       {{ forms.last_name }}
-                  <!-- <input type="text" title="" id="surname" class="input-text" name=""> -->
                 </li>
                 <li>
                       {{ forms.email.label }}
-                  <!-- <label for="email">Email Address <span class="required">*</span></label> -->
                   <br>
                       {{ forms.email}}
-                  <!-- <input type="text" title="" class="input-text" id="email" value="" name=""> -->
                 </li>
-                <li>
-                      {{ forms.username.label }}
-                  <!-- <label for="pass">Password <span class="required">*</span></label> -->
-                  <br>
-                      {{ forms.username }}
-                  <!-- <input type="password" title="" id="pass" class="input-text" name=""> -->
-                </li>
+               
                 <li>
                   {{ forms.password.label }}
-                  <!-- <label for="pass2">Confirm password <span class="required">*</span></label> -->
                   <br>
                   {{ forms.password }}
-                  <!-- <input type="password" title="" id="pass2" class="input-text" name=""> -->
                 </li>
+                
               </ul>
               <p class="required">* Required Fields</p>
               <div class="buttons-set">

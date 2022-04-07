@@ -26,20 +26,20 @@ class FormRegister(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = "__all__"
+        fields = ('username', 'first_name', 'last_name', 'email', 'password')
 
         widgets = {
+            "username":forms.TextInput(attrs={"class":"input-text","id":"pass2", "placeholder":"Username"}),
             "first_name":forms.TextInput(attrs={"class":"input-text","id":"name", "placeholder":"First Name"}),
             "last_name":forms.TextInput(attrs={"class":"input-text", "id":"surname", "placeholder":"Last Name"}),
-            "email":forms.TextInput(attrs={"class":"input-text","id":"email", "placeholder":"Email"}),
-            "username":forms.TextInput(attrs={"class":"input-text","id":"pass2", "placeholder":"Username"}),
-            "password":forms.TextInput(attrs={"class":"input-text","id":"pass", "placeholder":"Password","type":"password"})
+            "email":forms.EmailInput(attrs={"class":"input-text","id":"email", "placeholder":"Email"}),
+            "password":forms.PasswordInput(attrs={"class":"input-text","id":"pass", "placeholder":"Password","type":"password"})
         }
 
 
-        # def clean(self):
-        #     gmail = self.cleaned_data.get('email')
-        #     if gmail.endswith('@gmail.com') == False:
-        #         raise forms.ValidationError('Bu yalniz gmaillla qeydiyyat mumkundur')
+    def clean(self):
+        gmail = self.cleaned_data.get('email')
+        if gmail.endswith('@gmail.com') == False:
+            raise forms.ValidationError('Bu yalniz gmaillla qeydiyyat mumkundur')
 
-        #     return super().clean()
+        return super().clean()

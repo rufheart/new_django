@@ -44,6 +44,7 @@ class Product(ABS):
 
     def save(self, *args, ** kwargs):
         self.slug = slugify(self.desc+self.old_pr+self.new_pr)
+        print('form.save.isledi')
         super().save(*args, **kwargs)
 
     def __str__(self) -> str:

@@ -55,3 +55,6 @@ def cont_info(request):
         'contc':Form_Cont_Info()
     }
     return render(request,'contact_information.html',context)
+
+def prod(request):
+    return render(request, 'prodc.html')

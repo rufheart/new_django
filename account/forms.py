@@ -35,8 +35,17 @@ class FormRegister(forms.ModelForm):
             "email":forms.EmailInput(attrs={"class":"input-text","id":"email", "placeholder":"Email"}),
             "password":forms.PasswordInput(attrs={"class":"input-text","id":"pass", "placeholder":"Password","type":"password"})
         }
-    def save(self,*args, **kwargs):
-        User.username = 
+        print('widget================>>>>>>')
+    def save(self, *args, **kwargs):
+        
+        User.objects.create_user(first_name=self.cleaned_data.get('first_name'), last_name=self.cleaned_data.get('last_name'), username=self.cleaned_data.get('username'), email=self.cleaned_data.get('email'), password=self.cleaned_data.get('password'))
+        # User.first_name = self.cleaned_data.get('first_name')
+        # User.last_name = self.cleaned_data.get('last_name')
+        # User.email = self.cleaned_data.get('email')
+        
+
+        
+
 
     def clean(self):
         gmail = self.cleaned_data.get('email')

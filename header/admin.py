@@ -14,4 +14,8 @@ class product(admin.ModelAdmin):
     list_filter = ['tag']
     inlines = [ImagesAdmin]
 
-admin.site.register([Contact,Tag,Cont_Info])
+@admin.register(Cont_Info)
+class cont_inf(admin.ModelAdmin):
+    list_display = ['fname','country']
+
+admin.site.register([Contact,Tag])

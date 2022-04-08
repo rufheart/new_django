@@ -35,7 +35,8 @@ class FormRegister(forms.ModelForm):
             "email":forms.EmailInput(attrs={"class":"input-text","id":"email", "placeholder":"Email"}),
             "password":forms.PasswordInput(attrs={"class":"input-text","id":"pass", "placeholder":"Password","type":"password"})
         }
-
+    def save(self,*args, **kwargs):
+        User.username = 
 
     def clean(self):
         gmail = self.cleaned_data.get('email')

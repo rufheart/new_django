@@ -31,9 +31,9 @@ def product(request):
     print(context.get('models'))
     return render(request, 'product-list.html', context)
 
-def about(request, pk):
+def about(request, slug):
     context = {
-        'abouts':Product.objects.filter(abs_ptr_id = pk)
+        'abouts':Product.objects.filter(slug = slug)
     }
     print(context.get('abouts'))
     return render(request, 'product-detail.html', context)

@@ -1,6 +1,7 @@
 from distutils.command.upload import upload
 from django.db import models 
 from django.shortcuts import render
+from django.utils.text import slugify
 
 
 # Create your models here.
@@ -38,6 +39,12 @@ class Product(ABS):
     desc = models.TextField()
     new_pr=models.CharField(max_length=10)
     old_pr=models.CharField(max_length=10)
+    slug = models.SlugField(null=False, blank=True, unique=True)
+
+
+    def save(self, *args, ** kwargs):
+        self.slug = slugify(self.desc+self.old_pr+self.new_pr)
+        super().save(*args, **kwargs)
 
     def __str__(self) -> str:
         return self.name

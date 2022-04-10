@@ -3,7 +3,7 @@ from crypt import methods
 from django.shortcuts import render
 from django.http import Http404, HttpRequest, HttpResponse
 from header.forms import FormContact,Form_Cont_Info
-from header.models import Contact, Product
+from header.models import Contact, Product, Review
 
 # Create your views here.
 def index(request):
@@ -33,7 +33,8 @@ def product(request):
 
 def about(request, slug):
     context = {
-        'abouts':Product.objects.filter(slug = slug)
+        'abouts':Product.objects.filter(slug = slug),
+        'forms':Product.objects.all()
     }
     print(context.get('abouts'))
     return render(request, 'product-detail.html', context)
@@ -58,3 +59,10 @@ def cont_info(request):
 
 def prod(request):
     return render(request, 'prodc.html')
+
+def review(request, pk):
+    context = {
+        'forms':Review.objects.filter(product_revi = pk)
+    }
+
+    return render(request, 'review,html', context)    

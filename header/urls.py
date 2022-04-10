@@ -12,4 +12,5 @@ urlpatterns = [
     path('about/<slug:slug>', about, name='about'),
     path('cont_info/', cont_info, name = 'cont_info'),
     path('prodc/', prod, name='prod')
+    path('review/<int:pk>/', review, name='review')
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

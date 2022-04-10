@@ -1,7 +1,10 @@
 from distutils.command.upload import upload
+import re
+from xml.parsers.expat import model
 from django.db import models 
 from django.shortcuts import render
 from django.utils.text import slugify
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -51,10 +54,16 @@ class Product(ABS):
         return self.name
 
 
+class Review(ABS):
+    user = models.ForeignKey(User, related_name='Rewiew', on_delete=models.CASCADE)
+    product_revi = models.ForeignKey(Product, related_name='Review', on_delete=models.CASCADE)
+    comment = models.CharField(max_length=100)
+
 class Images(ABS):
     products = models.ForeignKey(Product,related_name='images', on_delete=models.CASCADE)
     images_tb = models.ImageField(upload_to = 'img/images ') 
     
+
 
 
 class Cont_Info(ABS):

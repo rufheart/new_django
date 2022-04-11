@@ -34,7 +34,7 @@ def product(request):
 def about(request, slug):
     context = {
         'abouts':Product.objects.filter(slug = slug),
-        'forms':Product.objects.all()
+        
     }
     print(context.get('abouts'))
     return render(request, 'product-detail.html', context)
@@ -65,4 +65,4 @@ def review(request, pk):
         'forms':Review.objects.filter(product_revi = pk)
     }
 
-    return render(request, 'review,html', context)    
+    return render(request, 'review.html', context)    

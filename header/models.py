@@ -1,6 +1,3 @@
-from distutils.command.upload import upload
-import re
-from xml.parsers.expat import model
 from django.db import models 
 from django.shortcuts import render
 from django.utils.text import slugify
@@ -44,7 +41,7 @@ class Product(ABS):
     old_pr=models.CharField(max_length=10)
     slug = models.SlugField(null=False, blank=True, unique=True)
 
-
+ 
     def save(self, *args, ** kwargs):
         self.slug = slugify(self.desc+self.old_pr+self.new_pr)
         print('form.save.isledi')
@@ -58,6 +55,7 @@ class Review(ABS):
     user = models.ForeignKey(User, related_name='Rewiew', on_delete=models.CASCADE)
     product_revi = models.ForeignKey(Product, related_name='Review', on_delete=models.CASCADE)
     comment = models.CharField(max_length=100)
+
 
 class Images(ABS):
     products = models.ForeignKey(Product,related_name='images', on_delete=models.CASCADE)

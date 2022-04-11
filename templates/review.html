@@ -1,18 +1,25 @@
-{% extends 'base.hmtl' %}
+{% extends 'base.html' %}
 
 {% load static %}
 
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/review.css' %}">
+{% endblock %}
+
 {% block content %}
-    <div>
+    <div class="flex">
+        {% for form in forms %}
         <div>
             <img src="" alt="">
             <div>
-                texts
+                {{ form. }}
             </div>
         </div>
+        
         <div>
-            <p>Username</p>
-            <p>Comment</p>
+            <p> <img src="{{ form.user.image.url }}" alt="">{{ form.user }}</p>
+            <p>{{ form.comment }}</p>
         </div>
+        {% endfor %}
     </div>
 {% endblock %}

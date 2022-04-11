@@ -58,12 +58,13 @@
                     <div class="rating-box">
                       <div style="width:60%" class="rating"></div>
                     </div>
-                    <p class="rating-links"> <a href="{% url 'review' %}">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Your Review</a> </p>
+    
+                    <p class="rating-links"> <a href="{% url 'review' about.id %}">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Your Review</a> </p>
                   </div>
                   <div class="price-block">
                     <div class="price-box">
                       <p class="special-price"> <span class="price-label">Special Price</span> <span id="product-price-48" class="price"> ${{ about.new_pr }} </span> </p>
-                      <p class="old-price"> <span class="price-label">Regular Price:</span> <span class="price"> ${{ about.old_pr}} </span> </p>
+                      <p class="old-price"> <span class="price-label">Regular Price:</span> <span class="price"> ${{ about.old_pr }} </span> </p>
                     </div>
                     <p class="availability in-stock pull-right"><span>In Stock</span></p>
                   </div>
@@ -90,6 +91,7 @@
                       </ul>
                     </div>
                     {% endfor %}
+
                   </div>
                                   </div>
               </form>

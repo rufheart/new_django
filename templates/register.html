@@ -29,40 +29,44 @@
           <div class="col-2 registered-users"><strong>New Customers</strong>
             <div class="content">
               <p>If you have an account with us, please log in.</p>
-              <ul class="form-list">
-                
-                <li>
-                  {{ forms.username.label }}
-                   <br>
-                  {{ forms.username }}
+              {% for i in forms  %}
+                  <ul class="form-list">
+                    
+                    <li>
+                      {{ i.label }}
+                      <br>
+                      {{ i }}
+                    </li>  
             
-                <li>
-                      {{ forms.first_name.label }}
-                  <br>
-                      {{ forms.first_name }}
-               </li>
-                <li>
-                      {{ forms.last_name.label }}
-                  <br>
-                      {{ forms.last_name }}
-                </li>
-                <li>
-                      {{ forms.email.label }}
-                  <br>
-                      {{ forms.email}}
-                </li>
-               
-                <li>
-                  {{ forms.password.label }}
-                  <br>
-                  {{ forms.password }}
-                </li>
-                
-              </ul>
+                    <!-- <li>
+                          {{ forms.first_name.label }}
+                      <br>
+                          {{ forms.first_name }}
+                  </li>
+
+                    <li>
+                          {{ forms.last_name.label }}
+                      <br>
+                          {{ forms.last_name }}
+                    </li>
+
+                    <li>
+                          {{ forms.email.label }}
+                      <br>
+                          {{ forms.email}}
+                    </li>
+                  
+                    <li>
+                      {{ forms.password.label }}
+                      <br>
+                      {{ forms.password }}
+                    </li> -->
+                    
+                  </ul>
+              {% endfor %}
               <p class="required">* Required Fields</p>
               <div class="buttons-set">
-                  {{ forms.submit }}
-                <!-- <button id="send2" name="" type="submit" class="button login"><span>Register</span></button> -->
+                <button id="send2" name="" type="submit" class="button login"><span>Register</span></button>
             </div>
           </div>
         </form>

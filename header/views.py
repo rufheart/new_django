@@ -33,9 +33,9 @@ def product(request):
 
 def about(request, slug):
     context = {
-        'abouts':Product.objects.filter(slug = slug),
-        
+        'abouts':Product.objects.filter(slug = slug),   
     }
+    
     print(context.get('abouts'))
     return render(request, 'product-detail.html', context)
 

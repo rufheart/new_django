@@ -1,6 +1,7 @@
 
 from django import forms
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from account.models import User
 
 class FormLogin(forms.ModelForm):
 
@@ -22,11 +23,11 @@ class FormLogin(forms.ModelForm):
 
 class FormRegister(forms.ModelForm):
 
-    submit = forms.CharField(widget=forms.TextInput(attrs={"type":"submit", "class":"button login","id":"send2", "value":"Register"}))
+    # submit = forms.CharField(widget=forms.TextInput(attrs={"type":"submit", "class":"button login","id":"send2", "value":"Register"}))
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'password')
+        fields = ('image', 'username', 'first_name', 'last_name', 'email', 'password')
 
         widgets = {
             "username":forms.TextInput(attrs={"class":"input-text","id":"pass2", "placeholder":"Username"}),
@@ -35,11 +36,11 @@ class FormRegister(forms.ModelForm):
             "email":forms.EmailInput(attrs={"class":"input-text","id":"email", "placeholder":"Email"}),
             "password":forms.PasswordInput(attrs={"class":"input-text","id":"pass", "placeholder":"Password","type":"password"})
         }
-        print('widget================>>>>>>')
-    def save(self, *args, **kwargs):
         
-        User.objects.create_user(first_name=self.cleaned_data.get('first_name'), last_name=self.cleaned_data.get('last_name'), username=self.cleaned_data.get('username'), email=self.cleaned_data.get('email'), password=self.cleaned_data.get('password'))
-        # User.first_name = self.cleaned_data.get('first_name')
+    # def save(self, *args, **kwargs):
+        
+    #     User.objects.create_user(first_name=self.cleaned_data.get('first_name'), last_name=self.cleaned_data.get('last_name'), username=self.cleaned_data.get('username'), email=self.cleaned_data.get('email'), password=self.cleaned_data.get('password'))
+    #     # User.first_name = self.cleaned_data.get('first_name')
         # User.last_name = self.cleaned_data.get('last_name')
         # User.email = self.cleaned_data.get('email')
         

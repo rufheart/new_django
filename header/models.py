@@ -1,3 +1,5 @@
+from ast import Delete
+from cProfile import label
 import django
 from django.db import models 
 from django.shortcuts import render
@@ -54,11 +56,6 @@ class Product(ABS):
         return self.name
 
 
-class Review(ABS):
-    user = models.ForeignKey(User, related_name='Rewiew', on_delete=models.CASCADE)
-    product_revi = models.ForeignKey(Product, related_name='Review', on_delete=models.CASCADE)
-    comment = models.CharField(max_length=100)
-
 
 class Images(ABS):
     products = models.ForeignKey(Product,related_name='images', on_delete=models.CASCADE)
@@ -88,8 +85,14 @@ class Cont_Info(ABS):
 
 
 
-
-
+class Review(ABS):
+    user_pro = models.ForeignKey(User, related_name='review', on_delete=models.CASCADE)
+    product_review = models.ForeignKey(Product, related_name="Review", on_delete=models.CASCADE)
+    value_review = models.SmallIntegerField('Value', choices=((1,'1'),(2,'2'), (3,'3'), (4,'4'), (5,'5')), default=0)
+    quality_review = models.SmallIntegerField('Quality', choices=((1,'1'),(2,'2'), (3,'3'), (4,'4'), (5,'5')), default=0)
+    price_review = models.SmallIntegerField('Price', choices=((1,'1'),(2,'2'), (3,'3'), (4,'4'), (5,'5')), default=0)
+    summary = models.CharField('summar',max_length=40)
+    comment = models.TextField()
 
 
 

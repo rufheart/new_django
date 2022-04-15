@@ -1,5 +1,7 @@
+from dataclasses import field
+from pyexpat import model
 from django import forms
-from header.models import Cont_Info, Contact
+from header.models import Cont_Info, Contact, Review
 
 
 class FormContact(forms.ModelForm):
@@ -65,7 +67,29 @@ class Form_Cont_Info(forms.ModelForm):
             "ship_addr":"Use as my default shipping address"
         }
 
+class Form_Review(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['value_review', 'quality_review','price_review', 'summary', 'comment' ]
 
+        widgets = {
+            'value_review':forms.RadioSelect(attrs={
+                'class':'radio'
+                }),
+            'quality_review':forms.RadioSelect(attrs={
+                'class':'radio'
+            }),
+            'price_review':forms.RadioSelect(attrs={
+                "class":"radio"
+            }),
+            'summary':forms.TextInput(attrs={
+                "class":"input-text",
+                'id':"summary_field"
+            }),
+            "comment":forms.Textarea(attrs={
+                "id":"review_field"
+            })
+        }
 
 # class FormContact(forms.Form):
 #     name = forms.CharField(label='First Name', max_length=50,min_length=3 ,widget=forms.TextInput(attrs={

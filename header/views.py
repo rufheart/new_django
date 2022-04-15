@@ -1,8 +1,8 @@
 
 from crypt import methods
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import Http404, HttpRequest, HttpResponse
-from header.forms import FormContact,Form_Cont_Info
+from header.forms import FormContact,Form_Cont_Info, Form_Review
 from header.models import Contact, Product, Review
 
 # Create your views here.
@@ -33,10 +33,10 @@ def product(request):
 
 def about(request, slug):
     context = {
-        'abouts':Product.objects.filter(slug = slug),   
+        'about':Product.objects.get(slug = slug),   
+        'forms': Form_Review()
     }
     
-    print(context.get('abouts'))
     return render(request, 'product-detail.html', context)
 
 def cont_info(request):
@@ -44,7 +44,6 @@ def cont_info(request):
         formData = Form_Cont_Info(request.POST)
         print(Form_Cont_Info())
         if formData.is_valid():
-            print('if isledi =====>')
             formData.save()
         else:
             context={
@@ -60,9 +59,10 @@ def cont_info(request):
 def prod(request):
     return render(request, 'prodc.html')
 
-def review(request, pk):
-    context = {
-        'forms':Review.objects.filter(product_revi = pk)
-    }
-
-    return render(request, 'review.html', context)    
+def review(request):
+    if request.method == "POST":
+        formData = Form_Review(request.POST)
+        if formData.is_valid():
+            formData.save()
+        return redirect('index')    
+    return render(request, 'review.html')    

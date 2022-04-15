@@ -50,7 +50,7 @@ def logout_user(request):
 
 def register_user(request):
     if request.method == "POST":
-        formData = FormRegister(request.POST)
+        formData = FormRegister(request.POST, request.FILES)
         if formData.is_valid():
             if User.objects.filter(username = formData.cleaned_data.get('username')):
                 return render(request, 'register.html', {"error":"This username using by other user please choose diffrent username"})

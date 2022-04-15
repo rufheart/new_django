@@ -45,6 +45,8 @@ class FormRegister(forms.ModelForm):
         # User.email = self.cleaned_data.get('email')
         
 
+
+
         
 
 

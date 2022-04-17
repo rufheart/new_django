@@ -1,7 +1,108 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/prodc.css' %}">
+{% endblock %}
 
 {% block content %}
+
+    <div class="main">
+        <div class="main1">
+            <form action="{% url 'product_det' %}" method="post">
+                {% csrf_token %}
+                
+            {{ error }}
+                <div class="tag1">
+                    <ul>
+                        <li>
+                            {{ forms.user.label }}
+                            <div>
+                                {{ forms.user }}
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="ul1">
+                        <li>
+                            {{ forms.name.label }}
+                            <!-- <label for="">Product Name</label> -->
+                            <div>
+                             {{ forms.name }}
+                            </div>
+                        </li>
+                    </ul>
+                   
+                    <ul class="ul2">
+                        <li>
+                            {{ forms.tag.label }}
+                            <!-- <label for="">Tag</label> -->
+                            <div>
+                                {{ forms.tag }}
+                                <!-- <select name="" id="">
+                                    <option value="#kitab">Kitab</option>
+                                    <option value="#other">Other</option>
+                                </select> -->
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tag2">
+                    <ul class="ul3">
+                        <li>
+                            {{ forms.image.label }}
+                            {{ forms.image }}
+                            <!-- <label for="">Image for product </label>
+                            <img src="" alt=""> -->
+                        </li>
+                    </ul>
+                </div>
+                <div class="tag3">
+                    <ul class="ul4">
+                        <li>
+                            {{ forms.desc.label }}
+                            <!-- <label for="">Description</label> -->
+                            <div>
+                             {{ forms.desc }}   
+                                <!-- <input type="text" > -->
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tag4">
+                    <ul class="5">
+                        <li>
+                            {{ forms.new_pr.label }}
+                            <!-- <label for="">New Price</label> -->
+                            <div>
+                                {{ forms.new_pr }}
+                                <!-- <input type="text"> -->
+                            </div>
+                        </li>
+                        <li>
+                            {{ forms.old_pr.label }}
+                            <!-- <label for="">Old Price</label> -->
+                            <div>
+                                {{ forms.new_pr }}
+                                <!-- <input type="text" name="" id=""> -->
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- <div class="tag5">
+                    <ul class="ul6">
+                        <li>
+                            <label for="">Image for product description</label>
+                            <div>
+                                <img src="" alt="">
+                            </div>
+                        </li>
+                    </ul>
+                </div> -->
+                <div>
+                    <input type="submit">
+                </div>
+            </form>
+        </div>
+    </div>
 
 {% endblock %}

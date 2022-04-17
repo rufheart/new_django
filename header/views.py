@@ -1,8 +1,8 @@
-
-from crypt import methods
+from xml.dom import ValidationErr
+from django.forms import ValidationError
 from django.shortcuts import redirect, render
 from django.http import Http404, HttpRequest, HttpResponse
-from header.forms import FormContact,Form_Cont_Info, Form_Review
+from header.forms import FormContact,Form_Cont_Info, Form_Review, Form_Product
 from header.models import Contact, Product, Review
 
 # Create your views here.
@@ -56,8 +56,8 @@ def cont_info(request):
     }
     return render(request,'contact_information.html',context)
 
-def prod(request):
-    return render(request, 'prodc.html')
+# def prod(request):
+#     return render(request, 'prodc.html')
 
 def review(request):
     if request.method == "POST":
@@ -66,3 +66,23 @@ def review(request):
             formData.save()
         return redirect('index')    
     return render(request, 'review.html')    
+
+def product_det(request):
+    if request.method =='POST':
+        formData=Form_Product(request.POST, request.FILES)
+        print('if isledi')
+        if formData.is_valid():
+            print('valid isledi')
+            formData.save()
+        else:
+            print('valid islemedi')
+            print(formData.errors)
+            
+            context={ 
+                'forms':Form_Product(request.POST),
+                }
+            return render(request, 'prodc.html', context)  
+    context={
+        'forms':Form_Product()
+    }          
+    return render(request, 'prodc.html', context)        

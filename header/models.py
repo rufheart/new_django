@@ -1,5 +1,3 @@
-from ast import Delete
-from cProfile import label
 import django
 from django.db import models 
 from django.shortcuts import render
@@ -38,6 +36,7 @@ class Tag(ABS):
 
 
 class Product(ABS):
+    user=models.ForeignKey(User,related_name='user', on_delete=models.CASCADE)
     name = models.CharField(max_length=35)
     tag = models.ManyToManyField(Tag, related_name='Product', blank=True)
     image = models.ImageField(upload_to = 'img/product')
@@ -91,7 +90,7 @@ class Review(ABS):
     value_review = models.SmallIntegerField('Value', choices=((1,'1'),(2,'2'), (3,'3'), (4,'4'), (5,'5')), default=0)
     quality_review = models.SmallIntegerField('Quality', choices=((1,'1'),(2,'2'), (3,'3'), (4,'4'), (5,'5')), default=0)
     price_review = models.SmallIntegerField('Price', choices=((1,'1'),(2,'2'), (3,'3'), (4,'4'), (5,'5')), default=0)
-    summary = models.CharField('summar',max_length=40)
+    summary = models.CharField('Summary',max_length=40)
     comment = models.TextField()
 
 

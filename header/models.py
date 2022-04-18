@@ -36,7 +36,7 @@ class Tag(ABS):
 
 
 class Product(ABS):
-    user=models.ForeignKey(User,related_name='user', on_delete=models.CASCADE)
+    user=models.OneToOneField(User,related_name='user', on_delete=models.CASCADE)
     name = models.CharField(max_length=35)
     tag = models.ManyToManyField(Tag, related_name='Product', blank=True)
     image = models.ImageField(upload_to = 'img/product')

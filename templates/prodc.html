@@ -9,10 +9,19 @@
 
     <div class="main">
         <div class="main1">
-            <form action="{% url 'product_det' %}" method="post">
+            <form action=" " method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                
-            {{ error }}
+              
+                <div class="tag2">
+                    <ul class="ul3">
+                        <li>
+                            {{ forms.image.label }}
+                            {{ forms.image }}
+                            <!-- <label for="">Image for product </label>
+                            <img src="" alt=""> -->
+                        </li>
+                    </ul>
+                </div>
                 <div class="tag1">
                     <ul>
                         <li>
@@ -46,16 +55,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="tag2">
-                    <ul class="ul3">
-                        <li>
-                            {{ forms.image.label }}
-                            {{ forms.image }}
-                            <!-- <label for="">Image for product </label>
-                            <img src="" alt=""> -->
-                        </li>
-                    </ul>
-                </div>
+
                 <div class="tag3">
                     <ul class="ul4">
                         <li>
@@ -82,22 +82,13 @@
                             {{ forms.old_pr.label }}
                             <!-- <label for="">Old Price</label> -->
                             <div>
-                                {{ forms.new_pr }}
+                                {{ forms.old_pr }}
                                 <!-- <input type="text" name="" id=""> -->
                             </div>
                         </li>
                     </ul>
                 </div>
-                <!-- <div class="tag5">
-                    <ul class="ul6">
-                        <li>
-                            <label for="">Image for product description</label>
-                            <div>
-                                <img src="" alt="">
-                            </div>
-                        </li>
-                    </ul>
-                </div> -->
+
                 <div>
                     <input type="submit">
                 </div>

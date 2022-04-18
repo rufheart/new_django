@@ -1,4 +1,4 @@
-from xml.dom import ValidationErr
+from urllib import request
 from django.forms import ValidationError
 from django.shortcuts import redirect, render
 from django.http import Http404, HttpRequest, HttpResponse
@@ -71,15 +71,16 @@ def product_det(request):
     if request.method =='POST':
         formData=Form_Product(request.POST, request.FILES)
         print('if isledi')
+        print(formData)
         if formData.is_valid():
             print('valid isledi')
-            formData.save()
+            
         else:
             print('valid islemedi')
             print(formData.errors)
             
             context={ 
-                'forms':Form_Product(request.POST),
+                'forms':Form_Product(),
                 }
             return render(request, 'prodc.html', context)  
     context={

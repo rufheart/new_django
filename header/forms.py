@@ -1,6 +1,7 @@
-from dataclasses import fields
 from django import forms
 from header.models import Cont_Info, Contact, Review,Product
+
+
 
 
 class FormContact(forms.ModelForm):
@@ -93,7 +94,7 @@ class Form_Product(forms.ModelForm):
     class Meta:
         model = Product
         # fields = '__all__'
-        fields=['user', 'name','tag','image','desc','new_pr','old_pr']
+        fields=['name','tag','image','desc','new_pr','old_pr']
 
         widgets = {
          'name':forms.TextInput(),
@@ -102,3 +103,4 @@ class Form_Product(forms.ModelForm):
          'old_pr':forms.TextInput()
 
         }
+

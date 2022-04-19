@@ -70,11 +70,12 @@ def review(request):
 def product_det(request):
     if request.method =='POST':
         formData=Form_Product(request.POST, request.FILES)
-        print('if isledi')
-        print(formData)
         if formData.is_valid():
             print('valid isledi')
-            
+            formData.save()
+            a=Product.objects.get(user_id=None)
+            a.user_id=request.user.id
+            a.save()
         else:
             print('valid islemedi')
             print(formData.errors)
@@ -87,3 +88,6 @@ def product_det(request):
         'forms':Form_Product()
     }          
     return render(request, 'prodc.html', context)        
+
+def add_to_card(request,pk):
+     return redirect('about') 

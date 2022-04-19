@@ -28,17 +28,12 @@ class Contact(ABS):
         return self.name
 
 
-class Tag(ABS):
-    name = models.CharField(max_length=50)
 
-    def __str__(self) -> str:
-        return self.name
 
 
 class Product(ABS):
-    user=models.OneToOneField(User,related_name='user', on_delete=models.CASCADE)
+    user=models.ForeignKey(User,related_name='user', on_delete=models.CASCADE,null=True)
     name = models.CharField(max_length=35)
-    tag = models.ManyToManyField(Tag, related_name='Product', blank=True)
     image = models.ImageField(upload_to = 'img/product')
     desc = models.TextField()
     new_pr=models.CharField(max_length=10)

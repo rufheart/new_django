@@ -1,5 +1,5 @@
 from django.contrib import admin
-from header.models import Contact, Product,Cont_Info,Images,Review
+from header.models import Contact, Product,Cont_Info,Images,Review, Add_To_Card
 
 
 class ImagesAdmin(admin.TabularInline):
@@ -18,4 +18,4 @@ class product(admin.ModelAdmin):
 class cont_inf(admin.ModelAdmin):
     list_display = ['fname','country']
 
-admin.site.register([Contact,Review])
+admin.site.register([Contact,Review, Add_To_Card])

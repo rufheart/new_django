@@ -2,8 +2,9 @@ from urllib import request
 from django.forms import ValidationError
 from django.shortcuts import redirect, render
 from django.http import Http404, HttpRequest, HttpResponse
+from django.urls import reverse_lazy
 from header.forms import FormContact,Form_Cont_Info, Form_Review, Form_Product
-from header.models import Contact, Product, Review
+from header.models import Contact, Product, Review, Add_To_Card
 
 # Create your views here.
 def index(request):
@@ -28,7 +29,6 @@ def product(request):
     context = {
         'models':Product.objects.all()
     }
-    print(context.get('models'))
     return render(request, 'product-list.html', context)
 
 def about(request, slug):
@@ -42,7 +42,6 @@ def about(request, slug):
 def cont_info(request):
     if request.method == 'POST':
         formData = Form_Cont_Info(request.POST)
-        print(Form_Cont_Info())
         if formData.is_valid():
             formData.save()
         else:
@@ -71,13 +70,11 @@ def product_det(request):
     if request.method =='POST':
         formData=Form_Product(request.POST, request.FILES)
         if formData.is_valid():
-            print('valid isledi')
             formData.save()
             a=Product.objects.get(user_id=None)
             a.user_id=request.user.id
             a.save()
         else:
-            print('valid islemedi')
             print(formData.errors)
             
             context={ 
@@ -89,5 +86,8 @@ def product_det(request):
     }          
     return render(request, 'prodc.html', context)        
 
-def add_to_card(request,pk):
-     return redirect('about') 
+def add_to_card(request,pk,slug):
+    user = request.user
+    Add_To_Card.objects.create(add_usr=user, add_product=Product.objects.get(id=pk))
+    print(request,'================================>>>>>>>>>>>>>>>')
+    return redirect(reverse_lazy('about', slug))

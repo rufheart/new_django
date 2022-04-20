@@ -1,4 +1,3 @@
-import django
 from django.db import models 
 from django.shortcuts import render
 from django.utils.text import slugify
@@ -43,7 +42,6 @@ class Product(ABS):
  
     def save(self, *args, ** kwargs):
         self.slug = slugify(self.desc+self.old_pr+self.new_pr)
-        print('form.save.isledi')
         super().save(*args, **kwargs)
 
     def __str__(self) -> str:
@@ -88,7 +86,9 @@ class Review(ABS):
     summary = models.CharField('Summary',max_length=40)
     comment = models.TextField()
 
-
+class Add_To_Card(ABS):
+    add_product=models.ForeignKey(Product, related_name='add_to_card', on_delete=models.CASCADE, null=True)
+    add_usr = models.ForeignKey(User, related_name='add_to_card', on_delete=models.CASCADE)
 
 
 

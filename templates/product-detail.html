@@ -55,7 +55,7 @@
                   </div>
                   <!-- end: more-images --> 
                 </div>
-
+                
                 <div class="product-shop col-sm-8 col-xs-12">
                   <div class="product-name">
                     <h1>{{ about.name }}</h1>
@@ -88,7 +88,7 @@
                           <button onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;" class="increase items-count" type="button"><i class="fa fa-plus">&nbsp;</i></button>
                         </div>
                       </div>
-                      <a href="{% url 'add_to_card' pk=about.id %}" class="button btn-cart" title="Add to Cart"><span>Add to Cart</span></a>
+                      <a href="{% url 'add_to_card' pk=about.id slug=about.slug %}" class="button btn-cart" title="Add to Cart"><span>Add to Cart</span></a>
                       <!-- <button onClick="productAddToCartForm.submit(this)" class="button btn-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button> -->
                     </div>
                     <div class="email-addto-box">

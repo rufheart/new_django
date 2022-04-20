@@ -13,5 +13,5 @@ urlpatterns = [
     path('cont_info/', cont_info, name = 'cont_info'),
     path('review/', review, name='review'),
     path('product_det/', product_det, name='product_det'),
-    path('add_to_card/<int:pk>', add_to_card, name='add_to_card'),
+    path('add_to_card/<int:pk>/<slug:slug>', add_to_card, name='add_to_card'),
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

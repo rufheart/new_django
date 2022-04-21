@@ -5,11 +5,6 @@ from header.models import Cont_Info, Contact, Review,Product
 
 
 class FormContact(forms.ModelForm):
-    submit = forms.CharField(widget=forms.TextInput(attrs={
-        'type':'submit',
-        'title':'Submit',
-        'class':"button submit"
-    }))
     class Meta:
         model = Contact
         fields = "__all__"

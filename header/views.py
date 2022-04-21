@@ -1,29 +1,44 @@
+from dataclasses import field
+from re import template
 from urllib import request
-from django.forms import ValidationError
+from django.forms import SlugField, ValidationError
 from django.shortcuts import redirect, render
 from django.http import Http404, HttpRequest, HttpResponse
 from django.urls import reverse_lazy
 from header.forms import FormContact,Form_Cont_Info, Form_Review, Form_Product
 from header.models import Contact, Product, Review, Add_To_Card
+from django.views.generic import TemplateView, CreateView
 
-# Create your views here.
-def index(request):
-    return render(request, 'index.html')
 
-def blog(request):    
-    return render(request=request, template_name='blog.html')    
+class IndexView(TemplateView):
+    template_name = 'index.html'
 
-def contact(request):
-    if request.method == 'POST':
-        formsData=FormContact(request.POST)
-        print(formsData)
-        if formsData.is_valid():
-            formsData.save()
+# def index(request):
+#     return render(request, 'index.html')
+
+# def blog(request):    
+#     return render(request=request, template_name='blog.html')    
+class BlogView(TemplateView):
+    template_name = 'blog.html'
+
+class ContactView(CreateView):
+    form_class=FormContact
+    template_name = 'contact_us.html'
+    success_url = reverse_lazy('contact')
+
+
+
+# def contact(request):
+#     if request.method == 'POST':
+#         formsData=FormContact(request.POST)
+#         print(formsData)
+#         if formsData.is_valid():
+#             formsData.save()
     
-    context = {
-        'forms':FormContact()
-        }        
-    return render(request, 'contact_us.html',context)    
+#     context = {
+#         'forms':FormContact()
+#         }        
+#     return render(request, 'contact_us.html',context)    
 
 def product(request):
     context = {
@@ -86,8 +101,7 @@ def product_det(request):
     }          
     return render(request, 'prodc.html', context)        
 
-def add_to_card(request,pk,slug):
+def add_to_card(request, pk, slug):
     user = request.user
     Add_To_Card.objects.create(add_usr=user, add_product=Product.objects.get(id=pk))
-    print(request,'================================>>>>>>>>>>>>>>>')
-    return redirect(reverse_lazy('about', slug))
+    return redirect(reverse_lazy('about', kwargs={'slug':slug}))

@@ -97,7 +97,7 @@ def product_det(request):
                 }
             return render(request, 'prodc.html', context)  
     context={
-        'forms':Form_Product()
+        'forms':Form_Product(),
     }          
     return render(request, 'prodc.html', context)        
 

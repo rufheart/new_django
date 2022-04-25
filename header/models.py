@@ -1,5 +1,6 @@
 from django.db import models 
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.utils.text import slugify
 # from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
@@ -85,6 +86,7 @@ class Review(ABS):
     price_review = models.SmallIntegerField('Price', choices=((1,'1'),(2,'2'), (3,'3'), (4,'4'), (5,'5')), default=0)
     summary = models.CharField('Summary',max_length=40)
     comment = models.TextField()
+
 
 class Add_To_Card(ABS):
     add_product=models.ForeignKey(Product, related_name='add_to_card', on_delete=models.CASCADE, null=True)

@@ -79,147 +79,32 @@
           <div class="category-products">
             <ol class="products-list" id="products-list">
           
-          {% for model in models %}
-          <li class="item first">
-            <div class="product-image"> <a href="" title="{{ model.name }}"> <img class="small-image" src="{{ model.image.url }}" alt=""> </a> </div>
-            <div class="product-shop">
-              <h2 class="product-name"><a href="{% url 'about' slug=model.slug %}" title="HTC Rhyme Sense">{{ model.name }}</a></h2>
-              <div class="ratings">
-                <div class="rating-box">
-                  <div style="width:50%" class="rating"></div>
+              {% for model in models %}
+              <li class="item first">
+                <div class="product-image"> <a href="" title="{{ model.name }}"> <img class="small-image" src="{{ model.image.url }}" alt=""> </a> </div>
+                <div class="product-shop">
+                  <h2 class="product-name"><a href="{% url 'about' slug=model.slug %}" title="HTC Rhyme Sense">{{ model.name }}</a></h2>
+                  <div class="ratings">
+                    <div class="rating-box">
+                      <div style="width:50%" class="rating"></div>
+                    </div>
+                    <p class="rating-links"> <a href="#/review/product/list/id/167/category/35/">1 Review(s)</a> <span class="separator">|</span> <a href="#review-form">Add Your Review</a> </p>
+                  </div>
+                  <div class="desc std">
+                    <p> {{ model.desc }}<a class="link-learn" title="" href="#">Learn More</a> </p>
+                  </div>
+                  <div class="price-box">
+                  
+                    <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ model.new_pr }} </span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ model.old_pr }} </span> </p>
+                  </div>
+                  <div class="actions">
+                    <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
+                    <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#"><span>Add to Wishlist</span></a> <a title="Add to Compare" class="button link-compare" href="#"><span>Add to Compare</span></a> </span> </div>
                 </div>
-                <p class="rating-links"> <a href="#/review/product/list/id/167/category/35/">1 Review(s)</a> <span class="separator">|</span> <a href="#review-form">Add Your Review</a> </p>
-              </div>
-              <div class="desc std">
-                <p> {{ model.desc }}<a class="link-learn" title="" href="#">Learn More</a> </p>
-              </div>
-              <div class="price-box">
-               
-                <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ model.new_pr }} </span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ model.old_pr }} </span> </p>
-              </div>
-              <div class="actions">
-                <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
-                <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#"><span>Add to Wishlist</span></a> <a title="Add to Compare" class="button link-compare" href="#"><span>Add to Compare</span></a> </span> </div>
-            </div>
-          </li>
-          {% endfor %}
+              </li>
+              {% endfor %}
 
-          <li class="item even">
-            <div class="product-image"> <a href="#/microsoft-natural-ergonomic-keyboard-4000.html" title="Microsoft Natural Keyboard"> <img class="small-image" src="{% static 'products-images/product.jpg' %}" alt="Microsoft Natural Keyboard"> </a> </div>
-            <div class="product-shop">
-              <h2 class="product-name"><a href="#/microsoft-natural-ergonomic-keyboard-4000.html" title="Microsoft Natural Keyboard">Microsoft Natural Keyboard</a></h2>
-              <div class="desc std">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla... <a class="link-learn" title="" href="#">Learn More</a></p>
-              </div>
-              <div class="price-box"> <span class="regular-price"> <span class="price">$99.99</span> </span> </div>
-              <div class="actions">
-                <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
-                <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#"><span>Add to Wishlist</span></a> <a title="Add to Compare" class="button link-compare" href="#"><span>Add to Compare</span></a> </span> </div>
-            </div>
-          </li>
-          <li class="item odd">
-            <div class="product-image"> <a href="#/30-flat-panel-tft-lcd-cinema-hd-monitor.html" title="30&quot; Flat-Panel HD Monitor"> <img class="small-image" src="{% static 'products-images/product.jpg' %}" alt="30&quot; Flat-Panel HD Monitor"> </a> </div>
-            <div class="product-shop">
-              <h2 class="product-name"><a href="#/30-flat-panel-tft-lcd-cinema-hd-monitor.html" title="30&quot; Flat-Panel HD Monitor">30" Flat-Panel HD Monitor</a></h2>
-              <div class="desc std"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla... <a class="link-learn" title="" href="#">Learn More</a></p>
-              </div>
-              <div class="price-box"> <span class="regular-price"> <span class="price">$699.99</span> </span> </div>
-              <div class="actions">
-                <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
-                <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#"><span>Add to Wishlist</span></a> <a title="Add to Compare" class="button link-compare" href="#"><span>Add to Compare</span></a> </span> </div>
-            </div>
-          </li>
-          <li class="item even">
-            <div class="product-image"> <a href="#/19-widescreen-flat-panel-lcd-monitor.html" title="19&quot; Widescreen LCD Monitor"> <img class="small-image" src="{% static 'products-images/product.jpg' %}" alt="19&quot; Widescreen LCD Monitor"> </a> </div>
-            <div class="product-shop">
-              <h2 class="product-name"><a href="#/19-widescreen-flat-panel-lcd-monitor.html" title="19&quot; Widescreen LCD Monitor">19" Widescreen LCD Monitor</a></h2>
-              <div class="desc std"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla... <a class="link-learn" title="" href="#">Learn More</a> </p>
-              </div>
-              <div class="price-box"> <span class="regular-price"> <span class="price">$399.99</span> </span> </div>
-              <div class="actions">
-                <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
-                <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#"><span>Add to Wishlist</span></a> <a title="Add to Compare" class="button link-compare" href="#"><span>Add to Compare</span></a> </span> </div>
-            </div>
-          </li>
-          <li class="item odd">
-            <div class="product-image"> <a href="#/250gb-5400rpm.html" title="Seagate 250GB HD "> <img class="small-image" src="{% static 'products-images/product.jpg' %}" alt="Seagate 250GB HD "> </a> </div>
-            <div class="product-shop">
-              <h2 class="product-name"><a href="#/250gb-5400rpm.html" title="Seagate 250GB HD ">Seagate 250GB HD </a></h2>
-              <div class="desc std"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla... <a class="link-learn" title="" href="#">Learn More</a> </p>
-              </div>
-              <div class="price-box"> <span class="regular-price"> <span class="price">$99.00</span> </span> </div>
-              <div class="actions">
-                <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
-                <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#"><span>Add to Wishlist</span></a> <a title="Add to Compare" class="button link-compare" href="#"><span>Add to Compare</span></a> </span> </div>
-            </div>
-          </li>
-          <li class="item even">
-            <div class="product-image"> <a href="#/500gb-5400rpm.html" title="Seagate 500GB HD"> <img class="small-image" src="{% static 'products-images/product.jpg' %}" alt="Seagate 500GB HD"> </a> </div>
-            <div class="product-shop">
-              <h2 class="product-name"><a href="#/500gb-5400rpm.html" title="Seagate 500GB HD">Seagate 500GB HD</a></h2>
-              <div class="desc std"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla... <a class="link-learn" title="" href="#">Learn More</a> </p>
-              </div>
-              <div class="price-box"> <span class="regular-price"> <span class="price">$299<span class="sub">.00</span></span> </span> </div>
-              <div class="actions">
-                <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
-                <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#"><span>Add to Wishlist</span></a> <a title="Add to Compare" class="button link-compare" href="#"><span>Add to Compare</span></a> </span> </div>
-            </div>
-          </li>
-          <li class="item odd">
-            <div class="product-image"> <a href="#" title="Intel Core 2 Extreme QX9775"> <img class="small-image" src="{% static 'products-images/product.jpg' %}" alt="Intel Core 2 Extreme QX9775"> </a> </div>
-            <div class="product-shop">
-              <h2 class="product-name"><a href="#" title="Intel Core 2 Extreme QX9775">Intel Core 2 Extreme QX9775</a></h2>
-              <div class="desc std"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla... <a class="link-learn" title="" href="#">Learn More</a> </p>
-              </div>
-              <div class="price-box"> <span class="regular-price"> <span class="price">$2,049.99</span> </span> </div>
-              <div class="actions">
-                <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
-                <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#"><span>Add to Wishlist</span></a> <a title="Add to Compare" class="button link-compare" href="#"><span>Add to Compare</span></a> </span> </div>
-            </div>
-          </li>
-          <li class="item even">
-            <div class="product-image"> <a href="#/24-widescreen-flat-panel-lcd-monitor.html" title="24&quot; Widescreen LCD Monitor"> <img class="small-image" src="{% static 'products-images/product.jpg' %}" alt="24&quot; Widescreen LCD Monitor"> </a> </div>
-            <div class="product-shop">
-              <h2 class="product-name"><a href="#/24-widescreen-flat-panel-lcd-monitor.html" title="24&quot; Widescreen LCD Monitor">24" Widescreen LCD Monitor</a></h2>
-              <div class="desc std"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla... <a class="link-learn" title="" href="#">Learn More</a> </p>
-              </div>
-              <div class="price-box"> <span class="regular-price"> <span class="price">$699.99</span> </span> </div>
-              <div class="actions">
-                <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
-                <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#"><span>Add to Wishlist</span></a> <a title="Add to Compare" class="button link-compare" href="#"><span>Add to Compare</span></a> </span> </div>
-            </div>
-          </li>
-          <li class="item odd">
-            <div class="product-image"> <a href="#/microsoft-wireless-optical-mouse-5004.html" title="Logitech Optical Trackman"> <img class="small-image" src="{% static 'products-images/product.jpg' %}" alt="Logitech Optical Trackman"> </a> </div>
-            <div class="product-shop">
-              <h2 class="product-name"><a href="#/microsoft-wireless-optical-mouse-5004.html" title="Logitech Optical Trackman">Logitech Optical Trackman</a></h2>
-              <div class="desc std"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla... <a class="link-learn" title="" href="#">Learn More</a> </p>
-              </div>
-              <div class="price-box"> <span class="regular-price"> <span class="price">$79.99</span> </span> </div>
-              <div class="actions">
-                <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
-                <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#"><span>Add to Wishlist</span></a> <a title="Add to Compare" class="button link-compare" href="#"><span>Add to Compare</span></a> </span> </div>
-            </div>
-          </li>
-          <li class="item last even">
-            <div class="product-image"> <a href="#/logitech-dinovo-edge-keyboard.html" title="Logitech diNovo Edge Keyboard"> <img class="small-image" src="{% static 'products-images/product.jpg' %}" alt="Logitech diNovo Edge Keyboard"> </a> </div>
-            <div class="product-shop">
-              <h2 class="product-name"><a href="#/logitech-dinovo-edge-keyboard.html" title="Logitech diNovo Edge Keyboard">Logitech diNovo Edge Keyboard</a></h2>
-              <div class="ratings">
-                <div class="rating-box">
-                  <div style="width:80%" class="rating"></div>
-                </div>
-                <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Your Review</a> </p>
-              </div>
-              <div class="desc std"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla... <a class="link-learn" title="" href="#">Learn More</a> </p>
-              </div>
-              <div class="price-box"> <span class="regular-price"> <span class="price">$239.99</span> </span> </div>
-              <div class="actions">
-                <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
-                <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#"><span>Add to Wishlist</span></a> <a title="Add to Compare" class="button link-compare" href="#"><span>Add to Compare</span></a> </span> </div>
-            </div>
-          </li>
-        </ol>
+           </ol>
           </div>
         </article>
         <!--	///*///======    End article  ========= //*/// --> 

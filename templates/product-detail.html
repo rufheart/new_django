@@ -146,7 +146,7 @@
                     <div class="box-collateral box-reviews" id="customer-reviews">
                       <div class="box-reviews1">
                         <div class="form-add">
-                          <form id="review-form" method="post" action="{% url 'review' pk=about.id %}">
+                          <form id="review-form" method="post" action="{% url 'review' pk=about.id slug=about.slug %}">
                             {% csrf_token %}
                             <input type="hidden" value="{{ about.id }}" name="ornek">
                             <h3>Write Your Own Review</h3>
@@ -167,13 +167,13 @@
                                 </thead>
                                 <tbody>
                                   
-                                  {% for tags in object_list %}
+                                  {% for tags in forms %}
                                   <tr class="first odd">
                                         
                                     <th>{{ tags.label }}</th>
 
                                     {% for tag in tags %}
-                                      <td >{{ x.tag }}</td>
+                                      <td >{{ tag }}</td>
                                     {% endfor %}
 
                                   </tr>

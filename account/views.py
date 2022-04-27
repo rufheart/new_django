@@ -1,9 +1,11 @@
-import email
+
 from webbrowser import get
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
+from django.urls import reverse_lazy
 # from django.contrib.auth.models import User
 from account.forms import FormLogin, FormRegister
+from django.views.generic import CreateView
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -47,6 +49,29 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     return redirect('login')
+
+class UserCreate(CreateView):
+    form_class = FormRegister
+    template_name = 'register.html'
+    success_url = reverse_lazy('register')
+
+    # def save(self, commit=True):
+    #     user = super().save(commit=False)
+    #     user.set_password(user.self.cleaned_data['password'])
+        
+    #     if commit:
+    #         user.save()
+    #     return user  
+
+    # def post(self, request, *args, **kwargs):
+    #     form = self.form_class(request.POST)
+    #     if form.is_valid():
+    #         a=form.save()
+    #         a.set_password(a.password)
+    #         a.save()
+    #     return super().post(request, *args, **kwargs)
+
+
 
 def register_user(request):
     if request.method == "POST":

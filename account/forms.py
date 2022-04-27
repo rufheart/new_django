@@ -1,7 +1,7 @@
 
 from django import forms
-from django.contrib.auth.models import User
-# from account.models import User
+# from django.contrib.auth.models import User
+from account.models import User
 
 class FormLogin(forms.ModelForm):
 
@@ -27,7 +27,7 @@ class FormRegister(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ( 'username', 'first_name', 'last_name', 'email', 'password')
+        fields = ('image','username', 'first_name', 'last_name', 'email', 'password')
 
         widgets = {
             "username":forms.TextInput(attrs={"class":"input-text","id":"pass2", "placeholder":"Username"}),
@@ -43,7 +43,7 @@ class FormRegister(forms.ModelForm):
     #     # User.first_name = self.cleaned_data.get('first_name')
         # User.last_name = self.cleaned_data.get('last_name')
         # User.email = self.cleaned_data.get('email')
-        
+    
 
 
 

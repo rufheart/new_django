@@ -96,10 +96,10 @@ class Product_Detail(DetailView):
         
 
 class Review_Create(View):
-    # template_name = 'test.html'
-    # form_class = Form_Review
-    # context_object_name = 'forms'
-    # success_url = reverse_lazy('index')
+    template_name = 'test.html'
+    form_class = Form_Review
+    context_object_name = 'forms'
+    success_url = reverse_lazy('index')
 
     # def form_valid(self, form):      
     #     form.instance.user_pro = self.request.user
@@ -115,16 +115,17 @@ class Review_Create(View):
     #     data =  super().get(request, *args, **kwargs)
     #     print('==============>', data)
     
-    def post(self, request, pk):
+    def post(self, request, pk, slug):
         form = Form_Review(request.POST)
+        form.instance.user_pro = self.request.user
+        form.instance.product_review = Product.objects.get(id=pk)
         form.save()
-        print('=================>', request.POST.get('ornek'), pk)
-        return render(request=request, template_name='test.html')
+        return redirect(reverse_lazy('about', kwargs={'slug':slug}))
     
 
-    def get(self, request):
-        print("get isledi ============> ")
-        return render(request=request, template_name='test.html')
+    # def get(self, request):
+    #     print("get isledi ============> ")
+    #     return render(request=request, template_name='test.html')
 
     # def form_valid(self, form):
     #     return super().form_valid(form)

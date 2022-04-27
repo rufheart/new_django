@@ -44,7 +44,7 @@ INSTALLED_APPS = [
 
     #myapps
     'header.apps.HeaderConfig',
-    'account.apps.AccountConfig',
+    'account',
 
 ]
 

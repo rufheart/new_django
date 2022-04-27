@@ -63,6 +63,7 @@ class Form_Cont_Info(forms.ModelForm):
         }
 
 class Form_Review(forms.ModelForm):
+    
     class Meta:
         model = Review
         fields = ['value_review', 'quality_review','price_review', 'summary', 'comment' ]

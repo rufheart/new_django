@@ -146,8 +146,9 @@
                     <div class="box-collateral box-reviews" id="customer-reviews">
                       <div class="box-reviews1">
                         <div class="form-add">
-                          <form id="review-form" method="post" action="{% url 'review' %}">
+                          <form id="review-form" method="post" action="{% url 'review' pk=about.id %}">
                             {% csrf_token %}
+                            <input type="hidden" value="{{ about.id }}" name="ornek">
                             <h3>Write Your Own Review</h3>
                             <fieldset>
                               <h4>How do you rate this product? <em class="required">*</em></h4>
@@ -165,19 +166,16 @@
                                   </tr>
                                 </thead>
                                 <tbody>
-
-                                  {% for i in forms %}
+                                  
+                                  {% for tags in object_list %}
                                   <tr class="first odd">
-                                        {{ about.id }}
-                                    <th>{{ i.label }}</th>
+                                        
+                                    <th>{{ tags.label }}</th>
 
-                                    {% for x in i %}
+                                    {% for tag in tags %}
                                       <td >{{ x.tag }}</td>
                                     {% endfor %}
-                                    <!-- <td class="value"><input type="radio" class="radio" value="12" id="Price_2" name="ratings[3]"></td>
-                                    <td class="value"><input type="radio" class="radio" value="13" id="Price_3" name="ratings[3]"></td>
-                                    <td class="value"><input type="radio" class="radio" value="14" id="Price_4" name="ratings[3]"></td>
-                                    <td class="value last"><input type="radio" class="radio" value="15" id="Price_5" name="ratings[3]"></td> -->
+
                                   </tr>
                                   {% endfor %}
 

@@ -9,7 +9,7 @@ from django.http import Http404, HttpRequest, HttpResponse
 from django.urls import reverse_lazy
 from header.forms import FormContact,Form_Cont_Info, Form_Review, Form_Product
 from header.models import Contact, Product, Review, Add_To_Card
-from django.views.generic import TemplateView, CreateView, ListView
+from django.views.generic import TemplateView, CreateView, ListView, DetailView, View
 
 
 class IndexView(TemplateView):
@@ -56,13 +56,13 @@ class Product_List(ListView):
 #     }
 #     return render(request, 'product-list.html', context)
 
-def about(request, slug):
-    context = {
-        'about':Product.objects.get(slug = slug),   
-        'forms': Form_Review()
-    }
+# def about(request, slug):
+#     context = {
+#         'about':Product.objects.get(slug = slug),   
+#         'forms': Form_Review()
+#     }
     
-    return render(request, 'product-detail.html', context)
+#     return render(request, 'product-detail.html', context)
 
 def cont_info(request):
     if request.method == 'POST':
@@ -84,24 +84,61 @@ def cont_info(request):
 #     return render(request, 'prodc.html')
 
 
-class Review_Create(CreateView):
-    form_class = Form_Review
-    print('1')
-    def form_valid(self, form):
-        form.instance.user_pro = self.request.user
-        form.instance.product_review=Product.objects.get(id=1)
-        return super().form_valid(form)
+class Product_Detail(DetailView):
+    model = Product
+    template_name = 'product-detail.html'
+    context_object_name = 'about'
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        data['forms'] = Form_Review
+        return data
+        
+
+class Review_Create(View):
+    # template_name = 'test.html'
+    # form_class = Form_Review
+    # context_object_name = 'forms'
+    # success_url = reverse_lazy('index')
+
+    # def form_valid(self, form):      
+    #     form.instance.user_pro = self.request.user
+    #     # form.instance.product_review = Product.objects.get(id =  1)
+    #     form.instance.product_review  = Product.objects.get(id =  self.kwargs['pk'])
+
+    #     return super().form_valid(form)
+
+    # def dispatch(self, request: HttpRequest, *args, **kwargs):
+    #     return super().dispatch(request, *args, **kwargs)
+
+    # def get(self, request: HttpRequest, *args, **kwargs):
+    #     data =  super().get(request, *args, **kwargs)
+    #     print('==============>', data)
+    
+    def post(self, request, pk):
+        form = Form_Review(request.POST)
+        form.save()
+        print('=================>', request.POST.get('ornek'), pk)
+        return render(request=request, template_name='test.html')
     
 
+    def get(self, request):
+        print("get isledi ============> ")
+        return render(request=request, template_name='test.html')
+
+    # def form_valid(self, form):
+    #     return super().form_valid(form)
 
 
-# def review(request):
-#     if request.method == "POST":
-#         formData = Form_Review(request.POST)
-#         if formData.is_valid():
-#             formData.save()
-#         return redirect('index')    
-#     return render(request, 'review.html')    
+def review(request, pk):
+    form = Form_Review(request.POST)
+    if form.is_valid:
+        form.instance.user_pro = request.user
+        form.instance.product_review = Product.objects.get(id = pk)
+        form.save()
+
+    return HttpResponse('asasa')
+
 
 def product_det(request):
     if request.method =='POST':

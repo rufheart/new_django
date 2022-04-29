@@ -7,7 +7,7 @@ from django.forms import SlugField, ValidationError
 from django.shortcuts import redirect, render
 from django.http import Http404, HttpRequest, HttpResponse
 from django.urls import reverse_lazy
-from header.forms import FormContact,Form_Cont_Info, Form_Review, Form_Product
+from header.forms import FormContact,Form_Cont_Info, Form_Review, Form_Product,FormUpdate_Profile
 from header.models import Contact, Product, Review, Add_To_Card
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, View
 
@@ -165,3 +165,20 @@ def add_to_card(request, pk, slug):
     user = request.user
     Add_To_Card.objects.create(add_usr=user, add_product=Product.objects.get(id=pk))
     return redirect(reverse_lazy('about', kwargs={'slug':slug}))
+
+def profile(request):
+    args = {}
+    if request.method == 'POST':
+        form = FormUpdate_Profile(request.POST)
+        user = request.user
+        if form.is_valid():
+            form.save()
+            return render(request, 'profile.html')
+
+    else:
+        form = FormUpdate_Profile()
+
+    args = {
+        'form':form
+    }
+    return render(request, 'profile.html', args)

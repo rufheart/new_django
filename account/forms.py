@@ -56,3 +56,6 @@ class FormRegister(forms.ModelForm):
             raise forms.ValidationError('Bu yalniz gmaillla qeydiyyat mumkundur')
 
         return super().clean()
+
+
+        

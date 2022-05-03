@@ -104,34 +104,3 @@ class Form_Product(forms.ModelForm):
 
         }
 
-
-class FormUpdate_Profile(forms.ModelForm):
-    username=forms.CharField(),
-    first_name=forms.CharField(),
-    last_name=forms.CharField(),
-    email=forms.EmailField(),
-    password=forms.CharField(widget={})
-    class Meta:
-        model=User
-        fields = ('image','username','first_name','last_name','email','password')
-
-    def clean(self):
-        username = self.cleaned_data.get('username')
-        email = self.cleaned_data.get('email')
-    
-        if username == User.objects.filter('username') or email == User.objects.filter('email'):
-            raise forms.ValidationError('Username or email already using')
-        return email
-    
-    def save(self, commit=True):
-        user=super(FormRegister, self).save(commit=False)
-        user.image=self.image
-        user.username=self.cleaned_data.get('username')
-        user.email=self.cleaned_data.get('email')
-        user.first_name=self.cleaned_data.get('first_name')
-        user.last_name=self.cleaned_data.get('last_name')
-
-        if commit==True:
-            user.save()
-
-        return user

@@ -14,5 +14,4 @@ urlpatterns = [
     path('review/<int:pk>/<slug:slug>/', Review_Create.as_view(), name='review'),
     path('product_det/', product_det, name='product_det'),
     path('add_to_card/<int:pk>/<slug:slug>/', add_to_card, name='add_to_card'),
-    path('profile/', profile, name='profile')
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

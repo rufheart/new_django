@@ -1,0 +1,96 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-shadow: none;
+}
+/* .main{
+    margin-top: 40px;
+    border: 1px solid red;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}   */
+
+.main{
+    margin-top: 80px;
+    border: 1px solid red;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}   
+
+.flex{
+    width: 70%;
+    height: 900px;
+    border: 1px solid red;
+    display: flex;
+}
+
+.left_sec{
+    border: 1px solid red;
+    width: 30%;
+    height: 100%;
+}
+
+.user_inf{
+    border: 1px solid red;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.pict{
+    border: 1px solid black;
+    width: 50%;
+    height: 50%;
+    border-radius: 30px;
+}
+
+.btn{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    left: 70px;
+    bottom: 130px;
+    background-color: transparent
+}
+.user_name{
+    margin-top: 120px;
+    border: 1px solid red;
+    width: 100%;
+    text-align: center;
+}
+
+.rh{
+    margin-left: 100px;
+}
+.btn:hover{
+    background-color: blue;
+}
+
+.select1{
+    border: 1px solid red;
+}
+.select1 button{
+    padding: 10px;
+}
+.select2{
+    border: 1px solid red;
+}
+.select2 button{
+    padding: 10px;
+}
+.right_sec{
+    border: 1px solid blue;
+    width: 100%;
+}
+.section1{
+    border: 1px solid red;
+    height: 50%;
+}
+.section2{
+    display: none;
+}

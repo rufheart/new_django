@@ -1,16 +1,17 @@
 from calendar import c
 from dataclasses import field
 from re import template
+import re
 from urllib import request
 from xml.parsers.expat import model
 from django.forms import SlugField, ValidationError
 from django.shortcuts import redirect, render
 from django.http import Http404, HttpRequest, HttpResponse
 from django.urls import reverse_lazy
-from header.forms import FormContact,Form_Cont_Info, Form_Review, Form_Product,FormUpdate_Profile
-from header.models import Contact, Product, Review, Add_To_Card
+from header.forms import FormContact,Form_Cont_Info, Form_Review, Form_Product
+from header.models import Contact, Product, Review, Add_To_Card, User
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, View
-
+import json
 
 class IndexView(TemplateView):
     template_name = 'index.html'
@@ -166,19 +167,34 @@ def add_to_card(request, pk, slug):
     Add_To_Card.objects.create(add_usr=user, add_product=Product.objects.get(id=pk))
     return redirect(reverse_lazy('about', kwargs={'slug':slug}))
 
-def profile(request):
-    args = {}
-    if request.method == 'POST':
-        form = FormUpdate_Profile(request.POST)
-        user = request.user
-        if form.is_valid():
-            form.save()
-            return render(request, 'profile.html')
+# def profile(request):
+#     args = {}
+#     user = User
+#     print('prof')
+#     if request.method == 'POST':
+#         print('if isledi')
+#         form = FormUpdate_Profile(data=request.POST, files=request.FILES)
+#         if form.is_valid():
+#             print('validisledi')
+#             form.save(request.user.id)
+#         else:
+#             print('=============>', form.errors)
 
-    else:
-        form = FormUpdate_Profile()
+#     else:
+#         form = FormUpdate_Profile()
+    
+#     form.initial['username'] = request.user.username
+#     form.initial['first_name'] = request.user.first_name
+#     form.initial['last_name'] = request.user.last_name
+#     form.initial['email'] = request.user.email
+#     form.initial['password'] = request.user.password
 
-    args = {
-        'form':form
-    }
-    return render(request, 'profile.html', args)
+#     user = User.objects.get(id = request.user.id)
+#     user = dict(username = user.username, password = user.password)
+
+#     args = {
+#         'form':form,
+#         'user': json.dumps(user)
+#         }
+
+#     return render(request, 'profile.html', args)

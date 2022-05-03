@@ -58,4 +58,35 @@ class FormRegister(forms.ModelForm):
         return super().clean()
 
 
-        
+class FormUpdate_Profile(forms.ModelForm):
+
+    # username=forms.CharField(),
+    # first_name=forms.CharField(),
+    # last_name=forms.CharField(),
+    # email=forms.EmailField(),
+    # password=forms.CharField(widget={})
+    
+
+    class Meta:
+        model=User
+        fields = ('image','username','first_name','last_name','email','password')
+
+        widgets = {
+            'password': forms.PasswordInput(attrs={
+            })
+        }
+    
+    
+    def save(self, userId, commit=True):
+
+        form = self.cleaned_data
+        user = User.objects.get(id = userId)
+        user.username = form.get('username')
+        user.image = form.get('image')
+        user.first_name = form.get('first_name')
+        user.last_name = form.get('last_name')
+        user.email = form.get('email')
+        user.set_password(form.get('password'))
+        user.save()
+
+        return user        

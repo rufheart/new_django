@@ -2,30 +2,75 @@
 
 {% load static %}
 
-{% block content %} 
-        <div class="main_div">
-            <div class="main_div1">
-                <div class="img">
-               <form action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
-                   {% csrf_token %}
-                   
-                {% for i in form %}
-                    {{ i }}
-                {% endfor %}
-                <input type="submit" name="" id="">
-               </form>
-                </div>
-                <div class="name">
-                    
-                    <p></p>
-                </div>
-                <div class="usr">
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/profile2.css' %}">
+{% endblock %}
 
+
+{% block content %} 
+    <div class="main">
+        <div class="flex">
+            <div class="left_sec">
+                <div class="user_inf">
+            <form action="" method="post" enctype="multipart/form-data" >  
+                {% csrf_token %}               
+                    <div class="pict rh">
+                        <img src="{{ user1.image.url }}" style="width: 50px;height: 50px;" alt="">
+                    </div>
+                    <button class="btn rh">{{ form.image }}</button>
+                    <div class="user_name">
+                        {{ user1.username }}
+                    </div>
                 </div>
-                <div>
-                    <p></p>
+                <div class="select">
+                    <div class="select1">
+                        <button onclick="funct1()">Change data</button>
+                    </div>
+                    <div class="select2"> 
+                        <button onclick="funct()" value="45">Change user password</button>
+                    </div>
                 </div>
             </div>
-
+            <div class="right_sec">
+                
+                    <div class="section1">
+                        {{ form.first_name }}
+                        {{ form.last_name }}
+                        {{ form.username }}
+                        {{ form.email }}
+                        <input type="submit" name="" id="">
+                    </div>
+                    <div class="section2">
+                        {{ form.password }}
+                        <input type="submit" name="" id="">
+                    </div>
+            </div>
+                      
+            </form>  
         </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+<script>
+    function funct(){
+        if(document.getElementsByClassName('section2')[0].style.display = 'none' ){
+            document.getElementsByClassName('section1')[0].style.display = 'none';
+            document.getElementsByClassName('section2')[0].style.display = 'block';   
+        }
+    } 
+    function funct1(){
+        if(document.getElementsByClassName('section1')[0].style.display = 'none' ){
+            document.getElementsByClassName('section2')[0].style.display = 'none';
+            document.getElementsByClassName('section1')[0].style.display = 'block';   
+        }
+    } 
+</script>
+
+<!-- <script>
+
+    let user = JSON.parse('{{ user|safe }}');
+    console.log(user)
+
+</script> -->
 {% endblock %}

@@ -5,10 +5,11 @@ from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse_lazy
 # from django.contrib.auth.models import User
-from account.forms import FormLogin, FormRegister
+from account.models import User
+from account.forms import FormLogin, FormRegister, FormUpdate_Profile
 from django.views.generic import CreateView, UpdateView
 from django.contrib.auth import get_user_model
-
+import json
 User = get_user_model()
 
 def login_user(request):
@@ -56,22 +57,15 @@ class UserCreate(CreateView):
     template_name = 'register.html'
     success_url = reverse_lazy('register')
 
-    # def save(self, commit=True):
-    #     user = super().save(commit=False)
-    #     user.set_password(user.self.cleaned_data['password'])
-        
-    #     if commit:
-    #         user.save()
-    #     return user  
+    def form_valid(self, form):        
+        form.instance.set_password(form.instance.password)
+        return super().form_valid(form)
 
-    # def post(self, request, *args, **kwargs):
-    #     form = self.form_class(request.POST)
-    #     if form.is_valid():
-    #         a=form.save()
-    #         a.set_password(a.password)
-    #         a.save()
-    #     return super().post(request, *args, **kwargs)
+    def form_invalid(self, form):
+        print('===========> form invalid run ')
+        return super().form_invalid(form)
 
+    
 
 
 # def register_user(request):
@@ -100,3 +94,35 @@ class UserCreate(CreateView):
 #     return render(request=request, template_name='register.html',context=context)
 
 
+def profile(request):
+    args = {}
+    user = User
+    print('prof')
+    if request.method == 'POST':
+        print('if isledi')
+        form = FormUpdate_Profile(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            print('validisledi')
+            form.save(request.user.id)
+        else:
+            print('=============>', form.errors)
+
+    else:
+        form = FormUpdate_Profile()
+    
+    form.initial['username'] = request.user.username
+    form.initial['first_name'] = request.user.first_name
+    form.initial['last_name'] = request.user.last_name
+    form.initial['email'] = request.user.email
+    form.initial['password'] = request.user.password
+
+    user = User.objects.get(id = request.user.id)
+    user = dict(username = user.username, password = user.password)
+
+    args = {
+        'form':form,
+        'user1':User.objects.get(id=request.user.id),
+        'user': json.dumps(user)
+        }
+
+    return render(request, 'profile.html', args)

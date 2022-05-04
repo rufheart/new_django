@@ -73,6 +73,22 @@ class FormUpdate_Profile(forms.ModelForm):
 
         widgets = {
             'password': forms.PasswordInput(attrs={
+                'class':'password'
+            }),
+            'username':forms.TextInput(attrs={
+                'class':'username',
+                
+            }),
+            'first_name':forms.TextInput(attrs={
+                'class':'First Name'
+            }),
+            'last_name':forms.TextInput(attrs={
+                'class':'last_name',
+                
+            }),
+            'email':forms.EmailInput(attrs={
+                'class':'email',
+              
             })
         }
     

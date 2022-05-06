@@ -1,117 +1,110 @@
 *{
     margin: 0px;
     padding: 0px;
-    box-shadow: none;
 }
-/* .main{
-    margin-top: 40px;
-    border: 1px solid red;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}   */
 
 .main{
-    margin-top: 80px;
-    border: 1px solid red;
-    width: 100%;
+    margin-top: 200px;
+
     display: flex;
     justify-content: center;
-}   
-
+    width: 100%;
+    height: 800px;
+}
 .flex{
-    width: 70%;
-    height: 900px;
-    border: 1px solid red;
+    border: 1px solid grey;
+    width: 60%;
     display: flex;
+    flex-direction: row;
 }
 
 .left_sec{
-    border: 1px solid red;
+    border: 1px solid grey;
     width: 30%;
-    height: 100%;
 }
-
 .user_inf{
-    border: 1px solid red;
+    margin-top: 50px;
+    width: 100%;
     height: 40%;
     display: flex;
-    justify-content: center;
     flex-direction: column;
     position: relative;
 }
-
 .pict{
-    border: 1px solid black;
-    width: 50%;
-    height: 50%;
-    border-radius: 30px;
+    border: 1px solid grey;
+    width: 100%;
+    height: 80%;    
+    display: flex;
+    justify-content: center;
 }
+.image{
 
+    width: 80%;
+    height: 100%;
+}
 .btn{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    
+    width: 50%;
     position: absolute;
-    left: 70px;
-    bottom: 130px;
-    background-color: transparent
+    bottom: 70px;
+    left: 80px;
+    background-color: transparent;
 }
 .user_name{
-    margin-top: 120px;
-    border: 1px solid red;
-    width: 100%;
+
+    margin-top: 5px;
+}
+.usr{
+
+    padding: 10px;
     text-align: center;
 }
+.image:hover{
+    background-color: aliceblue;
+}
+.select{
 
-.rh{
-    margin-left: 100px;
-}
-.btn:hover{
-    background-color: blue;
+    height: 60%;
 }
 
-.select1{
-    border: 1px solid red;
-}
-.select1 button{
+.select11{
+
     padding: 10px;
-}
-.select2{
-    border: 1px solid red;
-}
-.select2 button{  
-    padding: 10px;
-}
-.right_sec{
-    border: 1px solid blue;
     width: 100%;
 }
-.section1{
-    border: 1px solid red;
+.select12{
+
+    padding: 10px;
+    width: 100%;
+}
+
+.right_sec{
+
+    width: 70%;
+    display: flex;
+}
+.general_sec{
+    margin-top: 50px;
+    width: 70%;
+
     height: 50%;
+}
+
+.section1{
+
     display: flex;
     flex-direction: column;
-    width: 50%;
 }
-
 .section1 input{
     padding: 10px;
-    margin: 5px;
 }
-
-.section1 label{
-    border: 1px solid red;
-}
-
 .section2{
+
     display: none;
+}
+.submt{
+    padding: 10px;
 }
 .password{
     padding: 10px;
-}
-.submt{
-    margin: 5px;
-    padding: 10px;
-    width: 90px;
 }

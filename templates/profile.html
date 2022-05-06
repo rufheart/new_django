@@ -8,52 +8,50 @@
 
 
 {% block content %} 
-    <div class="main">
-        <div class="flex">
-            <div class="left_sec">
-                <div class="user_inf">
-            <form action="" method="post" enctype="multipart/form-data" >  
-                {% csrf_token %}               
-                    <div class="pict rh">
-                        <img src="{{ user1.image.url }}" style="width: 140px;height: 140px; border-radius: 30px; border: 1px solid blue;" alt="">
+    <form action="">
+        <div class="main">
+            <div class="flex">            
+                <div class="left_sec">
+                    <div class="user_inf">
+                        <div class="pict">
+                            <img class="image" src="{{ user1.image.url }}" >
+                        </div>
+                        <button class="btn">{{ form.image }}</button>
+                        <div class="user_name">  
+                            <p class="usr">Rufat Nuriyev</p>                          
+                            <!-- {{ user1.username }} -->
+                        </div>
                     </div>
-                    <button class="btn rh">{{ form.image }}</button>
-                    <div class="user_name">
-                        
-                        {{ user1.username }}
+                    <div class="select">
+                        <div class="select1">
+                            <button onclick="funct1()" class="select11">Change data</button>
+                        </div>
+                        <div class="select2"> 
+                            <button class="select12 " onclick="funct()" value="45">Change user password</button>
+                        </div>
                     </div>
                 </div>
-                <div class="select">
-                    <div class="select1">
-                        <button onclick="funct1()">Change data</button>
-                    </div>
-                    <div class="select2"> 
-                        <button onclick="funct()" value="45">Change user password</button>
-                    </div>
-                </div>
+                <div class="right_sec">
+                    <div class="general_sec">
+                        <div class="section1">
+                            {{ form.first_name.label }}
+                            {{ form.first_name }}
+                            {{ form.last_name.label }}
+                            {{ form.last_name }}
+                            {{ form.username.label }}
+                            {{ form.username }}
+                            {{ form.email.label }}
+                            {{ form.email }}
+                        </div>
+                        <div class="section2">
+                            {{ form.password }}
+                        </div>
+                        <input type="submit" name="" id="" class="submt" value="Save">
+                    </div>    
+                </div>          
             </div>
-            <div class="right_sec">
-                <div class="general_sec">
-                    <div class="section1">
-                        {{ form.first_name.label }}
-                        {{ form.first_name }}
-                        {{ form.last_name.label }}
-                        {{ form.last_name }}
-                        {{ form.username.label }}
-                        {{ form.username }}
-                        {{ form.email.label }}
-                        {{ form.email }}
-                    </div>
-                    <div class="section2">
-                        {{ form.password }}
-                    </div>
-                    <input type="submit" name="" id="" class="submt" value="Save">
-                </div>    
-            </div>
-                      
-            </form>  
         </div>
-    </div>
+    </form>
 {% endblock %}
 
 {% block js %}

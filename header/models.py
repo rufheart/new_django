@@ -28,11 +28,17 @@ class Contact(ABS):
         return self.name
 
 
+class Category(ABS):
+    title = models.CharField(max_length=50)
+    parent_id = models.ForeignKey('self',null=True, blank=True, on_delete=models.CASCADE)
 
+    def __str__(self) -> str:
+        return self.title
 
 
 class Product(ABS):
     user=models.ForeignKey(User,related_name='user', on_delete=models.CASCADE,null=True)
+    category_pro = models.ForeignKey(Category, related_name='product', on_delete=models.CASCADE)
     name = models.CharField(max_length=35)
     image = models.ImageField(upload_to = 'img/product')
     desc = models.TextField()
@@ -42,7 +48,7 @@ class Product(ABS):
 
  
     def save(self, *args, ** kwargs):
-        self.slug = slugify(self.desc+self.old_pr+self.new_pr)
+        # self.slug = slugify(self.desc+self.old_pr+self.new_pr)
         super().save(*args, **kwargs)
 
     def __str__(self) -> str:
@@ -51,7 +57,7 @@ class Product(ABS):
 
 
 class Images(ABS):
-    products = models.ForeignKey(Product,related_name='images', on_delete=models.CASCADE)
+    products = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
     images_tb = models.ImageField(upload_to = 'img/images ') 
     
 

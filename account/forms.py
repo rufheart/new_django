@@ -2,40 +2,48 @@
 from django import forms
 # from django.contrib.auth.models import User
 from account.models import User
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
-class FormLogin(forms.ModelForm):
+class FormLogin(AuthenticationForm):
+    pass
 
-    submit = forms.CharField(widget=forms.TextInput(attrs={"class":"button login","id":"send2","value":"Login","type":"submit"}))
 
-    class Meta:
-        model = User
-        fields = "__all__"
+# class FormLogin(forms.ModelForm):
 
-        widgets = {
-            "username":forms.TextInput(attrs={"class":"input-text", "id":"uname", "placeholder":"Username"}),
-            "password":forms.PasswordInput(attrs={"class":"input-text", "id":"pass", "placeholder":"Password"})
-        }
+#     submit = forms.CharField(widget=forms.TextInput(attrs={"class":"button login","id":"send2","value":"Login","type":"submit"}))
 
-        labels = {
-            "username":"Username",
-            "password":"Password"
-        }
+#     class Meta:
+#         model = User
+#         fields = "__all__"
 
-class FormRegister(forms.ModelForm):
+#         widgets = {
+#             "username":forms.TextInput(attrs={"class":"input-text", "id":"uname", "placeholder":"Username"}),
+#             "password":forms.PasswordInput(attrs={"class":"input-text", "id":"pass", "placeholder":"Password"})
+#         }
 
-    # submit = forms.CharField(widget=forms.TextInput(attrs={"type":"submit", "class":"button login","id":"send2", "value":"Register"}))
+#         labels = {
+#             "username":"Username",
+#             "password":"Password"
+#         }
 
-    class Meta:
-        model = User
-        fields = ('image','username', 'first_name', 'last_name', 'email', 'password')
+class FormRegister(UserCreationForm):
+    pass
+    
 
-        widgets = {
-            "username":forms.TextInput(attrs={"class":"input-text","id":"pass2", "placeholder":"Username"}),
-            "first_name":forms.TextInput(attrs={"class":"input-text","id":"name", "placeholder":"First Name"}),
-            "last_name":forms.TextInput(attrs={"class":"input-text", "id":"surname", "placeholder":"Last Name"}),
-            "email":forms.EmailInput(attrs={"class":"input-text","id":"email", "placeholder":"Email"}),
-            "password":forms.PasswordInput(attrs={"class":"input-text","id":"pass", "placeholder":"Password","type":"password"})
-        }
+
+
+
+    # class Meta:
+    #     model = User
+    #     fields = ('image','username', 'first_name', 'last_name', 'email', 'password')
+
+    #     widgets = {
+    #         "username":forms.TextInput(attrs={"class":"input-text","id":"pass2", "placeholder":"Username"}),
+    #         "first_name":forms.TextInput(attrs={"class":"input-text","id":"name", "placeholder":"First Name"}),
+    #         "last_name":forms.TextInput(attrs={"class":"input-text", "id":"surname", "placeholder":"Last Name"}),
+    #         "email":forms.EmailInput(attrs={"class":"input-text","id":"email", "placeholder":"Email"}),
+    #         "password":forms.PasswordInput(attrs={"class":"input-text","id":"pass", "placeholder":"Password","type":"password"})
+    #     }
         
     # def save(self, *args, **kwargs):
         

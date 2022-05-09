@@ -94,10 +94,13 @@ class Form_Product(forms.ModelForm):
     class Meta:
         model = Product
         # fields = '__all__'
-        fields=['name','image','desc','new_pr','old_pr']
+        fields=['name','image','category_pro','desc','new_pr','old_pr']
 
         widgets = {
          'name':forms.TextInput(),
+         'category':forms.TextInput(attrs={
+             'class':'category'
+         }),
          'desc':forms.Textarea(),
          'new_pr':forms.TextInput(),
          'old_pr':forms.TextInput()

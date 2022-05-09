@@ -11,8 +11,12 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 
+from audioop import reverse
 from pathlib import Path
 from tempfile import template
+
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +31,7 @@ SECRET_KEY = 'django-insecure-laql-!t2yio2u$yvhq+afkuz*ob83%sps9^3w*jf)ap%vus0bz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 AUTH_USER_MODEL = 'account.User'
 
@@ -45,6 +49,9 @@ INSTALLED_APPS = [
     #myapps
     'header.apps.HeaderConfig',
     'account',
+
+    #other
+    'social_django'
 
 ]
 
@@ -137,9 +144,28 @@ MEDIA_ROOT = BASE_DIR/'media'
 
 
 
+# LOGIN_URL = redirect('login')
+# LOGIN_REDIRECT_URL = reverse_lazy('profile')
+# LOGOUT_REDIRECT_URL = reverse_lazy('login')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 
+
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+#------------------------------------soscial meddia
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '380682797288-c8kbl078kuh6ga4uqmeithovh76mpvrp.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'

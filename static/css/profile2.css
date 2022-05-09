@@ -38,17 +38,25 @@
     justify-content: center;
 }
 .image{
-
+    border: 1px solid red;
     width: 80%;
     height: 100%;
 }
 .btn{
-    
     width: 50%;
     position: absolute;
     bottom: 70px;
     left: 80px;
     background-color: transparent;
+}
+.fa{
+    border: 1px solid rebeccapurple;
+    border-radius: 70%;
+    width: 50%;
+    background-color: transparent;
+}
+.fa:hover {
+    background-color: blue;
 }
 .user_name{
 
@@ -98,10 +106,7 @@
 .section1 input{
     padding: 10px;
 }
-.section2{
 
-    display: none;
-}
 .submt{
     padding: 10px;
 }

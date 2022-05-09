@@ -33,3 +33,7 @@ ul>li{
 .submit1>input{
     padding: 10px;
 }
+.category{
+    border: 1px solid red;
+    padding: 10px;
+}

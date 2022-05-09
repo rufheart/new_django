@@ -33,25 +33,25 @@
                 <p>If you have an account with us, please log in.</p>
                 <ul class="form-list">
                   <li>
-                        {{ forms.username.label }}
+                        {{ form.username.label }}
                     <!-- <label for="uname">Username <span class="required">*</span></label> -->
                     <br>
-                        {{ forms.username }}
+                        {{ form.username }}
                     <!-- <input type="text" title="" class="input-text" id="uname" value="" name="uname"> -->
                   </li>
                   <li>
-                        {{ forms.password.label }}
+                        {{ form.password.label }}
                     <!-- <label for="pass">Password <span class="required">*</span></label> -->
                     <br>
-                        {{ forms.password }}
+                        {{ form.password }}
                     <!-- <input type="password" title="" id="pass" class="input-text" name="password"> -->
                   </li>
                 </ul>
                 <p class="required">* Required Fields</p>
-                <div class="buttons-set">
-                    {{ forms.submit }}                
-                <!-- <button id="send2" name="" type="submit" class="button login"><span>Login</span></button> -->
+                <div class="buttons-set">               
+                <button id="send2" name="" type="submit" class="button login"><span>Login</span></button>
                 <a class="forgot-word" href="#">Forgot Your Password?</a> </div>
+                <a href="{% url 'social:begin' 'google-oauth2' %}">Google</a>
             </div>
           </div>
         <!-- </fieldset> -->

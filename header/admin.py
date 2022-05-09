@@ -1,5 +1,5 @@
 from django.contrib import admin
-from header.models import Contact, Product,Cont_Info,Images,Review, Add_To_Card
+from header.models import Contact, Product,Cont_Info,Images,Review, Add_To_Card, Category
 
 
 class ImagesAdmin(admin.TabularInline):
@@ -13,6 +13,10 @@ class product(admin.ModelAdmin):
     search_fields = ['name']
     list_filter = []
     inlines = [ImagesAdmin]
+
+@admin.register(Category)
+class Category_Admin(admin.ModelAdmin):
+    list_filter = ['title']  
 
 @admin.register(Cont_Info)
 class cont_inf(admin.ModelAdmin):

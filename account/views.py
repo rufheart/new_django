@@ -1,35 +1,51 @@
 
+from distutils import errors
 from re import template
 from webbrowser import get
+from django import dispatch
+from django.forms import ValidationError
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse_lazy
 # from django.contrib.auth.models import User
-from account.models import User
+# from account.models import User
 from account.forms import FormLogin, FormRegister, FormUpdate_Profile
 from django.views.generic import CreateView, UpdateView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth import get_user_model
 import json
+
+
 User = get_user_model()
 
-def login_user(request):
-    if request.user.is_authenticated:
-        return redirect('index')
+
+
+class Login_User(LoginView):
+    template_name = 'login.html'
+    succes_url = reverse_lazy('profile')
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect(reverse_lazy('profile'))
+        return super().dispatch(request, *args, **kwargs)
+
+# def login_user(request):
+#     if request.user.is_authenticated:
+#         return redirect('index')
         
-    if request.method == 'POST':
-        username= request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username = username, password = password)
-        if user:
-            login(request, user)
-            return redirect('index')
-        else:
-            return render(request,'login.html', )  
-    context = {
-        'error':'User or password incorrect',
-        'forms':FormLogin()
-        } 
-    return render(request,'login.html', context)
+#     if request.method == 'POST':
+#         username= request.POST.get('username')
+#         password = request.POST.get('password')
+#         user = authenticate(request, username = username, password = password)
+#         if user:
+#             login(request, user)
+#             return redirect('index')
+#         else:
+#             return render(request,'login.html', )  
+#     context = {
+#         'error':'User or password incorrect',
+#         'forms':FormLogin()
+#         } 
+#     return render(request,'login.html', context)
 
 
 # def login_user(request):
@@ -48,22 +64,18 @@ def login_user(request):
 
 #     return render(request,'login.html', {'error':'User or password incorrect'} )    
 
-def logout_user(request):
-    logout(request)
-    return redirect('login')
+
+class Logout_User(LogoutView):
+    pass
+
+# def logout_user(request):
+#     logout(request)
+#     return redirect('login')
 
 class UserCreate(CreateView):
-    form_class = FormRegister
     template_name = 'register.html'
-    success_url = reverse_lazy('register')
-
-    def form_valid(self, form):        
-        form.instance.set_password(form.instance.password)
-        return super().form_valid(form)
-
-    def form_invalid(self, form):
-        print('===========> form invalid run ')
-        return super().form_invalid(form)
+    form_class = FormRegister
+    success_url = reverse_lazy('login')
 
     
 

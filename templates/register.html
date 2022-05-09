@@ -31,7 +31,7 @@
               <p>If you have an account with us, please log in.</p>
               {% for i in form  %}
                   <ul class="form-list">
-                    
+                    {{ i.errors }}
                     <li>
                       {{ i.label }}
                       <br>

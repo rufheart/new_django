@@ -1,3 +1,5 @@
+from pyexpat import model
+from unicodedata import category
 from django.db import models 
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -35,31 +37,36 @@ class Category(ABS):
     def __str__(self) -> str:
         return self.title
 
-
 class Product(ABS):
-    user=models.ForeignKey(User,related_name='user', on_delete=models.CASCADE,null=True)
+    user=models.ForeignKey(User,related_name='user', on_delete=models.CASCADE)
     category_pro = models.ForeignKey(Category, related_name='product', on_delete=models.CASCADE)
     name = models.CharField(max_length=35)
+
+    def __str__(self) -> str:
+        return self.name
+
+class Product_Detail(ABS):
+    product_det = models.ForeignKey(Product, related_name='peoduct_det', on_delete=models.CASCADE)
     image = models.ImageField(upload_to = 'img/product')
     desc = models.TextField()
     new_pr=models.CharField(max_length=10)
     old_pr=models.CharField(max_length=10)
     slug = models.SlugField(null=False, blank=True, unique=True)
 
- 
-    def save(self, *args, ** kwargs):
-        # self.slug = slugify(self.desc+self.old_pr+self.new_pr)
-        super().save(*args, **kwargs)
-
-    def __str__(self) -> str:
-        return self.name
-
-
-
 class Images(ABS):
-    products = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
-    images_tb = models.ImageField(upload_to = 'img/images ') 
+    productsdetail = models.ForeignKey(Product_Detail, related_name='images', on_delete=models.CASCADE)
+    images_tb = models.ImageField(upload_to = 'img/product/images ') 
     
+
+class PropertyName(ABS):
+    name = models.CharField(max_length=40)
+    category_base = models.ForeignKey(Category, related_name='propertyname', on_delete=models.CASCADE)
+
+
+class PropertyValues(ABS):
+    name = models.CharField(max_length=50)
+    property_name = models.ForeignKey(PropertyName, related_name='propertyvalues', on_delete=models.CASCADE)    
+    product_detail = models.ManyToManyField(Product_Detail, db_table='ProductPropertiesValues')
 
 
 

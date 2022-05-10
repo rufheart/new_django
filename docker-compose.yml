@@ -9,8 +9,8 @@ services:
       - POSTGRES_USER=user  
       - POSTGRES_PASSWORD=1234
       - POSTGRES_DB=rufet
-    volumes:
-    - ./mydb/:/var/lib/postgresql/data      
+    # volumes:
+    # - ./mydb/:/var/lib/postgresql/data      
   adminer:
     image: adminer
     restart: always

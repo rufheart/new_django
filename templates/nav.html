@@ -1,4 +1,4 @@
-{% load static custom_tags %}
+{% load static  %}
 
 <!-- <body class="cms-index-index index">
   <div id="page">  -->
@@ -36,7 +36,7 @@
                 <div class="top-cart-contain pull-right"> 
               <!-- Top Cart -->
               <div class="mini-cart">
-                {% get_add_to_card as add_cards %}
+                
                 
                 <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a href="#">  My Cart <span class="cart_count">2</span></a></div>
                 <div>
@@ -45,7 +45,7 @@
                       <button class="btn-checkout" title="Checkout" type="button"><span>Checkout</span></button>
                       <a href="#" class="view-cart" ><span>View Cart</span></a> </div>
                     <!--block-subtitle-->
-                    {% for add_card in add_cards %}
+                    <!-- {% for add_card in add_cards %} -->
                     
                     <ul class="mini-products-list" id="cart-sidebar">
                       <li class="item first">
@@ -58,7 +58,7 @@
                         </div>
                       </li>
                     </ul>
-                    {% endfor %}
+                    <!-- {% endfor %} -->
                     <!--actions--> 
                   </div>
                 </div>
@@ -100,19 +100,19 @@
                 <!-- Header Top Links -->
                 <div class="toplinks">
                   <div class="links">
-                    <div class="myaccount"><a title="My Account" href="{% url 'product_det' %}"><span class="hidden-xs">Prod</span></a></div>
+                    <div class="myaccount"><a title="My Account" href=""><span class="hidden-xs">Prod</span></a></div>
                     <!-- <div class="myaccount"><a title="My Account" href="login.html"><span class="hidden-xs">My Account</span></a></div> -->
                     <div class="check"><a title="Checkout" href="checkout.html"><span class="hidden-xs">Checkout</span></a></div>
-                    <div class="demo"><a title="Blog" href="blog/"><span class="hidden-xs">Blog</span></a></div>
+                    <div class="demo"><a title="Blog" href="#"><span class="hidden-xs">Blog</span></a></div>
                     <!-- Header Company -->
                     
                     <!-- End Header Company -->
                     {% if user.is_authenticated %}
-                      <div class="login"><a href="{% url 'profile' %}"><span class="hidden-xs">Profile</span></a></div>
-                      <div class="login"><a href="{% url 'logout' %}"><span class="hidden-xs">Logout</span></a></div>
+                      <div class="login"><a href=""><span class="hidden-xs">Profile</span></a></div>
+                      <div class="login"><a href=""><span class="hidden-xs">Logout</span></a></div>
                     {% else %}
-                      <div class="login"><a href="{% url 'login' %}"><span class="hidden-xs">Login</span></a></div>
-                      <div class="login"><a href="{% url 'register' %}"><span class="hidden-xs">Register</span></a></div>  
+                      <div class="login"><a href=""><span class="hidden-xs">Login</span></a></div>
+                      <div class="login"><a href=""><span class="hidden-xs">Register</span></a></div>  
                     {% endif %}
                   </div>
                   
@@ -173,7 +173,7 @@
                   <li class="level1"> <a href="login.html"> <span>Login</span> </a> </li>
                   <li class="level1"> <a href="forgot_password.html"> <span>Forgot Password</span> </a> </li>
                   <li class="level1"> <a href="quick_view.html"> <span>Quick view </span> </a> </li>
-                  <li class="level1 first parent"><a href="{% url 'blog'  %}"><span>Blog</span></a>
+                  <li class="level1 first parent"><a href=""><span>Blog</span></a>
                     <ul class="level2 right-sub" style="top: 0px; left: 165px; display: none;">
                       <li class="level2 nav-2-1-1 first"><a href="blog_detail.html"><span>Blog Detail</span></a></li>
                     </ul>

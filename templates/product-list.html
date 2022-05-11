@@ -80,28 +80,30 @@
             <ol class="products-list" id="products-list">
           
               {% for model in models %}
+              {% for i in model.product_det.all %}
               <li class="item first">
-                <div class="product-image"> <a href="" title="{{ model.name }}"> <img class="small-image" src="{{ model.image.url }}" alt=""> </a> </div>
+                <div class="product-image"> <a href="" title="{{ model.name }}"> <img class="small-image" src="{{ i.image.url }}" alt=""> </a> </div>
                 <div class="product-shop">
-                  <h2 class="product-name"><a href="{% url 'about' slug=model.slug %}" title="HTC Rhyme Sense">{{ model.name }}</a></h2>
+                  <h2 class="product-name"><a href="" title="HTC Rhyme Sense">{{ model.name }}</a></h2>
                   <div class="ratings">
                     <div class="rating-box">
                       <div style="width:50%" class="rating"></div>
                     </div>
                     <p class="rating-links"> <a href="#/review/product/list/id/167/category/35/">1 Review(s)</a> <span class="separator">|</span> <a href="#review-form">Add Your Review</a> </p>
-                  </div>
+                  </div>                 
                   <div class="desc std">
-                    <p> {{ model.desc }}<a class="link-learn" title="" href="#">Learn More</a> </p>
+                    <p> <a class="link-learn" title="" href="#">Learn More</a> </p>
                   </div>
                   <div class="price-box">
                   
-                    <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ model.new_pr }} </span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ model.old_pr }} </span> </p>
+                    <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ i.new_pr }} </span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ i.old_pr }} </span> </p>
                   </div>
                   <div class="actions">
                     <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
                     <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#"><span>Add to Wishlist</span></a> <a title="Add to Compare" class="button link-compare" href="#"><span>Add to Compare</span></a> </span> </div>
                 </div>
               </li>
+              {% endfor %} 
               {% endfor %}
 
            </ol>

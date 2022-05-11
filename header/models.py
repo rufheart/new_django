@@ -46,7 +46,7 @@ class Product(ABS):
         return self.name
 
 class Product_Detail(ABS):
-    product_det = models.ForeignKey(Product, related_name='peoduct_det', on_delete=models.CASCADE)
+    product_det = models.ForeignKey(Product, related_name='product_det', on_delete=models.CASCADE)
     image = models.ImageField(upload_to = 'img/product')
     desc = models.TextField()
     new_pr=models.CharField(max_length=10)

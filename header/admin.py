@@ -1,6 +1,5 @@
-from faulthandler import disable
 from django.contrib import admin
-from header.models import Category
+from header.models import Category, Product, Product_Detail
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -9,4 +8,5 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = ('title', )
     list_filter = ('title', )
 
-
+admin.site.register(Product)
+admin.site.register(Product_Detail)

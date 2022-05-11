@@ -1,23 +1,19 @@
-# from calendar import c
-# from dataclasses import field
-# from re import template
-# import re
-# from urllib import request
-# from xml.parsers.expat import model
-# from django.forms import SlugField, ValidationError
-# from django.shortcuts import redirect, render
-# from django.http import Http404, HttpRequest, HttpResponse
-# from django.urls import reverse_lazy
-# from header.forms import FormContact,Form_Cont_Info, Form_Review, Form_Product
+from multiprocessing import context
+from xml.parsers.expat import model
+from django.forms import SlugField, ValidationError
+from django.shortcuts import redirect, render
+from django.http import Http404, HttpRequest, HttpResponse
+from django.urls import reverse_lazy
+from header.forms import Form_Product
 # from header.models import Contact, Product, Review, Add_To_Card, User
-# from django.views.generic import TemplateView, CreateView, ListView, DetailView, View
-# import json
+from django.views.generic import TemplateView, CreateView, ListView, DetailView, View
+import json
 
-# class IndexView(TemplateView):
-#     template_name = 'index.html'
+from header.models import Product
 
-# def index(request):
-#     return render(request, 'index.html')
+class IndexView(TemplateView):
+    template_name = 'index.html'
+
 
 # def blog(request):    
 #     return render(request=request, template_name='blog.html')    
@@ -43,15 +39,17 @@
 #         }        
 #     return render(request, 'contact_us.html',context)    
 
-# class Product_List(ListView):
-#     model=Product
-#     fields ='__all__'
-#     template_name = 'product-list.html'
-#     context_object_name = 'models'
+class Product_View(ListView):
+    model=Product
+    fields ='__all__'
+    template_name = 'product-list.html'
+    context_object_name = 'models'
+
 
     
 
-
+# class ProductDeatilView(DetailView):
+#     pass
 # def product(request):
 #     context = {
 #         'models':Product.objects.all()

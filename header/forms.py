@@ -89,20 +89,14 @@ from account.models import User
 #                 "id":"review_field"
 #             })
 #         }
-# class Form_Product(forms.ModelForm):
-#     class Meta:
-#         model = Product
-#         # fields = '__all__'
-#         fields=['name','image','category_pro','desc','new_pr','old_pr']
 
-#         widgets = {
-#          'name':forms.TextInput(),
-#          'category':forms.TextInput(attrs={
-#              'class':'category'
-#          }),
-#          'desc':forms.Textarea(),
-#          'new_pr':forms.TextInput(),
-#          'old_pr':forms.TextInput()
 
-#         }
+class Form_Product(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields=['name']
+
+        widgets = {
+         'name':forms.TextInput(),
+        }
 

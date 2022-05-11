@@ -5,7 +5,10 @@ from django.conf.urls.static import static
 from django.conf import settings 
 
 urlpatterns = [
-    # path('', IndexView.as_view(), name='index'),
+    path('', IndexView.as_view(), name='index'),
+    path('index',IndexView.as_view(), name='index' ),
+    path('product/', Product_View.as_view(), name='product'),
+    # path('product-detail/', ProductDeatilView.as_view(), name='productdetail'),
     # path('blog/', BlogView.as_view(), name='blog'),
     # path('contact/', ContactView.as_view(), name='contact'),
     # path('product/', Product_List.as_view(), name = 'product'),

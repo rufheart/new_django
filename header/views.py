@@ -5,11 +5,9 @@ from django.shortcuts import redirect, render
 from django.http import Http404, HttpRequest, HttpResponse
 from django.urls import reverse_lazy
 from header.forms import Form_Product
-# from header.models import Contact, Product, Review, Add_To_Card, User
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, View
 import json
-
-from header.models import Product
+from header.models import Product, Product_Detail
 
 class IndexView(TemplateView):
     template_name = 'index.html'
@@ -41,15 +39,20 @@ class IndexView(TemplateView):
 
 class Product_View(ListView):
     model=Product
-    fields ='__all__'
+    fields =['name']
     template_name = 'product-list.html'
     context_object_name = 'models'
 
 
     
 
-# class ProductDeatilView(DetailView):
-#     pass
+class ProductDeatilView(DetailView):
+    model = Product_Detail
+    template_name = 'product-detail.html'
+    context_object_name = 'about'
+
+
+
 # def product(request):
 #     context = {
 #         'models':Product.objects.all()

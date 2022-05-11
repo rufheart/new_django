@@ -1,5 +1,5 @@
 from django.contrib import admin
-from header.models import Category, Product, Product_Detail
+from header.models import Category, Product, Product_Detail, Images
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -8,5 +8,15 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = ('title', )
     list_filter = ('title', )
 
+
+class ImagesAdmin(admin.TabularInline):
+    model = Images
+    fk_name = "productsdetail"
+    fields = ('images_tb', )
+
+
+@admin.register(Product_Detail)
+class DetailProduct(admin.ModelAdmin):
+    inlines = [ImagesAdmin]
+
 admin.site.register(Product)
-admin.site.register(Product_Detail)

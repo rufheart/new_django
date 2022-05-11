@@ -6,6 +6,6 @@ class HeaderConfig(AppConfig):
     name = 'header'
 
 
-    # def ready(self) -> None:
-    #     from header.signals import create_slug
-    #     return super().ready()
+    def ready(self) -> None:
+        from header.signals import create_slug
+        return super().ready()

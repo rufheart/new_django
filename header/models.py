@@ -46,7 +46,7 @@ class Product(ABS):
         return self.name
 
 class Product_Detail(ABS):
-    product_det = models.ForeignKey(Product, related_name='product_det', on_delete=models.CASCADE)
+    product_det = models.ForeignKey(Product, related_name='product_detail', on_delete=models.CASCADE)
     image = models.ImageField(upload_to = 'img/product')
     desc = models.TextField()
     new_pr=models.CharField(max_length=10)
@@ -88,7 +88,6 @@ class Cont_Info(ABS):
 
     def __str__(self) -> str:
         return self.fname
-
 
 
 class Review(ABS):

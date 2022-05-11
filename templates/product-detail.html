@@ -58,7 +58,7 @@
                 
                 <div class="product-shop col-sm-8 col-xs-12">
                   <div class="product-name">
-                    <h1>{{ about.name }}</h1>
+                    <h1>{{ about.product_det.name }}</h1>
                   </div>
                   <div class="ratings">
                     <div class="rating-box">
@@ -91,7 +91,7 @@
                       <!-- <h1>====> {{ request.path }}</h1> -->
                       <!-- <input type="hidden" value="salam" name="url" > -->
                       {% if user.is_authenticated %}
-                        <a href="{% url 'add_to_card' pk=about.id slug=about.slug %}" class="button btn-cart" title="Add to Cart"><span>Add to Cart</span></a>
+                        <a href="" class="button btn-cart" title="Add to Cart"><span>Add to Cart</span></a>
                       {% endif %}  
                       <!-- <button onClick="productAddToCartForm.submit(this)" class="button btn-cart" title="Add to Cart" type="submit"><span>Add to Cart</span></button> -->
                     </div>
@@ -146,7 +146,7 @@
                     <div class="box-collateral box-reviews" id="customer-reviews">
                       <div class="box-reviews1">
                         <div class="form-add">
-                          <form id="review-form" method="post" action="{% url 'review' pk=about.id slug=about.slug %}">
+                          <form id="review-form" method="post" action="">
                             {% csrf_token %}
                             <input type="hidden" value="{{ about.id }}" name="ornek">
                             <h3>Write Your Own Review</h3>

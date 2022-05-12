@@ -6,6 +6,7 @@ from django.forms import SlugField, ValidationError
 from django.shortcuts import redirect, render
 from django.http import Http404, HttpRequest, HttpResponse
 from django.urls import reverse_lazy
+from requests import request
 from header.forms import Add_CardForm, Form_Product, Form_Review
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, View
 import json
@@ -80,24 +81,24 @@ class ProductDeatilView(DetailView):
 
 
 class Review_Create(View):
-    template_name = 'test.html'
     form_class = Form_Review
+    template_name = 'product-detail.html'
     context_object_name = 'forms'
     success_url = reverse_lazy('index')
 
-    def form_valid(self, form):      
-        form.instance.user_pro = self.request.user
-        # form.instance.product_review = Product.objects.get(id =  1)
-        form.instance.product_review  = Product.objects.get(id =  self.kwargs['pk'])
+    # def form_valid(self, form):      
+    #     form.instance.user_pro = self.request.user
+    #     # form.instance.product_review = Product.objects.get(id =  1)
+    #     form.instance.product_review  = Product.objects.get(id =  self.kwargs['pk'])
 
-        return super().form_valid(form)
+    #     return super().form_valid(form)
 
-    def dispatch(self, request: HttpRequest, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
+    # def dispatch(self, request: HttpRequest, *args, **kwargs):
+    #     return super().dispatch(request, *args, **kwargs)
 
-    def get(self, request: HttpRequest, *args, **kwargs):
-        data =  super().get(request, *args, **kwargs)
-        print('==============>', data)
+    # def get(self, request: HttpRequest, *args, **kwargs):
+    #     data =  super().get(request, *args, **kwargs)
+    #     print('==============>', data)
     
     def post(self, request, pk, slug):
         form = Form_Review(request.POST)
@@ -107,12 +108,10 @@ class Review_Create(View):
         return redirect(reverse_lazy('about', kwargs={'slug':slug}))
     
 
-    def get(self, request):
-        print("get isledi ============> ")
-        return render(request=request, template_name='test.html')
+    # def get(self, request):
+    #     print("get isledi ============> ")
+    #     return render(request=request, template_name='test.html')
 
-    def form_valid(self, form):
-        return super().form_valid(form)
 
 
 # def review(request, pk):
@@ -150,19 +149,19 @@ class Add_To_Card(View):
     form_class = Add_CardForm
     print('class isledi','=====================>>>>>>>>')
     
-    def post(self, request, pk, slug):
+    def get(self, request, pk, slug):
         print('post isledi','==========================================>>>>>')
-        form = Add_CardForm(request.POST)
+        form = Add_CardForm()
         form.instance.add_usr = request.user
         form.instance.add_product = Product.objects.get(id=pk)
         form.save()
         return redirect(reverse_lazy('productdetail', kwargs={'slug':slug}))
 
-def add_to_card(request, pk, slug):
-    user = request.user
-    print('add_card_isledi','=========================================>>>')
-    Add_To_Card.objects.create(add_usr=user, add_product=Product.objects.get(id=pk))
-    return redirect(reverse_lazy('productdetail', kwargs={'slug':slug}))
+# def add_to_card(request, pk, slug):
+#     user = request.user
+#     print('add_card_isledi','=========================================>>>')
+#     Add_To_Card.objects.create(add_usr=user, add_product=Product.objects.get(id=pk))
+#     return redirect(reverse_lazy('productdetail', kwargs={'slug':slug}))
 
 # def profile(request):
 #     args = {}

@@ -1,4 +1,9 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 from account.models import User
-# Register your models here.
-admin.site.register([User])
+
+
+class User_Admin(UserAdmin):
+    pass
+
+admin.site.register(User,User_Admin)

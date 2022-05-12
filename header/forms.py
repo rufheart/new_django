@@ -1,6 +1,6 @@
 from dataclasses import field
 from django import forms
-from header.models import Cont_Info, Contact, Review,Product
+from header.models import Cont_Info, Contact, Review,Product,Add_To_Card
 from account.forms import FormRegister
 from account.models import User
 
@@ -65,30 +65,30 @@ from account.models import User
 #             "ship_addr":"Use as my default shipping address"
 #         }
 
-# class Form_Review(forms.ModelForm):
+class Form_Review(forms.ModelForm):
     
-#     class Meta:
-#         model = Review
-#         fields = ['value_review', 'quality_review','price_review', 'summary', 'comment' ]
+    class Meta:
+        model = Review
+        fields = ['value_review', 'quality_review','price_review', 'summary', 'comment' ]
 
-#         widgets = {
-#             'value_review':forms.RadioSelect(attrs={
-#                 'class':'radio'
-#                 }),
-#             'quality_review':forms.RadioSelect(attrs={
-#                 'class':'radio'
-#             }),
-#             'price_review':forms.RadioSelect(attrs={
-#                 "class":"radio"
-#             }),
-#             'summary':forms.TextInput(attrs={
-#                 "class":"input-text",
-#                 'id':"summary_field"
-#             }),
-#             "comment":forms.Textarea(attrs={
-#                 "id":"review_field"
-#             })
-#         }
+        widgets = {
+            'value_review':forms.RadioSelect(attrs={
+                'class':'radio'
+                }),
+            'quality_review':forms.RadioSelect(attrs={
+                'class':'radio'
+            }),
+            'price_review':forms.RadioSelect(attrs={
+                "class":"radio"
+            }),
+            'summary':forms.TextInput(attrs={
+                "class":"input-text",
+                'id':"summary_field"
+            }),
+            "comment":forms.Textarea(attrs={
+                "id":"review_field"
+            })
+        }
 
 
 class Form_Product(forms.ModelForm):
@@ -100,3 +100,7 @@ class Form_Product(forms.ModelForm):
          'name':forms.TextInput(),
         }
 
+class Add_CardForm(forms.ModelForm):
+    class Meta:
+        model = Add_To_Card
+        fields = ['add_product','add_usr']

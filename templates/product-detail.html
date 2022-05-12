@@ -91,7 +91,7 @@
                       <!-- <h1>====> {{ request.path }}</h1> -->
                       <!-- <input type="hidden" value="salam" name="url" > -->
                       {% if user.is_authenticated %}
-                        <a href="" class="button btn-cart" title="Add to Cart"><span>Add to Cart</span></a>
+                        <a href="{% url 'add_to_card' pk=about.product_det.id slug=about.slug %}" class="button btn-cart" title="Add to Cart"><span>Add to Cart</span></a>
                       {% endif %}  
                       <!-- <button onClick="productAddToCartForm.submit(this)" class="button btn-cart" title="Add to Cart" type="submit"><span>Add to Cart</span></button> -->
                     </div>

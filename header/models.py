@@ -53,6 +53,9 @@ class Product_Detail(ABS):
     old_pr=models.CharField(max_length=10)
     slug = models.SlugField(null=False, blank=True, unique=True)
 
+    def __str__(self) -> str:
+        return str(self.product_det)
+        
 class Images(ABS):
     productsdetail = models.ForeignKey(Product_Detail, related_name='images', on_delete=models.CASCADE)
     images_tb = models.ImageField(upload_to = 'img/product/images ') 

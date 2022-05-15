@@ -1,6 +1,7 @@
 from dataclasses import field
+from pyexpat import model
 from django import forms
-from header.models import Cont_Info, Contact, Review,Product,Add_To_Card
+from header.models import Cont_Info, Contact, Detail_Product, Review,Product,Add_To_Card
 from account.forms import FormRegister
 from account.models import User
 
@@ -91,14 +92,19 @@ class Form_Review(forms.ModelForm):
         }
 
 
-class Form_Product(forms.ModelForm):
+
+
+class Product_Form(forms.ModelForm):
     class Meta:
         model = Product
-        fields=['name']
+        fields = ['name']
 
-        widgets = {
-         'name':forms.TextInput(),
-        }
+
+class Productdetail_form(forms.ModelForm):
+    class Meta:
+        model  = Detail_Product
+        fields = ['image','desc','new_pr','old_pr']
+
 
 class Add_CardForm(forms.ModelForm):
     class Meta:

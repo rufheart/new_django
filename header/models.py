@@ -38,15 +38,15 @@ class Category(ABS):
         return self.title
 
 class Product(ABS):
-    user=models.ForeignKey(User,related_name='user', on_delete=models.CASCADE)
-    category_pro = models.ForeignKey(Category, related_name='product', on_delete=models.CASCADE)
+    user=models.ForeignKey(User,related_name='user', on_delete=models.CASCADE,null=True)
+    category_pro = models.ForeignKey(Category, related_name='product', on_delete=models.CASCADE,null=True)
     name = models.CharField(max_length=35)
 
     def __str__(self) -> str:
         return self.name
 
-class Product_Detail(ABS):
-    product_det = models.ForeignKey(Product, related_name='product_detail', on_delete=models.CASCADE)
+class Detail_Product(ABS):
+    detail = models.ForeignKey(Product, related_name='product_det', on_delete=models.CASCADE,null=True)
     image = models.ImageField(upload_to = 'img/product')
     desc = models.TextField()
     new_pr=models.CharField(max_length=10)
@@ -54,10 +54,10 @@ class Product_Detail(ABS):
     slug = models.SlugField(null=False, blank=True, unique=True)
 
     def __str__(self) -> str:
-        return str(self.product_det)
+        return str(self.detail)
         
 class Images(ABS):
-    productsdetail = models.ForeignKey(Product_Detail, related_name='images', on_delete=models.CASCADE)
+    productsdetail = models.ForeignKey(Detail_Product, related_name='images', on_delete=models.CASCADE)
     images_tb = models.ImageField(upload_to = 'img/product/images ') 
     
 
@@ -69,7 +69,7 @@ class PropertyName(ABS):
 class PropertyValues(ABS):
     name = models.CharField(max_length=50)
     property_name = models.ForeignKey(PropertyName, related_name='propertyvalues', on_delete=models.CASCADE)    
-    product_detail = models.ManyToManyField(Product_Detail, db_table='ProductPropertiesValues')
+    product_detail = models.ManyToManyField(Detail_Product, db_table='ProductPropertiesValues')
 
 
 

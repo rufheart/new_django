@@ -146,9 +146,8 @@
                     <div class="box-collateral box-reviews" id="customer-reviews">
                       <div class="box-reviews1">
                         <div class="form-add">
-                          <form id="review-form" method="post" action="">
+                          <form id="review-form" method="post" action="{% url 'review'  pk=about.product_det.id slug=about.slug %}">
                             {% csrf_token %}
-                            <input type="hidden" value="{{ about.id }}" name="ornek">
                             <h3>Write Your Own Review</h3>
                             <fieldset>
                               <h4>How do you rate this product? <em class="required">*</em></h4>

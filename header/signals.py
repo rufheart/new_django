@@ -1,16 +1,19 @@
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
-from header.models import Product_Detail
+from header.models import Detail_Product,Product
 from django.utils.text import slugify
 
-@receiver(post_save,sender = Product_Detail)
+@receiver(post_save,sender = Detail_Product)
 def create_slug(sender, instance, created, **kwargs):
+    print(Product.objects.get(id))
     old_slug = instance.slug
     new_slug = slugify(f"{instance.desc}-{instance.id}")
-
+    
+    
     if old_slug != new_slug:
         instance.slug = new_slug
         instance.save()
 
     if created:
         print('send mail new_user')    
+

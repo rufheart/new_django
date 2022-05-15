@@ -1,20 +1,21 @@
-from multiprocessing import context
-from re import template
-from xml.parsers.expat import model
 from django import views
 from django.forms import SlugField, ValidationError
 from django.shortcuts import redirect, render
 from django.http import Http404, HttpRequest, HttpResponse
 from django.urls import reverse_lazy
 from requests import request
-from header.forms import Add_CardForm, Form_Product, Form_Review
+from header.forms import Add_CardForm, Form_Review, Productdetail_form, Product_Form
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, View
 import json
-from header.models import Product, Product_Detail, Add_To_Card
+from header.models import Category, Product, Detail_Product, Add_To_Card
+# from multi_form_view import MultiModelFormView
 
 
 class IndexView(TemplateView):
     template_name = 'index.html'
+
+# https://www.tutorialspoint.com/django-handling-multiple-forms-in-single-view                   django multimodelformview link
+
 
 
 # def blog(request):    
@@ -50,10 +51,15 @@ class Product_View(ListView):
 
     
 
-class ProductDeatilView(DetailView):
-    model = Product_Detail
+class ProductDetail_View(DetailView):
+    model = Detail_Product
     template_name = 'product-detail.html'
     context_object_name = 'about'
+
+    def get_context_data(self, **kwargs):
+        data=super().get_context_data(**kwargs)
+        data['forms'] = Form_Review
+        return data
 
 
 
@@ -80,9 +86,9 @@ class ProductDeatilView(DetailView):
 
 
 
-class Review_Create(View):
+class ReviewCreate_View(View):
     form_class = Form_Review
-    template_name = 'product-detail.html'
+    template_name = 'test.html'
     context_object_name = 'forms'
     success_url = reverse_lazy('index')
 
@@ -105,7 +111,7 @@ class Review_Create(View):
         form.instance.user_pro = self.request.user
         form.instance.product_review = Product.objects.get(id=pk)
         form.save()
-        return redirect(reverse_lazy('about', kwargs={'slug':slug}))
+        return redirect(reverse_lazy('productdetail', kwargs={'slug':slug}))
     
 
     # def get(self, request):
@@ -124,33 +130,68 @@ class Review_Create(View):
 #     return HttpResponse('asasa')
 
 
-# def product_det(request):
+
+
+
+
+
+
+
+
+class ProductCreate_View(CreateView):
+    form_class={
+        'prod':Product_Form,
+        'detail':Detail_Product,
+    }
+    template_name = 'prodc.html'
+    def get_success_url(self):
+        return redirect('productcreate')
+
+    def form_valid(self, forms):
+        prod = forms['prodc'].save(commit=False)
+        detail = forms['detail'].save(commit=False)
+        return super(ProductCreate_View,self).form_valid(forms)
+
+
+
+
+
+
+
+
+def create(request):
+    context = {
+        'form': Product_Form(),
+        'form1': Productdetail_form()
+    }
+
+    return render(request, 'prodc.html', context=context)
+
+# def product_create(request):
 #     if request.method =='POST':
-#         formData=Form_Product(request.POST, request.FILES)
+#         formData=CreateProduct_Form(request.POST, request.FILES)
 #         if formData.is_valid():
+#             formData.instance.user=request.user
 #             formData.save()
-#             a=Product.objects.get(user_id=None)
-#             a.user_id=request.user.id
-#             a.save()
 #         else:
 #             print(formData.errors)
             
 #             context={ 
-#                 'forms':Form_Product(),
+#                 'forms':CreateProduct_Form(),
 #                 }
 #             return render(request, 'prodc.html', context)  
 #     context={
-#         'forms':Form_Product(),
+#         'forms':,
 #     }          
 #     return render(request, 'prodc.html', context)        
 
-class Add_To_Card(View):
+
+
+class Add_To_Card_View(View):
     template_name = 'product-detail.html'
     form_class = Add_CardForm
-    print('class isledi','=====================>>>>>>>>')
     
     def get(self, request, pk, slug):
-        print('post isledi','==========================================>>>>>')
         form = Add_CardForm()
         form.instance.add_usr = request.user
         form.instance.add_product = Product.objects.get(id=pk)
@@ -163,34 +204,3 @@ class Add_To_Card(View):
 #     Add_To_Card.objects.create(add_usr=user, add_product=Product.objects.get(id=pk))
 #     return redirect(reverse_lazy('productdetail', kwargs={'slug':slug}))
 
-# def profile(request):
-#     args = {}
-#     user = User
-#     print('prof')
-#     if request.method == 'POST':
-#         print('if isledi')
-#         form = FormUpdate_Profile(data=request.POST, files=request.FILES)
-#         if form.is_valid():
-#             print('validisledi')
-#             form.save(request.user.id)
-#         else:
-#             print('=============>', form.errors)
-
-#     else:
-#         form = FormUpdate_Profile()
-    
-#     form.initial['username'] = request.user.username
-#     form.initial['first_name'] = request.user.first_name
-#     form.initial['last_name'] = request.user.last_name
-#     form.initial['email'] = request.user.email
-#     form.initial['password'] = request.user.password
-
-#     user = User.objects.get(id = request.user.id)
-#     user = dict(username = user.username, password = user.password)
-
-#     args = {
-#         'form':form,
-#         'user': json.dumps(user)
-#         }
-
-#     return render(request, 'profile.html', args)

@@ -1,3 +1,6 @@
+from dataclasses import field
+from re import template
+from venv import create
 from django import views
 from django.forms import SlugField, ValidationError
 from django.shortcuts import redirect, render
@@ -8,7 +11,7 @@ from header.forms import Add_CardForm, Form_Review, Productdetail_form, Product_
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, View
 import json
 from header.models import Category, Product, Detail_Product, Add_To_Card
-# from multi_form_view import MultiModelFormView
+from multi_form_view import MultiModelFormView
 
 
 class IndexView(TemplateView):
@@ -138,25 +141,27 @@ class ReviewCreate_View(View):
 
 
 
-class ProductCreate_View(CreateView):
-    form_class={
-        'prod':Product_Form,
-        'detail':Detail_Product,
-    }
+class ProductCreate_View(TemplateView):
     template_name = 'prodc.html'
-    def get_success_url(self):
-        return redirect('productcreate')
+    success_url = reverse_lazy('productcreate')
 
-    def form_valid(self, forms):
-        prod = forms['prodc'].save(commit=False)
-        detail = forms['detail'].save(commit=False)
-        return super(ProductCreate_View,self).form_valid(forms)
-
-
-
-
-
-
+    def post(self, request):
+        name = request.POST.get('name')
+        user = request.user
+        a = Product.objects.create(user=user,name=name)
+        image=request.FILES.get('image')
+        desc = request.POST.get('desc')
+        new_pr = request.POST.get('new_pr')
+        old_pr = request.POST.get('old_pr')
+        a=Detail_Product.objects.create(detail=a, image=image, desc=desc,new_pr=new_pr,old_pr=old_pr)
+        
+        
+        
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        data['form1'] = Product_Form
+        data['form2'] = Productdetail_form
+        return data
 
 
 def create(request):

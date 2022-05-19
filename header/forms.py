@@ -1,5 +1,4 @@
-from dataclasses import field
-from pyexpat import model
+from cProfile import label
 from django import forms
 from header.models import Cont_Info, Contact, Detail_Product, Review,Product,Add_To_Card
 from account.forms import FormRegister
@@ -99,12 +98,36 @@ class Product_Form(forms.ModelForm):
         model = Product
         fields = ['name']
 
+        widgets = {
+            'name':forms.TextInput(attrs={
+                "class":"form-input",
+                "id":"tt"
+            })
+        }    
+
 
 class Productdetail_form(forms.ModelForm):
     class Meta:
         model  = Detail_Product
         fields = ['image','desc','new_pr','old_pr']
 
+        widgets ={
+            'desc':forms.Textarea(attrs={
+                'class':"form-desc",
+                'placeholder':"Description"
+            }),
+            'new_pr':forms.TextInput(attrs={
+                "class":"form-input",
+                "placeholder":"New price"
+            }),
+            "old_pr":forms.TextInput(attrs={
+                "class":"form-input",
+                "placeholder":"Old price"
+            })
+        }
+        label={
+            'desc':"Description"
+        }
 
 class Add_CardForm(forms.ModelForm):
     class Meta:

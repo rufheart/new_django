@@ -10,83 +10,18 @@
 
     <div class="main">
         <div class="main1">
-            <form action=" " method="post" enctype="multipart/form-data">
+            <div class="header">
+                <h1>Product Add</h1>
+            </div>
+            <form action=" " method="post" enctype="multipart/form-data" class="form">
                 {% csrf_token %}
-                
 
-
-                {{ forms.prodc }}
-
-                <!-- <div class="tag2">
-                    <ul class="ul3">
-                        <li>
-                            {{ forms.category_pro. }}
-                            {{ forms.image }}
-
-                        </li>
-                    </ul>
-                </div>
-                <div class="tag1">
-                    <ul>
-                        <li>
-                            {{ forms.user.label }}
-                            <div>
-                                {{ forms.user }}
-                            </div>
-                        </li>
-                    </ul>
-                    <ul class="ul1">
-                        <li>
-                            {{ forms.name.label }}
-
-                            <div>
-                             {{ forms.name }}
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <ul>
-                        <li>
-                            {{ forms.category_pro }}
-                        </li>
-                    </ul>
-                </div>
-                <div class="tag3">
-                    <ul class="ul4">
-                        <li>
-                            {{ forms.desc.label }}
-
-                            <div>
-                             {{ forms.desc }}   
-
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="tag4">
-                    <ul class="5">
-                        <li>
-                            {{ forms.new_pr.label }}
-
-                            <div>
-                                {{ forms.new_pr }}
-
-                            </div>
-                        </li>
-                        <br>
-                        <li>
-                            {{ forms.old_pr.label }}
-
-                            <div>
-                                {{ forms.old_pr }}
-                            </div>
-                        </li>
-                    </ul>
-                </div> -->
+                {{ form1 }}
+                <br>
+                {{ form2 }}
 
                 <div class="submit1">
-                    <input type="submit">
+                    <input type="submit" class="submit2" value="Submit">
                 </div>
             </form>
         </div>

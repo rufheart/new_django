@@ -32,13 +32,13 @@ class Contact(ABS):
 
 class Category(ABS):
     title = models.CharField(max_length=50)
-    parent_id = models.ForeignKey('self',null=True, blank=True, on_delete=models.CASCADE)
+    parent_id = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return self.title
 
 class Product(ABS):
-    user=models.ForeignKey(User,related_name='user', on_delete=models.CASCADE,null=True)
+    user = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE,null=True)
     category_pro = models.ForeignKey(Category, related_name='product', on_delete=models.CASCADE,null=True)
     name = models.CharField(max_length=35)
 
@@ -46,12 +46,12 @@ class Product(ABS):
         return self.name
 
 class Detail_Product(ABS):
-    detail = models.ForeignKey(Product, related_name='product_det', on_delete=models.CASCADE,null=True)
+    detail = models.ForeignKey(Product, related_name='product_det', on_delete=models.CASCADE)
     image = models.ImageField(upload_to = 'img/product')
-    desc = models.TextField()
-    new_pr=models.CharField(max_length=10)
-    old_pr=models.CharField(max_length=10)
-    slug = models.SlugField(null=False, blank=True, unique=True)
+    desc = models.CharField(max_length=50)
+    new_pr = models.CharField(max_length=10)
+    old_pr = models.CharField(max_length=10)
+    slug = models.SlugField(blank=True, null = True, unique=True)
 
     def __str__(self) -> str:
         return str(self.detail)

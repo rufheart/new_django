@@ -3,9 +3,8 @@ from django.dispatch import receiver
 from header.models import Detail_Product,Product
 from django.utils.text import slugify
 
-@receiver(post_save,sender = Detail_Product)
+@receiver(post_save, sender = Detail_Product)
 def create_slug(sender, instance, created, **kwargs):
-    print(Product.objects.get(id))
     old_slug = instance.slug
     new_slug = slugify(f"{instance.desc}-{instance.id}")
     

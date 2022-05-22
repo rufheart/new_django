@@ -80,7 +80,7 @@
             <ol class="products-list" id="products-list">
           
               {% for model in models %}
-              {% for i in model.product_detail.all %}
+              {% for i in model.product_det.all %}
               <li class="item first">
                 <div class="product-image"> <a href="" title="{{ model.name }}"> <img class="small-image" src="{{ i.image.url }}" alt=""> </a> </div>
                 <div class="product-shop">

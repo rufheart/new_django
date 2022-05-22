@@ -1,4 +1,4 @@
-{% load static custom_tags %}
+{% load static custom_tags i18n %}
 
 <!-- <body class="cms-index-index index">
   <div id="page">  -->
@@ -11,11 +11,26 @@
               <!-- Header Language -->
               <div class="col-xs-7 col-sm-6">
                 <div class="dropdown block-language-wrapper hidden-xs"> <a role="button" data-toggle="dropdown" data-target="#" class="block-language dropdown-toggle" href="#"> <img src="{% static 'images/english.png' %}" alt="language"> English <span class="caret"></span> </a>
-                  <ul class="dropdown-menu" role="menu">
+
+                  <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                      <input name="next" type="hidden" value="{{ redirect_to }}">
+                      <select name="language" onchange="this.form.submit()">
+                          {% get_current_language as LANGUAGE_CODE %}
+                          {% get_available_languages as LANGUAGES %}
+                          {% get_language_info_list for LANGUAGES as languages %}
+                          {% for language in languages %}
+                              <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                  {{ language.name_local }} ({{ language.code }})
+                              </option>
+                          {% endfor %}
+                      </select>
+                      <!-- <input type="submit" value="Go"> -->
+                  </form>
+                  <!-- <ul class="dropdown-menu" role="menu">
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="{% static 'images/english.png' %}" alt="language"> English </a></li>
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="{% static 'images/francais.png' %}" alt="language"> French </a></li>
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="{% static 'images/german.png' %}" alt="language"> German </a></li>
-                  </ul>
+                  </ul> -->
                 </div>
                 <!-- End Header Language --> 
                 
@@ -103,17 +118,17 @@
                   <div class="links">
                     <div class="myaccount"><a title="My Account" href="{% url 'productcreate' %}"><span class="hidden-xs">Prod</span></a></div>
                     <!-- <div class="myaccount"><a title="My Account" href="login.html"><span class="hidden-xs">My Account</span></a></div> -->
-                    <div class="check"><a title="Checkout" href="checkout.html"><span class="hidden-xs">Checkout</span></a></div>
-                    <div class="demo"><a title="Blog" href="#"><span class="hidden-xs">Blog</span></a></div>
+                    <div class="check"><a title="Checkout" href="checkout.html"><span class="hidden-xs">{% trans 'Checkout' %}</span></a></div>
+                    <div class="demo"><a title="Blog" href="{% url 'blog' %}"><span class="hidden-xs">{% trans 'Blog' %}</span></a></div>
                     <!-- Header Company -->
                     
                     <!-- End Header Company -->
                     {% if user.is_authenticated %}
-                      <div class="login"><a href=""><span class="hidden-xs">Profile</span></a></div>
-                      <div class="login"><a href=""><span class="hidden-xs">Logout</span></a></div>
+                      <div class="login"><a href=""><span class="hidden-xs">{% trans 'Profile' %}</span></a></div>
+                      <div class="login"><a href=""><span class="hidden-xs">{% trans 'Logout' %}</span></a></div>
                     {% else %}
-                      <div class="login"><a href=""><span class="hidden-xs">Login</span></a></div>
-                      <div class="login"><a href=""><span class="hidden-xs">Register</span></a></div>  
+                      <div class="login"><a href=""><span class="hidden-xs">{% trans 'Login' %}</span></a></div>
+                      <div class="login"><a href=""><span class="hidden-xs">{% trans 'Register' %}</span></a></div>  
                     {% endif %}
                   </div>
                   

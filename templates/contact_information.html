@@ -38,18 +38,19 @@
                   <li class="">
                     <div class="customer-name">
                       <div class="input-box name-firstname">
-                        {{ contc.fname.label }}
+                        {{ form.errors }}
+                        {{ form.fname.label }}
                         <!-- <label for="firstname">First Name<span class="required">*</span></label> -->
                       <div class="input-box1">
-                        {{ contc.fname }} 
+                        {{ form.fname }} 
                           <!-- <input type="text" id="firstname" name="" value="John" title="" maxlength="255" class="input-text required-entry"> -->
                       </div>
                       </div>
                       <div class="input-box name-lastname">
-                            {{ contc.lname.label }}
+                            {{ form.lname.label }}
                         <!-- <label for="lastname">Last Name<span class="required">*</span></label> -->
                         <div class="input-box1">
-                            {{ contc.lname }}
+                            {{ form.lname }}
                           <!-- <input type="text" id="lastname" name="" value="Deo" title="" maxlength="255" class="input-text required-entry"> -->
                         </div>
                       </div>
@@ -57,26 +58,26 @@
                   </li>
                   <li class="">
                     <div class="">
-                          {{ contc.company.label }}
+                          {{ form.company.label }}
                       <!-- <label for="company">Company</label> -->
                       <br>
-                          {{ contc.company }}
+                          {{ form.company }}
                       <!-- <input type="text" name="" id="company" title="" value="" class="input-text "> -->
                     </div>
                   </li>
                   <li class="">
                     <div class="input-box">
-                          {{ contc.tel.label }}
+                          {{ form.tel.label }}
                       <!-- <label for="telephone">Telephone<em class="required">*</em></label> -->
                       <br>
-                          {{ contc.tel }}
+                          {{ form.tel }}
                       <!-- <input type="text" name="" value="" title="" class="input-text   required-entry" id="telephone"> -->
                     </div>
                     <div class="input-box">
-                          {{ contc.fax.label }}
+                          {{ form.fax.label }}
                       <!-- <label for="fax">Fax</label> -->
                       <br>
-                          {{ contc.fax }}
+                          {{ form.fax }}
                       <!-- <input type="text" name="" id="fax" title="" value="" class="input-text "> -->
                     </div>
                   </li>
@@ -86,31 +87,31 @@
                 <h2 class="legend">Address</h2>
                 <ul class="">
                   <li class="">
-                        {{ contc.s_address.label }}
+                        {{ form.s_address.label }}
                     <!-- <label for="street_1">Street Address<em class="required">*</em></label> -->
-                        {{ contc.s_address }}
+                        {{ form.s_address }}
                     <!-- <input type="text" name="" value="" title="" id="street_1" class="input-text  required-entry"> -->
                   </li>
                   <li class="">
-                        {{ contc.s_2address }}
+                        {{ form.s_2address }}
                     <!-- <input type="text" name="" value="" title="" id="street_2" class="input-text "> -->
                   </li>
                   <li class="">
                     <div class="field">
                       <div class="input-box">
-                            {{ contc.city.label }}
+                            {{ form.city.label }}
                         <!-- <label for="city">City<em class="required">*</em></label> -->
                         <br>
-                            {{ contc.city }}
+                            {{ form.city }}
                         <!-- <input type="text" name="" value="" title="" class="input-text  required-entry" id="city"> -->
                       </div>
                     </div>
                     <div class="field">
                       <div class="input-box">
-                            {{ contc.state.label }}
+                            {{ form.state.label }}
                         <!-- <label for="region_id">State/Province</label> -->
                         <br>
-                            {{ contc.state }}
+                            {{ form.state }}
                         <!-- <select id="region_id" name="" title="" class="validate-select required-entry" defaultvalue="0">
                           <option value="">Please select region, state or province</option>
                           <option value="1" title="Alabama">Alabama</option>
@@ -126,19 +127,19 @@
                   <li class="">
                     <div class="field">
                       <div class="input-box">
-                            {{ contc.zip.label }}
+                            {{ form.zip.label }}
                         <!-- <label for="zip">Zip/Postal Code<em class="required">*</em></label> -->
                         <br>
-                            {{ contc.zip }}
+                            {{ form.zip }}
                         <!-- <input type="text" name="postcode" value="" title="Zip/Postal Code" id="zip" class="input-text validate-zip-international  required-entry"> -->
                       </div>
                     </div>
                     <div class="field">
                       <div class="input-box">
-                            {{ contc.country.label }}
+                            {{ form.country.label }}
                         <!-- <label for="country">Country<em class="required">*</em></label> -->
                         <br>
-                            {{ contc.country }}
+                            {{ form.country }}
                         <!-- <select name="country_id" id="country" class="validate-select" title="Country">
                           <option value=""> </option>
                           <option value="AF">Afghanistan</option>
@@ -149,14 +150,14 @@
                     </div>
                   </li>
                   <li class="control">
-                    {{ contc.bil_addr }}
-                    {{ contc.bil_addr.label }}
+                    {{ form.bil_addr }}
+                    {{ form.bil_addr.label }}
                     <!-- <input type="checkbox" id="primary_billing" name="" value="1" title="" class="checkbox">
                     <label for="primary_billing">Use as my default billing address</label> -->
                   </li>
                   <li class="control">
-                    {{ contc.ship_addr }}
-                    {{ contc.ship_addr.label }}
+                    {{ form.ship_addr }}
+                    {{ form.ship_addr.label }}
                     <!-- <input type="checkbox" id="primary_shipping" name="" value="1" title="" class="checkbox">
                     <label for="primary_shipping">Use as my default shipping address</label> -->
                   </li>

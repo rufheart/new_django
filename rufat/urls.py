@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from email import header
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.i18n import i18n_patterns
@@ -31,4 +32,5 @@ urlpatterns += i18n_patterns(
     path('', include('header.urls')),
     path('', include('social_django.urls', namespace='social')),
     path('account/', include('account.urls')),
+    path('api/',include('header.api.urls'))
 )

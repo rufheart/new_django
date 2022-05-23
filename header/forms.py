@@ -109,10 +109,18 @@ class Product_Form(forms.ModelForm):
 class Productdetail_form(forms.ModelForm):
     class Meta:
         model  = Detail_Product
-        fields = ['image','desc','new_pr','old_pr']
+        fields = ['image','desc','desc_az','desc_en','new_pr','old_pr',]
 
         widgets ={
             'desc':forms.Textarea(attrs={
+                'class':"form-desc",
+                'placeholder':"Description"
+            }),
+            'desc_az':forms.Textarea(attrs={
+                'class':"form-desc",
+                'placeholder':"Description"
+            }),
+            'desc_en':forms.Textarea(attrs={
                 'class':"form-desc",
                 'placeholder':"Description"
             }),

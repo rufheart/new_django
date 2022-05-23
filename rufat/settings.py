@@ -54,7 +54,8 @@ INSTALLED_APPS = [
     'account',
 
     #other
-    'social_django'
+    'social_django',
+    'rest_framework',
 
 ]
 

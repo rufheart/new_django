@@ -78,33 +78,34 @@
           </div>
           <div class="category-products">
             <ol class="products-list" id="products-list">
-          
+              {% comment %}
               {% for model in models %}
-              {% for i in model.product_det.all %}
-              <li class="item first">
-                <div class="product-image"> <a href="" title="{{ model.name }}"> <img class="small-image" src="{{ i.image.url }}" alt=""> </a> </div>
-                <div class="product-shop">
-                  <h2 class="product-name"><a href="{% url 'productdetail' slug=i.slug %}" title="HTC Rhyme Sense">{{ model.name }}</a></h2>
-                  <div class="ratings">
-                    <div class="rating-box">
-                      <div style="width:50%" class="rating"></div>
+                {% for i in model.product_det.all %}
+                <li class="item first">
+                  <div class="product-image"> <a href="" title="{{ model.name }}"> <img class="small-image" src="{{ i.image.url }}" alt=""> </a> </div>
+                  <div class="product-shop">
+                    <h2 class="product-name"><a href="{% url 'productdetail' slug=i.slug %}" title="HTC Rhyme Sense">{{ model.name }}</a></h2>
+                    <div class="ratings">
+                      <div class="rating-box">
+                        <div style="width:50%" class="rating"></div>
+                      </div>
+                      <p class="rating-links"> <a href="#/review/product/list/id/167/category/35/">1 Review(s)</a> <span class="separator">|</span> <a href="#review-form">Add Your Review</a> </p>
+                    </div>                 
+                    <div class="desc std">
+                      <p> <a class="link-learn" title="" href="#">Learn More</a> </p>
                     </div>
-                    <p class="rating-links"> <a href="#/review/product/list/id/167/category/35/">1 Review(s)</a> <span class="separator">|</span> <a href="#review-form">Add Your Review</a> </p>
-                  </div>                 
-                  <div class="desc std">
-                    <p> <a class="link-learn" title="" href="#">Learn More</a> </p>
+                    <div class="price-box">
+                    
+                      <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ i.new_pr }} </span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ i.old_pr }} </span> </p>
+                    </div>
+                    <div class="actions">
+                      <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
+                      <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#"><span>Add to Wishlist</span></a> <a title="Add to Compare" class="button link-compare" href="#"><span>Add to Compare</span></a> </span> </div>
                   </div>
-                  <div class="price-box">
-                  
-                    <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ i.new_pr }} </span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ i.old_pr }} </span> </p>
-                  </div>
-                  <div class="actions">
-                    <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
-                    <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#"><span>Add to Wishlist</span></a> <a title="Add to Compare" class="button link-compare" href="#"><span>Add to Compare</span></a> </span> </div>
-                </div>
-              </li>
-              {% endfor %} 
+                </li>
+                {% endfor %} 
               {% endfor %}
+            {% endcomment %}  
 
            </ol>
           </div>
@@ -518,3 +519,51 @@
     </div>
   </div>
 {% endblock %} 
+
+{% block js %}
+      <script>
+          let olv = document.getElementById('products-list');
+          let list;
+          let example = new XMLHttpRequest();
+          example.open("GET", "{% url 'test' %}")
+          example.onload = function(){
+            let lists=JSON.parse(this.responseText)
+            for(i of lists){
+              {% url 'productdetail' slug=i.slug as ornek %};
+              console.log(i.slug)
+              list = `
+                <li class="item first">
+                  
+                  <div class="product-image"> <a href="" title=""> <img class="small-image" src="${ i.image }" alt=""> </a> </div>
+                  <div class="product-shop">
+                    <h2 class="product-name">${ i.detail.name }<a href="" title="HTC Rhyme Sense"></a></h2>
+                    <a href="${'productdetail'}">Link</a>
+                    <div class="ratings">
+                      <div class="rating-box">
+                        <div style="width:50%" class="rating"></div>
+                      </div>
+                      <p class="rating-links"> <a href="#/review/product/list/id/167/category/35/">1 Review(s)</a> <span class="separator">|</span> <a href="#review-form">Add Your Review</a> </p>
+                    </div>                 
+                    <div class="desc std">
+                      <p> <a class="link-learn" title="" href="#">Learn More</a> </p>
+                    </div>
+                    <div class="price-box">
+                    
+                      <p class="special-price"> <span class="price-label"></span> <span class="price"> ${ i.new_pr } </span> </p> <p class="old-price"> ${i.old_pr}<span class="price-label"></span> <span class="price"> ${{ i.old_pr }} </span> </p>
+                    </div>
+                    <div class="actions">
+                      <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
+                      <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#"><span>Add to Wishlist</span></a> <a title="Add to Compare" class="button link-compare" href="#"><span>Add to Compare</span></a> </span> </div>
+                  </div>
+                </li>     
+              `
+              olv.insertAdjacentHTML('beforeend', list)
+            }
+          }
+
+          example.send()
+
+          
+      </script>
+
+{% endblock %}

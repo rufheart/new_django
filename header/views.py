@@ -47,7 +47,7 @@ class ProductDetail_View(DetailView):
         data=super().get_context_data(**kwargs)
         data['forms'] = Form_Review
         return data
-
+    
 
 class ContInfo_View(CreateView):
     form_class = Form_Cont_Info

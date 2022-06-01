@@ -12,13 +12,13 @@ class ProductSerialize(serializers.ModelSerializer):
     # category_pro = CategorySerialize()
     class Meta:
         model=Product
-        fields = ('user','category_pro','name') 
+        fields = ('id','user','category_pro','name') 
 
 class DetailSerialize(serializers.ModelSerializer):
     detail = ProductSerialize()
     class Meta:
         model = Detail_Product
-        fields = ('detail','image', 'desc', 'new_pr', 'old_pr','slug')
+        fields = ('id','detail','image', 'desc', 'new_pr', 'old_pr','slug')
 
 class CreateSerialize(serializers.ModelSerializer):
     class Meta:

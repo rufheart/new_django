@@ -1,6 +1,12 @@
 # from django.http import HttpResponse
+from functools import partial
 from multiprocessing import context
+from unicodedata import category
+from django.http import Http404
+from requests import put, request
 from rest_framework.views import APIView, Response
+from rest_framework.generics import CreateAPIView, ListCreateAPIView
+from header.api import seralize
 from header.models import Product,Detail_Product
 from header.api.seralize import ProductSerialize, DetailSerialize, CreateSerialize
 import json
@@ -10,6 +16,10 @@ class DetailApi(APIView):
 
     def get(self, request, *args, **kwargs):
         all = Detail_Product.objects.all()
+        product=request.GET.get('product')
+        if product:
+            all=Detail_Product.objects.filter(detail__id=product)
+
         myJson = DetailSerialize(all, many=True, context= {'request':request})
         return Response(data=myJson.data)
     
@@ -21,14 +31,57 @@ class DetailApi(APIView):
         print(data.id)
         return Response(data=data.data, status=201)
 
-    # def post(self, request, *args, **kwargs):
-    #     data=request.data
-    #     data = CreateSerialize(data=data)
-    #     data.instance.detail=P
-    #     data.is_valid(raise_exception=True)
-    #     data.save()
-    #     return Response(data=data.data, status=201)
+    def post(self, request, *args, **kwargs):
+        data=request.data
+        data = CreateSerialize(data=data)
+        data.is_valid(raise_exception=True)
+        data.save()
+        return Response(data=data.data, status=201)
         
+
+
+class FilterApi(APIView):
+    def get(self, request, *args, **kwargs):
+        all = Detail_Product.objects.filter(id=kwargs['pk']).first()
+        if not all:
+            raise Http404
+        gt = DetailSerialize(all,context={'request':request})
+        return Response(data=gt.data)
+
+    def put(self, request, *args, **kwargs):
+        print('put isledi================================>>>')
+        all = Detail_Product.objects.filter(id=kwargs['pk']).first()
+        data=request.data
+        data = CreateSerialize(data=data, instance=all)
+        data.is_valid(raise_exception=True)
+        data.save()
+        return Response(data=data.data, status=201)
+
+    def patch(self, request, *args, **kwargs):
+        print('put isledi================================>>>')
+        all = Detail_Product.objects.filter(id=int(kwargs['pk'])).first()
+        data=request.data
+        data = CreateSerialize(data=data, instance=all, partial=True)
+        data.is_valid(raise_exception=True)
+        data.save()
+        return Response(data=data.data, status=201)
+
+    def delete(self, request, *args, **kwargs):
+        delete1, _ = Detail_Product.objects.filter(id=kwargs['pk']).delete()
+        if not delete1:
+            raise Http404
+        return Response(data={}, status=201)
+
+
+class ApiCreateView(ListCreateAPIView):
+    queryset = Detail_Product.objects.all()
+    serializer_class=CreateSerialize
+
+    def get_serializer_class(self):
+        print('def isledi')
+        if self.request.method == 'GET':
+            serializer_class = DetailSerialize
+        return super().get_serializer_class()
 
 
 

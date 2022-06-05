@@ -15,9 +15,18 @@ class ImagesAdmin(admin.TabularInline):
     fields = ('images_tb', )
 
 
-@admin.register(Detail_Product)
-class DetailProduct(admin.ModelAdmin):
-    inlines = [ImagesAdmin]
+# @admin.register(Detail_Product)
+# class DetailProduct(admin.ModelAdmin):
+#     inlines = [ImagesAdmin]
 
-admin.site.register([Product,Cont_Info,Add_To_Card])
+class DetailProduct(admin.TabularInline):
+    model=Detail_Product
+    fk_name = "detail"
+    fields = ['detail','image','desc','new_pr','old_pr']
+
+@admin.register(Product)
+class AdminProduct(admin.ModelAdmin):
+    inlines = [DetailProduct]    
+
+admin.site.register([Cont_Info,Add_To_Card])
 

@@ -5,7 +5,7 @@ from unicodedata import category
 from django.http import Http404
 from requests import put, request
 from rest_framework.views import APIView, Response
-from rest_framework.generics import CreateAPIView, ListCreateAPIView
+from rest_framework.generics import CreateAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from header.api import seralize
 from header.models import Product,Detail_Product
 from header.api.seralize import ProductSerialize, DetailSerialize, CreateSerialize
@@ -22,23 +22,21 @@ class DetailApi(APIView):
 
         myJson = DetailSerialize(all, many=True, context= {'request':request})
         return Response(data=myJson.data)
-    
-    def post(self, request, *args, **kwargs):
-        data=request.data
-        data = ProductSerialize(data=data)
-        data.is_valid(raise_exception=True)
-        data.save()
-        print(data.id)
-        return Response(data=data.data, status=201)
 
-    def post(self, request, *args, **kwargs):
-        data=request.data
-        data = CreateSerialize(data=data)
-        data.is_valid(raise_exception=True)
-        data.save()
-        return Response(data=data.data, status=201)
+
+
         
-
+        
+    def post(self, request, *args, **kwargs):
+        data=request.data
+        beta=request.data
+        data = ProductSerialize(data=data)
+        beta = CreateSerialize(data=beta)
+        data.is_valid(raise_exception=True)
+        data.save()
+        beta.is_valid(raise_exception=True)
+        beta.save()
+        return Response(data=data.data, status=201)
 
 class FilterApi(APIView):
     def get(self, request, *args, **kwargs):
@@ -73,17 +71,29 @@ class FilterApi(APIView):
         return Response(data={}, status=201)
 
 
-class ApiCreateView(ListCreateAPIView):
+# class ApiCreateView(ListCreateAPIView):
+#     queryset = Detail_Product.objects.all()
+#     serializer_class=CreateSerialize
+
+#     def get_serializer_class(self):
+#         print('def isledi')
+#         if self.request.method == 'GET':
+#             serializer_class = DetailSerialize
+#         return super().get_serializer_class()
+
+class FourApiView(RetrieveUpdateDestroyAPIView):
     queryset = Detail_Product.objects.all()
-    serializer_class=CreateSerialize
+    serializer_class=DetailSerialize
 
-    def get_serializer_class(self):
-        print('def isledi')
-        if self.request.method == 'GET':
-            serializer_class = DetailSerialize
-        return super().get_serializer_class()
+    def put(self, request, *args, **kwargs):
+        if self.request.method == 'PUT':
+            seralize_class = CreateSerialize
+        return super().put(request, *args, **kwargs)
 
-
+    def patch(self, request, *args, **kwargs):
+        if self.request.method == 'PATCH':
+            seralize_class = CreateSerialize
+        return super().put(request, *args, **kwargs)    
 
 # class ProductApi(APIView):
 

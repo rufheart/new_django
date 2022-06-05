@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     #other
     'social_django',
     'rest_framework',
+    'django_celery_beat',
 
 ]
 
@@ -181,3 +182,11 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '380682797288-c8kbl078kuh6ga4uqmeithovh76mpvrp.a
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+# CELERY STUFF
+BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Baku'

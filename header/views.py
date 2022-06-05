@@ -12,6 +12,7 @@ from header.forms import Add_CardForm, Form_Review, Productdetail_form, Product_
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, View
 import json
 from header.models import Category, Product, Detail_Product, Add_To_Card
+from header.task import exportime, notiftask
 
 
 class IndexView(TemplateView):
@@ -129,3 +130,13 @@ class Add_To_Card_View(View):
         b= Product.objects.get(id=pk)
         Add_To_Card.objects.create(add_product=b, add_usr=a)
         return redirect(reverse_lazy('productdetail', kwargs={'slug':slug}))
+
+
+def export(request):
+    exportime.delay()
+    return redirect('/')
+
+def notif(request):
+    notiftask.delay()
+    print(request,'=================>')
+    return 'viewrun'

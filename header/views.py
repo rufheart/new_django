@@ -12,7 +12,7 @@ from header.forms import Add_CardForm, Form_Review, Productdetail_form, Product_
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, View
 import json
 from header.models import Category, Product, Detail_Product, Add_To_Card
-from header.task import exportime, notiftask
+from header.task import exportime
 
 
 class IndexView(TemplateView):
@@ -136,7 +136,7 @@ def export(request):
     exportime.delay()
     return redirect('/')
 
-def notif(request):
-    notiftask.delay()
-    print(request,'=================>')
-    return 'viewrun'
+# def notif(request):
+#     notiftask.delay()
+#     notiftask(request)
+#     return HttpRequest

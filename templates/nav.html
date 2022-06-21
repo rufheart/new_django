@@ -128,7 +128,7 @@
                       <div class="login"><a href=""><span class="hidden-xs">{% trans 'Logout' %}</span></a></div>
                     {% else %}
                       <div class="login"><a href=""><span class="hidden-xs">{% trans 'Login' %}</span></a></div>
-                      <div class="login"><a href=""><span class="hidden-xs">{% trans 'Register' %}</span></a></div>  
+                      <div class="login"><a href="{% url 'register' %}"><span class="hidden-xs">Register</span></a></div>  
                     {% endif %}
                   </div>
                   

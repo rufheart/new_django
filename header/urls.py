@@ -19,4 +19,5 @@ urlpatterns = [
     path('product-create/', ProductCreate_View.as_view(), name='productcreate'),
     path('add_to_card/<int:pk>/<slug:slug>/', Add_To_Card_View.as_view(), name='add_to_card'),
     path('export/', export, name='export'),
+    path('subscribe/', SubscriberViews.as_view(),name='subscribe')
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

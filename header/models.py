@@ -39,14 +39,14 @@ class Category(ABS):
 
 class Product(ABS):
     user = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE,null=True)
-    category_pro = models.ForeignKey(Category, related_name='product', on_delete=models.CASCADE,null=True)
+    category_pro = models.OneToOneField(Category, related_name='product', on_delete=models.CASCADE,null=True)
     name = models.CharField(max_length=35)
 
     def __str__(self) -> str:
         return self.name
 
 class Detail_Product(ABS):
-    detail = models.ForeignKey(Product, related_name='product_det', on_delete=models.CASCADE)
+    detail = models.OneToOneField(Product, related_name='product_det', on_delete=models.CASCADE)
     image = models.ImageField(upload_to = 'img/product')
     desc = models.CharField(max_length=50)
     new_pr = models.CharField(max_length=10)
@@ -57,7 +57,7 @@ class Detail_Product(ABS):
         return str(self.detail)
         
 class Images(ABS):
-    productsdetail = models.ForeignKey(Detail_Product, related_name='images', on_delete=models.CASCADE)
+    productsdetail = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
     images_tb = models.ImageField(upload_to = 'img/product/images ') 
     
 
@@ -108,9 +108,8 @@ class Add_To_Card(ABS):
     add_usr = models.ForeignKey(User, related_name='add_to_card', on_delete=models.CASCADE)
 
 
-
-
-
+class Subscriber(ABS):
+    subscribers_emails = models.EmailField(max_length=50,unique=True)
 
 
 

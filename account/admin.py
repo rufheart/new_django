@@ -6,4 +6,10 @@ from account.models import User
 class User_Admin(UserAdmin):
     pass
 
-admin.site.register(User,User_Admin)
+
+
+# @admin.register(User)
+# class UserAdmin(admin.ModelAdmin):
+#     pass
+
+admin.site.register(User, User_Admin)

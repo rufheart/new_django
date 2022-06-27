@@ -8,7 +8,7 @@ from django.shortcuts import redirect, render
 from django.http import Http404, HttpRequest, HttpResponse
 from django.urls import reverse_lazy
 from requests import request
-from header.forms import Add_CardForm, Form_Review, Productdetail_form, Product_Form,FormContact,Form_Cont_Info
+from header.forms import Add_CardForm, Form_Review, Productdetail_form, Product_Form,FormContact,Form_Cont_Info,SubscribersForm
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, View
 import json
 from header.models import Category, Product, Detail_Product, Add_To_Card
@@ -37,12 +37,11 @@ class Product_View(ListView):
     context_object_name = 'models'
 
 
-    
-
+  
 class ProductDetail_View(DetailView):
     model = Detail_Product
     template_name = 'product-detail.html'
-    context_object_name = 'about'
+    context_object_name = 'product_detail'
 
     def get_context_data(self, **kwargs):
         data=super().get_context_data(**kwargs)
@@ -140,3 +139,8 @@ def export(request):
 #     notiftask.delay()
 #     notiftask(request)
 #     return HttpRequest
+
+class SubscriberViews(CreateView):
+    form_class = SubscribersForm
+    template_name = 'footer.html'
+    

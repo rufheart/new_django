@@ -1,6 +1,6 @@
 from cProfile import label
 from django import forms
-from header.models import Cont_Info, Contact, Detail_Product, Review,Product,Add_To_Card
+from header.models import Cont_Info, Contact, Detail_Product, Review,Product,Add_To_Card,Subscriber
 from account.forms import FormRegister
 from account.models import User
 
@@ -109,18 +109,10 @@ class Product_Form(forms.ModelForm):
 class Productdetail_form(forms.ModelForm):
     class Meta:
         model  = Detail_Product
-        fields = ['image','desc','desc_az','desc_en','new_pr','old_pr',]
+        fields = ['image','desc','new_pr','old_pr',]
 
         widgets ={
             'desc':forms.Textarea(attrs={
-                'class':"form-desc",
-                'placeholder':"Description"
-            }),
-            'desc_az':forms.Textarea(attrs={
-                'class':"form-desc",
-                'placeholder':"Description"
-            }),
-            'desc_en':forms.Textarea(attrs={
                 'class':"form-desc",
                 'placeholder':"Description"
             }),
@@ -141,3 +133,8 @@ class Add_CardForm(forms.ModelForm):
     class Meta:
         model = Add_To_Card
         fields = ['add_product','add_usr']
+
+class SubscribersForm(forms.ModelForm):
+    class Meta:
+        model = Subscriber
+        fields = ['subscribers_emails']        

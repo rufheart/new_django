@@ -23,10 +23,11 @@ class DetailProduct(admin.TabularInline):
     model=Detail_Product
     fk_name = "detail"
     fields = ['detail','image','desc','new_pr','old_pr']
+    extra = 1
 
 @admin.register(Product)
 class AdminProduct(admin.ModelAdmin):
-    inlines = [DetailProduct]    
+    inlines = [DetailProduct, ImagesAdmin]    
 
 admin.site.register([Cont_Info,Add_To_Card])
 

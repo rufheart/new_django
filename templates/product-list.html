@@ -529,7 +529,7 @@
           example.onload = function(){
             let lists=JSON.parse(this.responseText)
             for(i of lists){
-              {% url 'productdetail' slug=i.slug as ornek %};
+              // {% url 'productdetail' slug=i.slug as ornek %};
               console.log(i.slug)
               list = `
                 <li class="item first">
@@ -537,7 +537,7 @@
                   <div class="product-image"> <a href="" title=""> <img class="small-image" src="${ i.image }" alt=""> </a> </div>
                   <div class="product-shop">
                     <h2 class="product-name">${ i.detail.name }<a href="" title="HTC Rhyme Sense"></a></h2>
-                    <a href="${'productdetail'}">Link</a>
+                    <a href="http://127.0.0.1:8000/en/product-detail/${i.slug}/">Link</a>
                     <div class="ratings">
                       <div class="rating-box">
                         <div style="width:50%" class="rating"></div>

@@ -109,15 +109,10 @@ class UserCreate(CreateView):
 def profile(request):
     args = {}
     user = User
-    print('prof')
     if request.method == 'POST':
-        print('if isledi')
         form = FormUpdate_Profile(data=request.POST, files=request.FILES)
         if form.is_valid():
-            print('validisledi')
             form.save(request.user.id)
-        else:
-            print('=============>', form.errors)
 
     else:
         form = FormUpdate_Profile()

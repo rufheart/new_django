@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div>
+        <form action="{% url 'subs' %}" method="post">
+            {% csrf_token %}
+                {{ form.subscribers_emails }}
+                <input type="submit">
+        </form>
+    </div>
+{% endblock %}
+

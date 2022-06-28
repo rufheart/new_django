@@ -1,5 +1,5 @@
 from django.contrib import admin
-from header.models import Category, Product, Detail_Product , Images, Review, Add_To_Card,Cont_Info
+from header.models import Category, Product, Detail_Product , Images, Review, Add_To_Card,Cont_Info,Subscriber
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -29,5 +29,5 @@ class DetailProduct(admin.TabularInline):
 class AdminProduct(admin.ModelAdmin):
     inlines = [DetailProduct, ImagesAdmin]    
 
-admin.site.register([Cont_Info,Add_To_Card])
+admin.site.register([Cont_Info,Add_To_Card,Subscriber])
 

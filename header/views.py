@@ -139,8 +139,12 @@ def export(request):
 #     notiftask.delay()
 #     notiftask(request)
 #     return HttpRequest
+class SubsView(TemplateView):
+    template_name = 'susbc.html'
 
-class SubscriberViews(CreateView):
-    form_class = SubscribersForm
-    template_name = 'footer.html'
+
+# class SubscriberViews(CreateView):
+#     form_class = SubscribersForm
+#     template_name = 'susbc.html'
+#     success_url = reverse_lazy('subscribe')
     

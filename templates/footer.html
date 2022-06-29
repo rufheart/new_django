@@ -41,14 +41,14 @@
             <div class="footer-column-last">
               <div class="newsletter-wrap">
                 <h4>Sign up for emails</h4>
-                <form id="newsletter-validate-detail" method="post" action="{% url 'subs' %}">
+                <form id="newsletter-validate-detail" method="post" action="{% url 'get_view' %}">
                   {% csrf_token %}
                     <div id="container_form_news">
                       <div id="container_form_news2" style="border: 1px solid red;">
                         
-                        <!-- <input type="text" class="input-text required-entry validate-email" value="Enter your email address" onFocus=" this.value='' " title="Sign up for our newsletter" id="newsletter" name="email"> -->
+                        <input type="text" class="input-text required-entry validate-email" value="Enter your email address" onFocus=" this.value='' " title="Sign up for our newsletter" id="newsletter" name="email">
                         <button class="button subscribe" title="Subscribe" type="submit" style="background-color: blue;" ><span>Subscribe</span></button>
-                        <a href="{% url 'subs' %}" style="border: 1px solid grey;width: 80px;">klik</a>
+                        
                       </div>
                     </div>
                 </form>

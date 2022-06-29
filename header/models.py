@@ -39,7 +39,7 @@ class Category(ABS):
 
 class Product(ABS):
     user = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE,null=True)
-    category_pro = models.OneToOneField(Category, related_name='product', on_delete=models.CASCADE,null=True)
+    category_pro = models.ForeignKey(Category, related_name='product', on_delete=models.CASCADE,null=True)
     name = models.CharField(max_length=35)
 
     def __str__(self) -> str:
@@ -107,7 +107,9 @@ class Add_To_Card(ABS):
     add_product=models.ForeignKey(Product, related_name='add_to_card', on_delete=models.CASCADE, null=True)
     add_usr = models.ForeignKey(User, related_name='add_to_card', on_delete=models.CASCADE)
 
-
+    def __str__(self) -> str:
+        return str(self.add_product)
+        
 class Subscriber(ABS):
     subscribers_emails = models.EmailField(max_length=50,unique=True)
 

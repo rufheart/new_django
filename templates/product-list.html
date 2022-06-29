@@ -552,7 +552,9 @@
                       <p class="special-price"> <span class="price-label"></span> <span class="price"> ${ i.new_pr } </span> </p> <p class="old-price"> ${i.old_pr}<span class="price-label"></span> <span class="price"> ${{ i.old_pr }} </span> </p>
                     </div>
                     <div class="actions">
-                      <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
+                     
+                        <a href="http://127.0.0.1:8000/en/add_to_card/${ i.detail.id }/${i.slug}" class="button btn-cart" title="Add to Cart"><span>Add to Cart</span></a>
+                     
                       <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#"><span>Add to Wishlist</span></a> <a title="Add to Compare" class="button link-compare" href="#"><span>Add to Compare</span></a> </span> </div>
                   </div>
                 </li>     

@@ -5,6 +5,7 @@ from .context_processors import *
 from django.conf.urls.static import static
 from django.conf import settings 
 
+
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('index',IndexView.as_view(), name='index' ),
@@ -20,5 +21,5 @@ urlpatterns = [
     path('product-create/', ProductCreate_View.as_view(), name='productcreate'),
     path('add_to_card/<int:pk>/<slug:slug>/', Add_To_Card_View.as_view(), name='add_to_card'),
     path('export/', export, name='export'),
-    path('susbc/',subsc,name='subs')
+    path('get_view/',get_view,name='get_view'),
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

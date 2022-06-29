@@ -1,8 +1,7 @@
-
 import time
 from celery import shared_task
 from requests import request
-from header.models import Detail_Product, Product
+from header.models import Detail_Product, Product,Subscriber
 from django.core.mail import send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
@@ -30,7 +29,7 @@ def notiftask(*args, **kwargs):
         subject='A cool subject',
         message='Bu bir messajdir',
         from_email=settings.EMAIL_HOST_USER,
-        recipient_list=[settings.RECIPIENT_ADDRESS],
+        recipient_list=[x for x in Subscriber],
         html_message=msj)  
     return 'celery isledi'          
 

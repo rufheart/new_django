@@ -12,7 +12,7 @@ class ProductSerialize(serializers.ModelSerializer):
     # category_pro = CategorySerialize()
     class Meta:
         model=Product
-        fields = ('user','category_pro','name') 
+        fields = ('id','user','category_pro','name') 
 
 class DetailSerialize(serializers.ModelSerializer):
     detail = ProductSerialize()

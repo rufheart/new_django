@@ -19,6 +19,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 import os
 from django.utils.translation import gettext_lazy as _
+# from header.models import Subscriber
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -198,4 +199,4 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'rufatnr.nuri@gmail.com'
 EMAIL_HOST_PASSWORD = 'sfycaedzmioqmpgb'
-RECIPIENT_ADDRESS='rufetnuriyev.nr@gmail.com'
+RECIPIENT_ADDRESS=''

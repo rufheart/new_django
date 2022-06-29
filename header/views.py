@@ -11,7 +11,7 @@ from requests import request
 from header.forms import Add_CardForm, Form_Review, Productdetail_form, Product_Form,FormContact,Form_Cont_Info,SubscribersForm
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, View
 import json
-from header.models import Category, Product, Detail_Product, Add_To_Card
+from header.models import Category, Product, Detail_Product, Add_To_Card, Subscriber
 from header.task import exportime
 
 
@@ -124,6 +124,7 @@ class Add_To_Card_View(View):
     form_class = Add_CardForm
     
     def get(self, request, pk, slug):
+        print('deffisledi=============================>>>')
         form = Add_CardForm()
         a= request.user
         b= Product.objects.get(id=pk)
@@ -139,12 +140,12 @@ def export(request):
 #     notiftask.delay()
 #     notiftask(request)
 #     return HttpRequest
-class SubsView(TemplateView):
-    template_name = 'susbc.html'
 
-
-# class SubscriberViews(CreateView):
-#     form_class = SubscribersForm
-#     template_name = 'susbc.html'
-#     success_url = reverse_lazy('subscribe')
+def get_view(request):
+    if request.method == 'POST':
+        data = request.POST.get('email')
+        print(data,'===========================================>>>>>>>>>>>>')
+        b=Subscriber(subscribers_emails=data)
+        b.save()
+        return redirect('index')
     

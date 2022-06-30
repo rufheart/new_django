@@ -1,5 +1,5 @@
 from django.template import Library
-from header.models import Add_To_Card
+from header.models import Add_To_Card,Detail_Product
 
 
 register = Library()

@@ -1,6 +1,6 @@
 ﻿{% extends 'base.html' %}
 
-{% load static %}
+{% load static custom_tags  %}
 
 {% block content %}
 
@@ -382,12 +382,13 @@
         </div>
         <div id="related-products-slider" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
-
-          
+            
+          {% for i in dtls %}   
+            {% if product_detail.detail.category_pro == i.detail.category_pro and product_detail.detail.name != i.detail.name  %}
             <div class="item">
               <div class="item-inner">
                 <div class="item-img">
-                  <div class="item-img-info"><a href="#" title="" class="product-image"><img src="{% static 'products-images/product.jpg' %}" alt=""></a>
+                  <div class="item-img-info"><a href="#" title="" class="product-image"><img src="{{ i.image.url }}" alt=""></a>
                     
                     <div class="actions">
                       <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
@@ -409,17 +410,19 @@
                 </div>
                 <div class="item-info">
                   <div class="info-inner">
-                    <div class="item-title"><a href="#" title="Retis lapen casen">{{ product_detail.detail.name }}</a> </div>
+                    <div class="item-title"><a href="{% url 'productdetail' i.slug %}" title="Retis lapen casen">{{ i.detail.name }}</a> </div>
                     <div class="item-content">
                       <div class="item-price">
-                        <div class="price-box"><span class="regular-price"><span class="price">$125.00</span> </span> </div>
+                        <div class="price-box"><span class="regular-price"><span class="price">${{ i.new_pr }}</span> </span> </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          
+            {% endif %}
+           
+          {% endfor %}
  
 
             

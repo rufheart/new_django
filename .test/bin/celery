@@ -1,4 +1,4 @@
-#!/home/rufheart/Desktop/new_django/.test/bin/python3
+#!/home/rufheart/Desktop/new_django/.test/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

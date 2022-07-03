@@ -1,4 +1,4 @@
-# from django.http import HttpResponse
+
 from functools import partial
 from multiprocessing import context
 from unicodedata import category
@@ -15,6 +15,7 @@ import json
 class DetailApi(APIView):
 
     def get(self, request, *args, **kwargs):
+        category_id = kwargs
         all = Detail_Product.objects.all()
         product=request.GET.get('product')
         if product:

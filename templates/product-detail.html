@@ -33,17 +33,19 @@
                 <input name="form_key" value="6UbXroakyQlbfQzK" type="hidden">
                 <div class="product-img-box col-sm-4 col-xs-12">
                   <div class="new-label new-top-left"> New </div>
-<!--  -->
+
                   <div class="product-image">
+
                   <div class="large-image"> <a href="" class="cloud-zoom" id="zoom1"> <img src="{{  product_detail.image.url }}" alt="product image"> </a> </div>
                     <div class="flexslider flexslider-thumb">
                       
                       <ul class="previews-list slides">
                           {% for i in  product_detail.detail.images.all %}
-                            <li><a href='' class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: 'products-images/product.jpg' "><img src="{{ i.images_tb.url }}" alt = "Thumbnail 1"/></a></li>
+                            <li><a href='' class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: 'products-images/product.jpg' "><img  src="{{ i.images_tb.url }}" alt = "Thumbnail 1"/></a></li>
                           {% endfor %}
                       </ul>
                     </div>
+                    
                   </div>
                   <!-- end: more-images --> 
                 </div>
@@ -61,8 +63,8 @@
                   </div>
                   <div class="price-block">
                     <div class="price-box">
-                      <p class="special-price"> <span class="price-label">Special Price</span> <span id="product-price-48" class="price"> $new_price </span> </p>
-                      <p class="old-price"> <span class="price-label">Regular Price:</span> <span class="price"> $old price </span> </p>
+                      <p class="special-price"> <span class="price-label">Special Price</span> <span id="product-price-48" class="price"> ${{product_detail.new_pr}} </span> </p>
+                      <p class="old-price"> <span class="price-label">Regular Price:</span> <span class="price"> ${{product_detail.old_pr}} </span> </p>
                     </div>
                     <p class="availability in-stock pull-right"><span>In Stock</span></p>
                   </div>
@@ -83,7 +85,7 @@
                       <!-- <h1>====> {{ request.path }}</h1> -->
                       <!-- <input type="hidden" value="salam" name="url" > -->
                       {% if user.is_authenticated %}
-                        <a href="{% url 'add_to_card' product_detail.detail.id product_detail.slug %}" class="button btn-cart" title="Add to Cart"><span>Add to Cart</span></a>
+                        <a href="{% url 'add_to_card' product_detail.id product_detail.slug %}" class="button btn-cart" title="Add to Cart"><span>Add to Cart</span></a>
                       {% endif %}  
                       <!-- <button onClick="productAddToCartForm.submit(this)" class="button btn-cart" title="Add to Cart" type="submit"><span>Add to Cart</span></button> -->
                     </div>
@@ -753,3 +755,7 @@
   <!-- Brand logo ends  --> 
   
  {% endblock %} 
+
+ {% block js %}
+    <script src="{% static 'js/product_detail' %}" ></script>
+ {% endblock %}

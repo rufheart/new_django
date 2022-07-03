@@ -78,13 +78,12 @@
           </div>
           <div class="category-products">
             <ol class="products-list" id="products-list">
-              {% comment %}
+              
               {% for model in models %}
-                {% for i in model.product_det.all %}
                 <li class="item first">
-                  <div class="product-image"> <a href="" title="{{ model.name }}"> <img class="small-image" src="{{ i.image.url }}" alt=""> </a> </div>
+                  <div class="product-image"> <a href="{% url 'productdetail' slug=model.product_det.slug %}" title=""> <img class="small-image" src="{{ model.product_det.image.url }}" alt=""> </a> </div>
                   <div class="product-shop">
-                    <h2 class="product-name"><a href="{% url 'productdetail' slug=i.slug %}" title="HTC Rhyme Sense">{{ model.name }}</a></h2>
+                    <h2 class="product-name"><a href="{% url 'productdetail' slug=model.product_det.slug %}" title="HTC Rhyme Sense">{{ model.name}}</a></h2>
                     <div class="ratings">
                       <div class="rating-box">
                         <div style="width:50%" class="rating"></div>
@@ -96,16 +95,15 @@
                     </div>
                     <div class="price-box">
                     
-                      <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ i.new_pr }} </span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ i.old_pr }} </span> </p>
+                      <p class="special-price"> <span class="price-label"></span> <span class="price"> ${{ model.product_det.new_pr }} </span> </p> <p class="old-price"> <span class="price-label"></span> <span class="price"> ${{ model.product_det.old_pr }} </span> </p>
                     </div>
                     <div class="actions">
-                      <button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button>
+                      <a href="{% url 'add_to_card' model.product_det.id model.product_det.slug %}"><button class="button btn-cart ajx-cart" title="Add to Cart" type="button"><span>Add to Cart</span></button></a>
                       <span class="add-to-links"> <a title="Add to Wishlist" class="button link-wishlist" href="#"><span>Add to Wishlist</span></a> <a title="Add to Compare" class="button link-compare" href="#"><span>Add to Compare</span></a> </span> </div>
                   </div>
                 </li>
-                {% endfor %} 
               {% endfor %}
-            {% endcomment %}  
+            
 
            </ol>
           </div>
@@ -118,28 +116,36 @@
               <div class="block-title"> Categories </div>
               <!--block-title--> 
               <!-- BEGIN BOX-CATEGORY -->
-              <div class="box-content box-category">
-
-                {% for i in categ %}
+              <div class="box-content box-category">                
                 <ul>
-                  {% if i.parent_id is defined %}
-                  <li> <a href="#/men.html"></a> {{ i }}<span class="subDropdown plus"></span>
-                    <ul class="level0_455" style="display:none">
-                      <li> <a href="#/men/shoes.html"> Shoes </a> <span class="subDropdown plus"></span>
-                        <ul class="level1" style="display:none">
-                          <li> <a href="#/men/shoes/flat-shoes.html"> Flat Shoes </a> </li>
-                          <li> <a href="#/men/shoes/boots.html"> Boots </a> </li>
-                          <li> <a href="#/men/shoes/heels.html"> Heels </a> </li>
-                          <!--end for-each -->
-                        </ul>
-                        <!--level1--> 
-                      </li>
-                      {% endif %}
-                    </ul>
-                  {% endfor %}
-                  </li>
-                </ul>
 
+                  {% for parent in categ %}
+                    {% if parent.parent_id is null %}
+                      <li> <a class="active" href="">{{ parent }}</a> <span class="subDropdown plus"></span>
+                        {% if parent.parent.all %}
+                          <ul class="level0_415" style="display:none">
+                            {% for child in categ %}
+                              {% if child.parent_id == parent %}
+                                  <li> <a href=""> {{child}} </a> <span class="subDropdown minus"></span>
+                                  {% if child.parent.all %}
+                                    <ul class="level1" style="display:none">
+                                      {% for child2 in categ %}
+                                        {% if child2.parent_id == child %}
+                                          <li> <a href="{% url 'product_filter' child2.id %}">{{ child2 }}</a> </li>
+                                        {% endif %}
+                                      {% endfor %}
+                                    </ul>
+                                  {% endif %}
+                                </li>    
+                              {% endif %}    
+                            {% endfor %}
+                          </ul>
+                        {% endif %}
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+          
+                </ul>
               </div>
               <!--box-content box-category--> 
             </div>
@@ -365,7 +371,7 @@
 {% endblock %} 
 
 {% block js %}
-      <script>
+      <!-- <script>
           let olv = document.getElementById('products-list');
           let list;
           let example = new XMLHttpRequest();
@@ -380,7 +386,7 @@
                   
                   <div class="product-image"> <a href="http://127.0.0.1:8000/en/product-detail/${i.slug}" title=""> <img class="small-image" src="${ i.image }" alt=""> </a> </div>
                   <div class="product-shop">
-                    <h2 class="product-name">${ i.detail.name }<a href="" title="HTC Rhyme Sense"></a></h2>
+                    <h2 class="product-name">${ i.detail.name }<a href="http://127.0.0.1:8000/en/product-detail/${i.slug}/" title="HTC Rhyme Sense"></a></h2>
                     <a href="http://127.0.0.1:8000/en/product-detail/${i.slug}/">Link</a>
                     <div class="ratings">
                       <div class="rating-box">
@@ -409,7 +415,7 @@
 
           example.send()
 
-          
+           -->
       </script>
 
 {% endblock %}

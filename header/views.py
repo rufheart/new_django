@@ -1,15 +1,17 @@
 from dataclasses import field
 from multiprocessing import get_context
 from re import template
+from unicodedata import category
 from venv import create
 from django import views
 from django.forms import SlugField, ValidationError
 from django.shortcuts import redirect, render
 from django.http import Http404, HttpRequest, HttpResponse
 from django.urls import reverse_lazy
+from pyparsing import ParseSyntaxException
 from requests import request
 from header.forms import Add_CardForm, Form_Review, Productdetail_form, Product_Form,FormContact,Form_Cont_Info,SubscribersForm
-from django.views.generic import TemplateView, CreateView, ListView, DetailView, View
+from django.views.generic import TemplateView, CreateView, ListView, DetailView, View, DeleteView
 import json
 from header.models import Category, Product, Detail_Product, Add_To_Card, Subscriber
 from header.task import exportime
@@ -36,12 +38,21 @@ class Product_View(ListView):
     template_name = 'product-list.html'
     context_object_name = 'models'
 
+
     def get_context_data(self, **kwargs):
-        context = super(Product_View, self).get_context_data(**kwargs)
-        context = {
-            'categ':Category.objects.all()
-        }
+        self.category_id = self.kwargs
+
+        context = super().get_context_data(**kwargs)
+        context['categ'] = Category.objects.all
+
+        if self.category_id != {}:
+            data = Product.objects.filter(category_pro = self.category_id['id'])  
+            context = super().get_context_data(**kwargs)
+            context['categ'] = Category.objects.all
+            context['models'] = data
+        
         return context
+
 
 
   
@@ -131,10 +142,9 @@ class Add_To_Card_View(View):
     form_class = Add_CardForm
     
     def get(self, request, pk, slug):
-        print('deffisledi=============================>>>')
         form = Add_CardForm()
         a= request.user
-        b= Product.objects.get(id=pk)
+        b= Detail_Product.objects.get(id=pk)
         Add_To_Card.objects.create(add_product=b, add_usr=a)
         return redirect(reverse_lazy('productdetail', kwargs={'slug':slug}))
 
@@ -151,8 +161,15 @@ def export(request):
 def get_view(request):
     if request.method == 'POST':
         data = request.POST.get('email')
-        print(data,'===========================================>>>>>>>>>>>>')
         b=Subscriber(subscribers_emails=data)
         b.save()
         return redirect('index')
     
+class DeleteFromCard(DeleteView):
+    model=Add_To_Card
+    template_name = 'nav.html'
+
+    def get(self, request,pk, slug):
+        data = Add_To_Card.objects.get(add_product=pk)
+        data.delete()
+        return redirect(reverse_lazy('productdetail', kwargs={'slug':slug}))

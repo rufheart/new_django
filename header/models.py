@@ -32,7 +32,7 @@ class Contact(ABS):
 
 class Category(ABS):
     title = models.CharField(max_length=50)
-    parent_id = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
+    parent_id = models.ForeignKey('self', related_name='parent',null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return self.title
@@ -104,7 +104,7 @@ class Review(ABS):
 
 
 class Add_To_Card(ABS):
-    add_product=models.ForeignKey(Product, related_name='add_to_card', on_delete=models.CASCADE, null=True)
+    add_product=models.ForeignKey(Detail_Product, related_name='add_to_card', on_delete=models.CASCADE, null=True)
     add_usr = models.ForeignKey(User, related_name='add_to_card', on_delete=models.CASCADE)
 
     def __str__(self) -> str:

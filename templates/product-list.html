@@ -78,7 +78,7 @@
           </div>
           <div class="category-products">
             <ol class="products-list" id="products-list">
-              
+             {% comment %} 
               {% for model in models %}
                 <li class="item first">
                   <div class="product-image"> <a href="{% url 'productdetail' slug=model.product_det.slug %}" title=""> <img class="small-image" src="{{ model.product_det.image.url }}" alt=""> </a> </div>
@@ -103,9 +103,9 @@
                   </div>
                 </li>
               {% endfor %}
-            
+            {% endcomment %}
 
-           </ol>
+            </ol>
           </div>
         </article>
         <!--	///*///======    End article  ========= //*/// --> 
@@ -371,7 +371,7 @@
 {% endblock %} 
 
 {% block js %}
-      <!-- <script>
+      <script>
           let olv = document.getElementById('products-list');
           let list;
           let example = new XMLHttpRequest();
@@ -415,7 +415,7 @@
 
           example.send()
 
-           -->
+          
       </script>
 
 {% endblock %}

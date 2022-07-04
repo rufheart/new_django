@@ -1,7 +1,3 @@
-
-from functools import partial
-from multiprocessing import context
-from unicodedata import category
 from django.http import Http404
 from requests import put, request
 from rest_framework.views import APIView, Response
@@ -23,6 +19,7 @@ class DetailApi(APIView):
 
         myJson = DetailSerialize(all, many=True, context= {'request':request})
         return Response(data=myJson.data)
+
 
 
 

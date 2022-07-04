@@ -27,7 +27,7 @@
             </div>
           </div>
           <div class="col-2 registered-users"><strong>New Customers</strong>
-            <div class="content">
+            <div class="content" id="divcont">
               <p>If you have an account with us, please log in.</p>
               {% for i in form  %}
                   <ul class="form-list">
@@ -124,4 +124,20 @@
     </div>
   </div>
   <!-- Brand logo ends  --> 
+  {% endblock %}
+  
+  {% block js %}
+        <script>
+              let div1 = document.getElementById('divcont');
+              let list;
+              let example = new XMLHttpRequest();
+              example.open("GET", "{% url 'registerapi' %}")
+              example.onload = function(){
+                let list = JSON.parse(this.response)
+                console.log(list)
+                console.log('js isledi')
+              }
+              example.send()
+
+        </script>
   {% endblock %}

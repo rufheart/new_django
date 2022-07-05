@@ -33,7 +33,7 @@ class DetailApi(APIView):
         data.is_valid(raise_exception=True)
         data.save()
         beta.is_valid(raise_exception=True)
-        beta.save()
+        beta.save() 
         return Response(data=data.data, status=201)
 
 class FilterApi(APIView):
@@ -67,7 +67,7 @@ class FilterApi(APIView):
         if not delete1:
             raise Http404
         return Response(data={}, status=201)
-
+    
 
 # class ApiCreateView(ListCreateAPIView):
 #     queryset = Detail_Product.objects.all()

@@ -6,7 +6,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from account.api.serialize import *
 from account.models import User
 import json
-
+from django.contrib.auth.hashers import make_password
 # class RegisterWithApi(CreateAPIView):
 #     print('registerisledi')
 #     def get(self, request, *args, **kwargs):
@@ -25,10 +25,10 @@ class DetailApi(APIView):
         myJson = UserSerialize(all, many=True, context= {'request':request})
         return Response(data=myJson.data)
 
-    def post(self, request, *args, **kwargs):
-        print(request.data,'++++++++++++++++')
+    def post(self, request, *args, **kwargs): 
         data = request.data
         data = UserSerialize(data=data)
-        data.is_valid(raise_exception=True)
+        data.is_valid(raise_exception=True)      
         data.save()
         return Response(request.data)
+    

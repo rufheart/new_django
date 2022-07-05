@@ -140,7 +140,7 @@
                     <div class="box-collateral box-reviews" id="customer-reviews">
                       <div class="box-reviews1">
                         <div class="form-add">
-                          <form id="review-form" method="post" action="">
+                          <form id="review-form" method="post" action="{% url 'review' product_detail.detail.id product_detail.slug %}">
                             {% csrf_token %}
                             <h3>Write Your Own Review</h3>
                             <fieldset>
@@ -159,39 +159,43 @@
                                   </tr>
                                 </thead>
                                 <tbody>
-                               
-                                  {% for tags in forms %}
+                                  {{forms.value_review.label}}
                                   <tr class="first odd">
-                                        
-                                    <th>{{ tags.label }}</th>
-
-                                    {% for tag in tags %}
-                                      <td >{{ tag }}</td>
-                                    {% endfor %}
-
+                                    <th>{{forms.value_review.label}}</th>
+                                        {% for tag in forms.value_review %}
+                                          <td class="value">{{tag}}</td>
+                                        {% endfor %}
+                                      <!-- <td class="value"><input type="radio" class="radio" value="11" id="Price_1" name="ratings[3]"></td>
+                                      <td class="value"><input type="radio" class="radio" value="12" id="Price_2" name="ratings[3]"></td>
+                                      <td class="value"><input type="radio" class="radio" value="13" id="Price_3" name="ratings[3]"></td>
+                                      <td class="value"><input type="radio" class="radio" value="14" id="Price_4" name="ratings[3]"></td>
+                                      <td class="value last"><input type="radio" class="radio" value="15" id="Price_5" name="ratings[3]"></td> -->
                                   </tr>
-                                  {% endfor %}
-
-                                  <!-- <tr class="even">
-                                    <th>Value</th>
-                
-                                    <td class="value"><input type="radio" class="radio" value="7" id="Value_2" name="ratings[2]"></td>
-                                    <td class="value"><input type="radio" class="radio" value="8" id="Value_3" name="ratings[2]"></td>
-                                    <td class="value"><input type="radio" class="radio" value="9" id="Value_4" name="ratings[2]"></td>
-                                    <td class="value last"><input type="radio" class="radio" value="10" id="Value_5" name="ratings[2]"></td> 
+                                  <tr class="even">
+                                    <th>{{forms.price_review.label}}</th>
+                                        {% for tag in forms.price_review %}
+                                          <td class="value">{{tag}}</td>
+                                        {% endfor %}
+                                      <!-- <td class="value"><input type="radio" class="radio" value="6" id="Value_1" name="ratings[2]"></td>
+                                      <td class="value"><input type="radio" class="radio" value="7" id="Value_2" name="ratings[2]"></td>
+                                      <td class="value"><input type="radio" class="radio" value="8" id="Value_3" name="ratings[2]"></td>
+                                      <td class="value"><input type="radio" class="radio" value="9" id="Value_4" name="ratings[2]"></td>
+                                      <td class="value last"><input type="radio" class="radio" value="10" id="Value_5" name="ratings[2]"></td> -->
                                   </tr>
                                   <tr class="last odd">
-                                    <th>Quality</th>
-                                    <td class="value"><input type="radio" class="radio" value="1" id="Quality_1" name="ratings[1]"></td>
-                                    <td class="value"><input type="radio" class="radio" value="2" id="Quality_2" name="ratings[1]"></td>
-                                    <td class="value"><input type="radio" class="radio" value="3" id="Quality_3" name="ratings[1]"></td>
-                                    <td class="value"><input type="radio" class="radio" value="4" id="Quality_4" name="ratings[1]"></td>
-                                    <td class="value last"><input type="radio" class="radio" value="5" id="Quality_5" name="ratings[1]"></td>
-                                  </tr> -->
-
+                                    <th>{{forms.quality_review.label}}</th>
+                                        {% for tag in forms.quality_review %}
+                                          <td class="value">{{tag}}</td>
+                                        {% endfor %}
+                                      <!-- <td class="value"><input type="radio" class="radio" value="1" id="Quality_1" name="ratings[1]"></td>
+                                      <td class="value"><input type="radio" class="radio" value="2" id="Quality_2" name="ratings[1]"></td>
+                                      <td class="value"><input type="radio" class="radio" value="3" id="Quality_3" name="ratings[1]"></td>
+                                      <td class="value"><input type="radio" class="radio" value="4" id="Quality_4" name="ratings[1]"></td>
+                                      <td class="value last"><input type="radio" class="radio" value="5" id="Quality_5" name="ratings[1]"></td> -->
+                                  </tr>
                                 </tbody>
                               </table>
-                              <!-- <input type="hidden" value="" class="validate-rating" name="validate_rating">
+                              <input type="hidden" value="" class="validate-rating" name="validate_rating">
                               <div class="review1">
                                 <ul class="form-list">
                                   <li>
@@ -201,9 +205,10 @@
                                     </div>
                                   </li>
                                   <li>
-                                    <label class="required" for="summary_field">Summary<em>*</em></label>
+                                    <label class="required" for="summary_field">{{forms.summary.label}}<em>*</em></label>
                                     <div class="input-box">
-                                      <input type="text" class="input-text" id="summary_field" name="title">
+                                      {{forms.summary}}
+                                      <!-- <input type="text" class="input-text" id="summary_field" name="title"> -->
                                     </div>
                                   </li>
                                 </ul>
@@ -211,12 +216,13 @@
                               <div class="review2">
                                 <ul>
                                   <li>
-                                    <label class="required " for="review_field">Review<em>*</em></label>
+                                    <label class="required " for="review_field">{{forms.comment.label}}<em>*</em></label>
                                     <div class="input-box">
-                                      <textarea rows="3" cols="5" id="review_field" name="detail"></textarea>
+                                      {{forms.comment}}
+                                      <!-- <textarea rows="3" cols="5" id="review_field" name="detail"></textarea> -->
                                     </div>
                                   </li>
-                                </ul> -->
+                                </ul>
                                 <div class="buttons-set">
                                   <button class="button submit" title="Submit Review" type="submit"><span>Submit Review</span></button>
                                 </div>

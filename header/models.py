@@ -15,7 +15,7 @@ class ABS(models.Model):
     create_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
 
-    class meta():
+    class Meta():
         abstract = True
 
 class Contact(ABS):

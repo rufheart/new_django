@@ -13,7 +13,7 @@ from requests import request
 from header.forms import Add_CardForm, Form_Review, Productdetail_form, Product_Form,FormContact,Form_Cont_Info,SubscribersForm
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, View, DeleteView
 import json
-from header.models import Category, Product, Detail_Product, Add_To_Card, Subscriber
+from header.models import Category, Product, Detail_Product, Add_To_Card, Subscriber,Review
 from header.task import exportime
 
 
@@ -64,8 +64,11 @@ class ProductDetail_View(DetailView):
     def get_context_data(self, **kwargs):
         data=super().get_context_data(**kwargs)
         data['forms'] = Form_Review
+        data['reviews'] = Review.objects.filter(product_review=Detail_Product.objects.get(slug=self.kwargs['slug']).detail.id)
+        
         return data
-    
+
+
 
 class ContInfo_View(CreateView):
     form_class = Form_Cont_Info

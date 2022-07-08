@@ -32,6 +32,6 @@ urlpatterns += i18n_patterns(
     path('', include('header.urls')),
     path('', include('social_django.urls', namespace='social')),
     path('account/', include('account.urls')),
-    path('api/',include('header.api.urls')),
-    path('api/',include('account.api.urls')),
+    path('apiheader/',include('header.api.urls')),
+    path('apiaccount/',include('account.api.urls')),
 )

@@ -3,8 +3,8 @@ from requests import put, request
 from rest_framework.views import APIView, Response
 from rest_framework.generics import CreateAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from header.api import seralize
-from header.models import Product,Detail_Product
-from header.api.seralize import ProductSerialize, DetailSerialize, CreateSerialize
+from header.models import Add_To_Card, Product,Detail_Product
+from header.api.seralize import ProductSerialize, DetailSerialize, CreateSerialize,AddCardSerialize
 import json
 
 
@@ -113,3 +113,17 @@ class FourApiView(RetrieveUpdateDestroyAPIView):
 #     for i in data:
 #         myJson.append({'id':i.id,'desc':'i.desc'})
 #     return HttpResponse(json.dumps(myJson))
+
+class DeleteFromCard(APIView):
+    def get(self, request, *args, **kwargs):
+        all = Add_To_Card.objects.filter(add_product = kwargs['pk'],add_usr=kwargs['id']).first()
+        if not all:
+            raise Http404
+        gt = AddCardSerialize(all,context={'request':request})
+        return Response(data=gt.data)
+
+    def delete(self, request, *args, **kwargs):
+        delete1, _ = Add_To_Card.objects.filter(add_product=kwargs['pk'],add_usr=kwargs['id']).delete()
+        if not delete1:
+            raise Http404
+        return Response(data={}, status=201)
